@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed Jun 28 19:48:31 2023
+| Date         : Sat Jul  1 05:06:51 2023
 | Host         : DESKTOP-M2KV102 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file OOOP_wrapper_utilization_synth.rpt -pb OOOP_wrapper_utilization_synth.pb
 | Design       : OOOP_wrapper
@@ -92,7 +92,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   12 |     0 |          0 |       106 | 11.32 |
+| Bonded IOB                  |   44 |     0 |          0 |       106 | 41.51 |
 | Bonded IPADs                |    0 |     0 |          0 |        10 |  0.00 |
 | Bonded OPADs                |    0 |     0 |          0 |         4 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         5 |  0.00 |
@@ -151,8 +151,8 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| OBUF     |   11 |                  IO |
-| IBUF     |    1 |                  IO |
+| OBUF     |   27 |                  IO |
+| IBUF     |   17 |                  IO |
 +----------+------+---------------------+
 
 

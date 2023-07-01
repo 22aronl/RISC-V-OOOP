@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xB343604F6C1FDAFE",
+      "boundary_crc": "0x4585B0D7D19F490A",
       "device": "xc7a35tcpg236-1",
       "gen_directory": "../../../../OutOfOrderProcessor.gen/sources_1/bd/OOOP",
       "name": "OOOP",
@@ -61,6 +61,16 @@
         "direction": "O",
         "left": "3",
         "right": "0"
+      },
+      "sw": {
+        "direction": "I",
+        "left": "15",
+        "right": "0"
+      },
+      "led": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
       }
     },
     "components": {
@@ -110,6 +120,11 @@
               }
             }
           },
+          "sw": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
           "seg": {
             "direction": "O",
             "left": "6",
@@ -118,6 +133,11 @@
           "an": {
             "direction": "O",
             "left": "3",
+            "right": "0"
+          },
+          "led": {
+            "direction": "O",
+            "left": "15",
             "right": "0"
           }
         }
@@ -136,6 +156,12 @@
           "an"
         ]
       },
+      "cpu_0_led": {
+        "ports": [
+          "cpu_0/led",
+          "led"
+        ]
+      },
       "cpu_0_seg": {
         "ports": [
           "cpu_0/seg",
@@ -146,6 +172,12 @@
         "ports": [
           "reset",
           "clk_wiz/reset"
+        ]
+      },
+      "sw_0_1": {
+        "ports": [
+          "sw",
+          "cpu_0/sw"
         ]
       },
       "sys_clock_1": {

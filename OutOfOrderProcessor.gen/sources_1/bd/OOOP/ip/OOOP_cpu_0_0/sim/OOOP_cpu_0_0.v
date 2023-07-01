@@ -56,19 +56,25 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module OOOP_cpu_0_0 (
   clk,
+  sw,
   seg,
-  an
+  an,
+  led
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
+input wire [15 : 0] sw;
 output wire [6 : 0] seg;
 output wire [3 : 0] an;
+output wire [15 : 0] led;
 
   cpu inst (
     .clk(clk),
+    .sw(sw),
     .seg(seg),
-    .an(an)
+    .an(an),
+    .led(led)
   );
 endmodule

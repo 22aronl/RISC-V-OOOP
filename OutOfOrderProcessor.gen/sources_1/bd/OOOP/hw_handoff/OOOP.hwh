@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 28 19:47:06 2023" VIVADOVERSION="2023.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Jul  1 05:05:26 2023" VIVADOVERSION="2023.1">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:basys3:part0:1.2" DEVICE="7a35t" NAME="OOOP" PACKAGE="cpg236" SPEEDGRADE="-1"/>
 
@@ -22,6 +22,16 @@
     <PORT DIR="O" LEFT="3" NAME="an" RIGHT="0" SIGIS="undef" SIGNAME="cpu_0_an">
       <CONNECTIONS>
         <CONNECTION INSTANCE="cpu_0" PORT="an"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="15" NAME="sw" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sw">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="cpu_0" PORT="sw"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="15" NAME="led" RIGHT="0" SIGIS="undef" SIGNAME="cpu_0_led">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="cpu_0" PORT="led"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -640,6 +650,11 @@
             <CONNECTION INSTANCE="clk_wiz" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="15" NAME="sw" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sw">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="6" NAME="seg" RIGHT="0" SIGIS="undef" SIGNAME="cpu_0_seg">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="seg"/>
@@ -648,6 +663,11 @@
         <PORT DIR="O" LEFT="3" NAME="an" RIGHT="0" SIGIS="undef" SIGNAME="cpu_0_an">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="an"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="led" RIGHT="0" SIGIS="undef" SIGNAME="cpu_0_led">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="led"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

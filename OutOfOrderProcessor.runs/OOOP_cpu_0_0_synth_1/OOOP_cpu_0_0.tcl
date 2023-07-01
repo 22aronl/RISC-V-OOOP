@@ -93,11 +93,14 @@ set_property ip_output_repo {c:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcesso
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+read_mem {{C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/file.mem}}
 read_verilog -library xil_defaultlib {
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/display.v}
+  {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v}
+  {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/regs.v}
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v}
 }
-read_ip -quiet {{c:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/bd/OOOP/ip/OOOP_cpu_0_0/OOOP_cpu_0_0.xci}}
+read_ip -quiet {{C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/bd/OOOP/ip/OOOP_cpu_0_0/OOOP_cpu_0_0.xci}}
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

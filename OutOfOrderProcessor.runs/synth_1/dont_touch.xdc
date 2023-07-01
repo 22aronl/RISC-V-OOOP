@@ -6,10 +6,10 @@
 # Block Designs: bd/OOOP/OOOP.bd
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==OOOP || ORIG_REF_NAME==OOOP} -quiet] -quiet
 
-# IP: bd/OOOP/ip/OOOP_cpu_0_0/OOOP_cpu_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==OOOP_cpu_0_0 || ORIG_REF_NAME==OOOP_cpu_0_0} -quiet] -quiet
-
 # IP: bd/OOOP/ip/OOOP_clk_wiz_0/OOOP_clk_wiz_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==OOOP_clk_wiz_0 || ORIG_REF_NAME==OOOP_clk_wiz_0} -quiet] -quiet
+
+# IP: bd/OOOP/ip/OOOP_cpu_0_0/OOOP_cpu_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==OOOP_cpu_0_0 || ORIG_REF_NAME==OOOP_cpu_0_0} -quiet] -quiet
 
 # XDC: c:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.gen/sources_1/bd/OOOP/OOOP_ooc.xdc
