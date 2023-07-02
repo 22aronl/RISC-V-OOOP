@@ -27,6 +27,8 @@ module cpu(
     output [3:0] an,
     output [15:0] led
     );
+    
+    reg [31:0] pc = 32'h00000000;
 
     reg [3:0] in_num = 4'b0000;
     reg [1:0] in_loc = 2'b01;
@@ -35,40 +37,68 @@ module cpu(
     
     display display(clk, in_num, in_loc, in_en, seg, an);
     
-    reg [31:1] raddr0 = {{18{1'b0}}, 1'b1, {12{1'b0}}};
-    wire [31:0] rdata0;
-    reg [31:1] raddr1 = {{17{1'b0}}, 1'b1, {13{1'b0}}};
-    wire [31:0] rdata1;
-    reg [31:1] raddr2 = {{16{1'b0}}, 1'b1, {14{1'b0}}};
-    wire [31:0] rdata2;
-    reg [31:1] raddr3 = {{31{1'b0}}, 1'b1};
-    wire [31:0] rdata3;
+    wire [31:0] pcA = pc;
+    wire [31:0] pcB = pc + 2;
+    wire [31:0] pcC = pc + 4;
+    
+    
+    wire [31:1] raddr0 = pc;
+    wire [31:1] raddr1 = pc + 2;
+    wire [31:1] raddr2 = pc + 4;
+    
+    wire [31:0] instructA;
+    wire [31:0] instructB;
+    wire [31:0] instructC;
+    
+    wire [31:1] raddr = {{31{1'b0}}, 1'b1};
+    wire [31:0] rdata;
+    
     reg wen = 1'b1;
     wire [31:1] waddr = {{16{1'b0}}, sw};
     wire [31:0] wdata = {32{1'b1}};
     
-    mem mem(clk, raddr0, rdata0, raddr1, rdata1, raddr2, rdata2, raddr3, rdata3, wen, waddr, wdata);
+    mem mem(
+        .clk(clk),
+        .raddr0(pcA[31:1]),
+        .raddr1(pcB[31:1]),
+        .raddr2(pcC[31:1]),
+        .raddr3(raddr),
+        .rdata0(instructA),
+        .rdata1(instructB),
+        .rdata2(instructC),
+        .rdata3(rdata),
+        .wen(wen),
+        .waddr(waddr),
+        .wdata(wdata)
+    );
+    
+    regs regs(clk);
     
     reg [3:0] led_light = 4'b0000;
     assign led = led_light;
     always @(posedge clk) begin
-        if(rdata3[0] === 1'b1) begin
+        if(rdata[0] === 1'b1) begin
             led_light[3] <= 1'b1;
         end
         
-        if(rdata2[1] === 1'b1) begin
+        if(instructC[1] === 1'b1) begin
             led_light[2] <= 1'b1;
         end
         
-        if(rdata1[1] === 1'b1) begin
+        if(instructB[1] === 1'b1) begin
             led_light[1] <= 1'b1;
         end
         
-        if(rdata0[1] === 1'b1) begin
+        if(instructA[1] === 1'b1) begin
             led_light[0] <= 1'b1;
         end
     end
     
-    regs regs(clk);
+
+   
+    
+    always @(posedge clk) begin
+        pc <= pc + 6;    
+    end
     
 endmodule

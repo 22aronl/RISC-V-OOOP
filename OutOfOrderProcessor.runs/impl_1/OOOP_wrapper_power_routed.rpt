@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Sat Jul  1 05:12:40 2023
+| Date             : Sat Jul  1 18:27:15 2023
 | Host             : DESKTOP-M2KV102 running 64-bit major release  (build 9200)
 | Command          : report_power -file OOOP_wrapper_power_routed.rpt -pb OOOP_wrapper_power_summary_routed.pb -rpx OOOP_wrapper_power_routed.rpx
 | Design           : OOOP_wrapper
@@ -52,15 +52,15 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.001 |        5 |       --- |             --- |
-| Slice Logic             |    <0.001 |       99 |       --- |             --- |
+| Clocks                  |     0.002 |        5 |       --- |             --- |
+| Slice Logic             |    <0.001 |      220 |       --- |             --- |
+|   Register              |    <0.001 |      160 |     41600 |            0.38 |
+|   CARRY4                |    <0.001 |       17 |      8150 |            0.21 |
 |   LUT as Shift Register |    <0.001 |        8 |      9600 |            0.08 |
-|   Register              |    <0.001 |       55 |     41600 |            0.13 |
-|   CARRY4                |    <0.001 |        5 |      8150 |            0.06 |
-|   LUT as Logic          |    <0.001 |       12 |     20800 |            0.06 |
+|   LUT as Logic          |    <0.001 |       16 |     20800 |            0.08 |
 |   Others                |     0.000 |       10 |       --- |             --- |
-| Signals                 |    <0.001 |       88 |       --- |             --- |
-| Block RAM               |     0.011 |        4 |        50 |            8.00 |
+| Signals                 |    <0.001 |      202 |       --- |             --- |
+| Block RAM               |     0.009 |        4 |        50 |            8.00 |
 | MMCM                    |     0.106 |        1 |         5 |           20.00 |
 | I/O                     |     0.007 |       44 |       106 |           41.51 |
 | Static Power            |     0.072 |          |           |                 |

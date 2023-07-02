@@ -1,27 +1,27 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-476,-139",
+   "Default View_TopLeft":"-465,-205",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
 #  -string -flagsOSRD
-preplace port port-id_sys_clock -pg 1 -lvl 0 -x -80 -y 120 -defaultsOSRD
-preplace port port-id_reset -pg 1 -lvl 0 -x -80 -y 100 -defaultsOSRD
-preplace portBus seg -pg 1 -lvl 3 -x 360 -y -40 -defaultsOSRD
-preplace portBus an -pg 1 -lvl 3 -x 360 -y -60 -defaultsOSRD
-preplace portBus sw -pg 1 -lvl 0 -x -80 -y 0 -defaultsOSRD
-preplace portBus led -pg 1 -lvl 3 -x 360 -y 0 -defaultsOSRD
-preplace inst clk_wiz -pg 1 -lvl 2 -x 250 -y 110 -defaultsOSRD
+preplace port port-id_sys_clock -pg 1 -lvl 0 -x -90 -y 120 -defaultsOSRD
+preplace port port-id_reset -pg 1 -lvl 0 -x -90 -y 100 -defaultsOSRD
+preplace portBus seg -pg 1 -lvl 3 -x 390 -y -40 -defaultsOSRD
+preplace portBus an -pg 1 -lvl 3 -x 390 -y -60 -defaultsOSRD
+preplace portBus sw -pg 1 -lvl 0 -x -90 -y 0 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 3 -x 390 -y 0 -defaultsOSRD
+preplace inst clk_wiz -pg 1 -lvl 2 -x 270 -y 110 -defaultsOSRD
 preplace inst cpu_0 -pg 1 -lvl 1 -x 50 -y -20 -defaultsOSRD
-preplace netloc clk_wiz_clk_out1 1 0 3 -60 -100 N -100 340
+preplace netloc clk_wiz_clk_out1 1 0 3 -60 -100 N -100 360
 preplace netloc cpu_0_an 1 1 2 160 -60 NJ
+preplace netloc cpu_0_led 1 1 2 NJ 0 NJ
 preplace netloc cpu_0_seg 1 1 2 N -40 NJ
 preplace netloc reset_1 1 0 2 NJ 100 N
+preplace netloc sw_0_1 1 0 1 -70 -10n
 preplace netloc sys_clock_1 1 0 2 NJ 120 N
-preplace netloc sw_0_1 1 0 1 -60 -10n
-preplace netloc cpu_0_led 1 1 2 NJ 0 NJ
-levelinfo -pg 1 -80 50 250 360
-pagesize -pg 1 -db -bbox -sgen -200 -110 480 350
+levelinfo -pg 1 -90 50 270 390
+pagesize -pg 1 -db -bbox -sgen -210 -110 510 350
 "
 }
 {
