@@ -71,8 +71,54 @@ module cpu(
         .waddr(waddr),
         .wdata(wdata)
     );
-    
-    regs regs(clk);
+
+
+    wire [4:0] regsA [0:1];
+    wire [4:0] regsB [0:1];
+    wire [4:0] regsC [0:1];
+
+    wire [38:0] rdataA [0:1];
+    wire [38:0] rdataB [0:1];
+    wire [38:0] rdataC [0:1];
+
+    wire [11:0] rdA;
+    wire [11:0] rdB;
+    wire [11:0] rdC;
+
+    regs regs(
+        .clk(clk),
+        .stall(1'b0),
+        .flush(1'b0),
+        .reg0(regsA[0]),
+        .rdata0(rdataA[0]),
+        .reg1(regsA[1]),
+        .rdata1(rdataA[1]),
+        .reg2(regsB[0]),
+        .rdata2(rdataB[0]),
+        .reg3(regsB[1]),
+        .rdata3(rdataB[1]),
+        .reg4(regsC[0]),
+        .rdata4(rdataC[0]),
+        .reg5(regsC[1]),
+        .rdata5(rdataC[1]),
+        .rob_locA(rdA[11:6]),
+        .rob_waddrA(rdA[5:1]),
+        .rob_wenA(rdA[0]),
+        .rob_locB(rdB[11:6]),
+        .rob_waddrB(rdB[5:1]),
+        .rob_wenB(rdB[0]),
+        .rob_locC(rdC[11:6]),
+        .rob_waddrC(rdC[5:1]),
+        .rob_wenC(rdC[0]),
+        .wen0(1'b0),
+        .waddr0(3'b000),
+        .wdata0(16'b0000000000000000),
+        .wrob0(6'b000000),
+        .wen1(1'b0),
+        .waddr1(3'b000),
+        .wdata1(16'b0000000000000000),
+        .wrob1(6'b000000)
+    ); //TODO: fill out writing to reg & stall & flush
     
     reg [3:0] led_light = 4'b0000;
     assign led = led_light;
@@ -93,9 +139,68 @@ module cpu(
             led_light[0] <= 1'b1;
         end
     end
-    
 
-   
+    reg [5:0] ROB_locA; //TODO:
+    reg [5:0] ROB_locB;
+    reg [5:0] ROB_locC;
+    
+    wire [98:0] output_dataA;
+    wire [14:0] output_locA;
+    wire [31:0] output_pcA;
+
+    wire [98:0] output_dataB;
+    wire [14:0] output_locB;
+    wire [31:0] output_pcB;
+
+    wire [98:0] output_dataC;
+    wire [14:0] output_locC;
+    wire [31:0] output_pcC;
+
+
+    decoder decoderA(
+        .clk(clk),
+        .instruct(instructA),
+        .pc(pcA),
+        .ROB_loc(ROB_locA),
+        .out_rd(rdA),
+        .out_rs1(regsA[0]),
+        .out_rs2(regsA[1]),
+        .data_rs1(rdataA[0]),
+        .data_rs2(rdataA[1]),
+        .output_data(output_dataA),
+        .output_loc(output_locA),
+        .output_pc(output_pcA)
+    ); //TODO: fill out output_data, output_loc, output_pc
+
+    decoder decoderB(
+        .clk(clk),
+        .instruct(instructB),
+        .pc(pcB),
+        .ROB_loc(ROB_locB),
+        .out_rd(rdB),
+        .out_rs1(regsB[0]),
+        .out_rs2(regsB[1]),
+        .data_rs1(rdataB[0]),
+        .data_rs2(rdataB[1]),
+        .output_data(output_dataB),
+        .output_loc(output_locB),
+        .output_pc(output_pcB)
+    );
+
+    decoder decoderC(
+        .clk(clk),
+        .instruct(instructC),
+        .pc(pcC),
+        .ROB_loc(ROB_locC),
+        .out_rd(rdC),
+        .out_rs1(regsC[0]),
+        .out_rs2(regsC[1]),
+        .data_rs1(rdataC[0]),
+        .data_rs2(rdataC[1]),
+        .output_data(output_dataC),
+        .output_loc(output_locC),
+        .output_pc(output_pcC)
+    );
     
     always @(posedge clk) begin
         pc <= pc + 6;    

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="Test_Memory_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="Test_Memory" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="70.601 ns"></ZoomEndTime>
+      <Cursor1Time time="5.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="143"></NameColumnWidth>
+      <ValueColumnWidth column_width="182"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="6" />
+   <wvobject fp_name="/Test_Memory/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/pcA" type="array">
+      <obj_property name="ElementShortName">pcA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pcA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/instructA" type="array">
+      <obj_property name="ElementShortName">instructA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instructA[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/decoderA/output_data" type="array">
+      <obj_property name="ElementShortName">output_data[98:0]</obj_property>
+      <obj_property name="ObjectShortName">output_data[98:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/decoderA/output_loc" type="array">
+      <obj_property name="ElementShortName">output_loc[14:0]</obj_property>
+      <obj_property name="ObjectShortName">output_loc[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/decoderA/output_pc" type="array">
+      <obj_property name="ElementShortName">output_pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">output_pc[31:0]</obj_property>
+   </wvobject>
+</wave_config>

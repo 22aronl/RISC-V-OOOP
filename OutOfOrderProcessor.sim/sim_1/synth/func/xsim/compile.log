@@ -1,0 +1,10 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.sim/sim_1/synth/func/xsim/OOOP_wrapper_func_synth.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module OOOP
+INFO: [VRFC 10-311] analyzing module OOOP_clk_wiz_0
+INFO: [VRFC 10-311] analyzing module OOOP_clk_wiz_0_clk_wiz
+INFO: [VRFC 10-311] analyzing module OOOP_cpu_0_0
+INFO: [VRFC 10-311] analyzing module OOOP_cpu_0_0_cpu
+INFO: [VRFC 10-311] analyzing module OOOP_cpu_0_0_display
+INFO: [VRFC 10-311] analyzing module OOOP_cpu_0_0_mem
+INFO: [VRFC 10-311] analyzing module OOOP_wrapper
+INFO: [VRFC 10-311] analyzing module glbl
