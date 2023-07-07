@@ -24,7 +24,9 @@ module Test_Memory(
 
     );
     
-    localparam CLK_PERIOD = 10;
+    
+    
+    localparam CLK_PERIOD = 500;
     
     reg clk = 1'b0;
     always #(CLK_PERIOD / 2.0) begin
@@ -43,5 +45,15 @@ module Test_Memory(
         .an(an),
         .led(led)
     );
+    
+    reg [15:0] counter = 0;
+    
+    always @(posedge clk) begin
+        counter <= counter + 1;
+        if(counter > 50000) begin
+            $display("testing");
+            $finish(0);
+        end
+    end
     
 endmodule

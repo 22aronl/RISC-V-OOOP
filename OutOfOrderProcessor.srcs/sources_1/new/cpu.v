@@ -27,6 +27,7 @@ module cpu(
     output [3:0] an,
     output [15:0] led
     );
+
     
     reg [31:0] pc = 32'h00000000;
 
@@ -144,15 +145,15 @@ module cpu(
     reg [5:0] ROB_locB;
     reg [5:0] ROB_locC;
     
-    wire [98:0] output_dataA;
+    wire [100:0] output_dataA;
     wire [14:0] output_locA;
     wire [31:0] output_pcA;
 
-    wire [98:0] output_dataB;
+    wire [100:0] output_dataB;
     wire [14:0] output_locB;
     wire [31:0] output_pcB;
 
-    wire [98:0] output_dataC;
+    wire [100:0] output_dataC;
     wire [14:0] output_locC;
     wire [31:0] output_pcC;
 
@@ -201,9 +202,11 @@ module cpu(
         .output_loc(output_locC),
         .output_pc(output_pcC)
     );
+
     
+  
     always @(posedge clk) begin
-        pc <= pc + 6;    
+        pc <= pc + 6;
     end
     
 endmodule

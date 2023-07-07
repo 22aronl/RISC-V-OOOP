@@ -50,7 +50,7 @@ module display(
     reg [3:0] display_first = 4'b1010;
     reg [3:0] display_second = 4'b1010;
     reg [3:0] display_third = 4'b1010;
-    reg [4:0] display_fourth = 4'b1010;
+    reg [3:0] display_fourth = 4'b1010;
     
     always @(posedge clk) begin
         if(in_en) begin
