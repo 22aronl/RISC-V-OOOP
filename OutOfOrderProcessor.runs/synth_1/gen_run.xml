@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1688628047" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/OOOP_wrapper.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1688769145" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/OOOP_wrapper.dcp">
   <File Type="PA-TCL" Name="OOOP_wrapper.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="OOOP_wrapper_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="OOOP_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="OOOP_wrapper.vds"/>
   <File Type="RDS-UTIL" Name="OOOP_wrapper_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="OOOP_wrapper_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="OOOP_wrapper.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="OOOP_wrapper_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="OOOP_wrapper_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/decoder.v">
@@ -63,7 +66,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/reservation.v">
+    <File Path="$PSRCDIR/sources_1/new/test.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -71,7 +74,39 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/test.v">
+    <File Path="$PSRCDIR/sources_1/new/running.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/buffer.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/queue_feeder.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/reservation_station.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/alu.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>

@@ -23,7 +23,7 @@
 module alu(
     input clk,
     input [79:0] inOperation, input inValid,
-    output [37:0] outData
+    output [38:0] outData
     );
     
     //inOperation: [77:73] opcode, [72:70] opcodeB, [69:64] rob, [63:32] data1, [31:0] data2

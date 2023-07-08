@@ -65,12 +65,12 @@ module regs(
     end
 
     always @(posedge clk) begin
-        raddr0 <= stall ? raddr0 : rdata0;
-        raddr1 <= rdata1;
-        raddr2 <= rdata2;
-        raddr3 <= rdata3;
-        raddr4 <= rdata4;
-        raddr5 <= rdata5;
+        raddr0 <= stall ? raddr0 : reg0;
+        raddr1 <= reg1;
+        raddr2 <= reg2;
+        raddr3 <= reg3;
+        raddr4 <= reg4;
+        raddr5 <= reg5;
 
         if (wen0) begin
             data[waddr0] <= wdata0;

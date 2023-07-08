@@ -40,30 +40,47 @@ module reservation_station
         end
     endgenerate
     
-    
-    wire [LOG_R - 1 : 0] commit_loc;
-    generate
-        for (j = 0; j < R_SIZE; j = j + 1) begin
-            assign operationUsed = operationUsed | (!committed[j]);
-            assign commit_loc = (!committed[j]) ? j : commit_loc;
-        end
-    endgenerate
-    
+    assign operationUsed = (!committed[0]) | (!committed[1]) | (!committed[2]) | (!committed[3]) | (!committed[4]) | 
+                            (!committed[5]) | (!committed[6]) | (!committed[7]) | (!committed[8]);
     assign outOperationValid = check > 0;
     
-    function [LOG_R - 1 : 0] getOperationIndex;
-        input [R_SIZE - 1 : 0] test;
-        integer k;
-        begin
-            for(k = 0; k < R_SIZE; k = k + 1) begin
-                 if (committed[k] && (operation[k][1:0] == 2'b00)) begin
-                    getOperationIndex = k;
-                 end
-            end
-        end
-    endfunction
+    wire [LOG_R - 1 : 0] commit_loc = (!committed[0]) ? 0 : (!committed[1]) ? 1 : (!committed[2]) ? 2 : (!committed[3]) ? 3 : 
+                                     (!committed[4]) ? 4 : (!committed[5]) ? 5 : (!committed[6]) ? 6 : (!committed[7]) ? 7 : 8;
+
+    wire [LOG_R - 1 : 0] operationIndex = (committed[0] && (operation[0][1:0] == 2'b00)) ? 0 :
+                                            (committed[1] && (operation[1][1:0] == 2'b00)) ? 1 :
+                                            (committed[2] && (operation[2][1:0] == 2'b00)) ? 2 :
+                                            (committed[3] && (operation[3][1:0] == 2'b00)) ? 3 :
+                                            (committed[4] && (operation[4][1:0] == 2'b00)) ? 4 :
+                                            (committed[5] && (operation[5][1:0] == 2'b00)) ? 5 :
+                                            (committed[6] && (operation[6][1:0] == 2'b00)) ? 6 :
+                                            (committed[7] && (operation[7][1:0] == 2'b00)) ? 7 : 8;
+                                            
     
-    wire [LOG_R - 1 : 0] operationIndex = getOperationIndex(committed); //TODO: Probably wrong
+//    wire [LOG_R - 1 : 0] commit_loc; //I have no clue how this works
+//    generate
+//        assign operationUsed = 1'b0;
+//        for (j = 0; j < R_SIZE; j = j + 1) begin
+//            assign operationUsed = operationUsed | (!committed[j]);
+//            assign commit_loc = (!committed[j]) ? j : commit_loc;
+//        end
+//    endgenerate
+    
+//    
+    
+//    function [LOG_R - 1 : 0] getOperationIndex;
+//        input [R_SIZE - 1 : 0] test;
+//        integer k;
+//        begin
+//            for(k = 0; k < R_SIZE; k = k + 1) begin
+//                 if (committed[k] && (operation[k][1:0] == 2'b00)) begin
+//                    getOperationIndex = k;
+//                 end
+//            end
+//        end
+//    endfunction
+    
+//    wire [LOG_R - 1 : 0] operationIndex = getOperationIndex(committed); //TODO: Probably wrong
     
     // [98:94] d2_rd, [93:89] d2_opcode, [88:86] d2_opcodeB, [85:80] d2_ROB_loc
     // [79:48] d2_rs1_data, [47] d2_rs1_busy, [46:41] d2_rs1_loc, [40:9] d2_rs2_data, [8] d2_rs2_busy, [7:2] d2_rs2_loc
@@ -88,7 +105,7 @@ module reservation_station
             end
         end
         else begin
-            if(operationUsed && inOperation[94]) begin
+            if(operationUsed && inOperation[96]) begin
                 operation[commit_loc] <= inOperation;
                 committed[commit_loc] <= 1'b1;
             end

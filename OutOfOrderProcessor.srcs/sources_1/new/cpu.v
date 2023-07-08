@@ -140,29 +140,84 @@ module cpu(
             led_light[0] <= 1'b1;
         end
     end
+    
+    //pc staller
+    reg pcA_valid = 1'b1;
+    reg pcB_valid = 1'b1;
+    reg pcC_valid = 1'b1;
+    
+    reg [31:0] d1_pcA;
+    reg [31:0] d1_pcB;
+    reg [31:0] d1_pcC;
+    reg d1_validA = 1'b0;
+    reg d1_validB = 1'b0;
+    reg d1_validC = 1'b0;
+    
+    reg [31:0] d2_pcA;
+    reg [31:0] d2_pcB;
+    reg [31:0] d2_pcC;
+    reg d2_validA = 1'b0;
+    reg d2_validB = 1'b0;
+    reg d2_validC = 1'b0;
+    
+    reg [31:0] d3_pcA;
+    reg [31:0] d3_pcB;
+    reg [31:0] d3_pcC;
+    reg d3_validA = 1'b0;
+    reg d3_validB = 1'b0;
+    reg d3_validC = 1'b0; //inefficient
+    
+    always @(posedge clk) begin
+        d1_pcA <= pcA;
+        d1_pcB <= pcB;
+        d1_pcC <= pcC;
+        d1_validA <= pcA_valid;
+        d1_validB <= pcB_valid;
+        d1_validC <= pcC_valid;
+        
+        d2_pcA <= d1_pcA;
+        d2_pcB <= d1_pcB;
+        d2_pcC <= d1_pcC;
+        d2_validA <= d1_validA;
+        d2_validB <= d1_validB;
+        d2_validC <= d1_validC;
+        
+        d3_pcA <= d2_pcA;
+        d3_pcB <= d2_pcB;
+        d3_pcC <= d2_pcC;
+        d3_validA <= d2_validA;
+        d3_validB <= d2_validB;
+        d3_validC <= d2_validC;
+    end
 
-    reg [5:0] ROB_locA; //TODO:
-    reg [5:0] ROB_locB;
-    reg [5:0] ROB_locC;
+    wire [38:0] forwardA;
+    wire [38:0] forwardB;
+    wire [38:0] forwardC;
+    wire [38:0] forwardD;
+
+    wire [5:0] ROB_locA; //TODO:
+    wire [5:0] ROB_locB;
+    wire [5:0] ROB_locC;
     
     wire [100:0] output_dataA;
-    wire [14:0] output_locA;
+    wire [15:0] output_locA;
     wire [31:0] output_pcA;
 
     wire [100:0] output_dataB;
-    wire [14:0] output_locB;
+    wire [15:0] output_locB;
     wire [31:0] output_pcB;
 
     wire [100:0] output_dataC;
-    wire [14:0] output_locC;
+    wire [15:0] output_locC;
     wire [31:0] output_pcC;
 
 
     decoder decoderA(
         .clk(clk),
         .instruct(instructA),
-        .pc(pcA),
+        .pc(d3_pcA),
         .ROB_loc(ROB_locA),
+        .in_valid(d3_validA),
         .out_rd(rdA),
         .out_rs1(regsA[0]),
         .out_rs2(regsA[1]),
@@ -176,8 +231,9 @@ module cpu(
     decoder decoderB(
         .clk(clk),
         .instruct(instructB),
-        .pc(pcB),
+        .pc(d3_pcB),
         .ROB_loc(ROB_locB),
+        .in_valid(d3_validB),
         .out_rd(rdB),
         .out_rs1(regsB[0]),
         .out_rs2(regsB[1]),
@@ -191,8 +247,9 @@ module cpu(
     decoder decoderC(
         .clk(clk),
         .instruct(instructC),
-        .pc(pcC),
+        .pc(d3_pcC),
         .ROB_loc(ROB_locC),
+        .in_valid(d3_validC),
         .out_rd(rdC),
         .out_rs1(regsC[0]),
         .out_rs2(regsC[1]),
@@ -202,7 +259,130 @@ module cpu(
         .output_loc(output_locC),
         .output_pc(output_pcC)
     );
+    
+    
+    // // // // // //
+    //             //
+    //     ROB     //
+    //             //
+    // // // // // //
+    
+    reg [5:0] ROBhead = 5'h00;
+    reg [5:0] ROBtail = 5'h00;
+    
+    always @(posedge clk) begin
+        ROBtail <= (ROBtail + 3) % 64;
+    end
+    
+    assign ROB_locA = ROBtail;
+    assign ROB_locB = (ROBtail + 1) % 64;
+    assign ROB_locC = (ROBtail + 2) % 64;
+    
+    // // // // // 
+    // ALU // //
+    // // // // //
+    wire [95:0] output_aluA;
+    wire [95:0] output_aluB;
+    wire [95:0] output_aluC;
+    wire output_aluA_valid;
+    wire output_aluB_valid;
+    wire output_aluC_valid;
 
+    queue_feeder alu_feeder(
+        .inOperationA(output_dataA[95:0]),
+        .inOperationB(output_dataB[95:0]),
+        .inOperationC(output_dataC[95:0]),
+        .validA(output_locA[15] & output_locA[14]),
+        .validB(output_locB[15] & output_locB[14]),
+        .validC(output_locC[15] & output_locC[14]),
+        .outOperationA(output_aluA),
+        .outOperationB(output_aluB),
+        .outOperationC(output_aluC),
+        .outValidA(output_aluA_valid),
+        .outValidB(output_aluB_valid),
+        .outValidC(output_aluC_valid)
+    );
+
+    wire [96:0] alu_buffer_opA;
+    wire [96:0] alu_buffer_opB;
+    wire alu_reservA_used;
+    wire alu_reservB_used;
+
+    buffer alu_buffer(
+        .clk(clk),
+        .flush(1'b0),
+        .taken({alu_reservA_used & alu_reservB_used, alu_reservA_used ^ alu_reservB_used}),
+        .forwardA(forwardA),
+        .forwardB(forwardB),
+        .forwardC(forwardC),
+        .forwardD(forwardD),
+        .validA(output_aluA_valid),
+        .validB(output_aluB_valid),
+        .validC(output_aluC_valid),
+        .input_dataA(output_aluA),
+        .input_dataB(output_aluB),
+        .input_dataC(output_aluC),
+        .outOperation0(alu_buffer_opA),
+        .outOperation1(alu_buffer_opB)
+    );
+
+    // // // 
+    // alu module A
+    // // //
+    wire alu_operationA_used;
+    wire [79:0] alu_operationA;
+    wire alu_operationA_valid;
+    reservation_station alu_reservationA(
+        .clk(clk),
+        .flush(1'b0),
+        .forwardA(forwardA),
+        .forwardB(forwardB),
+        .forwardC(forwardC),
+        .forwardD(forwardD),
+        .inOperation(alu_buffer_opA),
+        .operationUsed(alu_operationA_used),
+        .outOperation(alu_operationA),
+        .outOperationValid(alu_operationA_valid)
+    );
+
+    assign alu_reservA_used = alu_operationA_used & alu_buffer_opA[96];
+
+    alu aluA(
+        .clk(clk),
+        .inOperation(alu_operationA),
+        .inValid(alu_operationA_valid),
+        .outData(forwardA)
+    );
+
+    // // //
+    // alu module B
+    // // //
+
+    wire alu_operationB_used;
+    wire [79:0] alu_operationB;
+    wire alu_operationB_valid;
+    
+    reservation_station alu_reservationB(
+        .clk(clk),
+        .flush(1'b0),
+        .forwardA(forwardA),
+        .forwardB(forwardB),
+        .forwardC(forwardC),
+        .forwardD(forwardD),
+        .inOperation(alu_buffer_opB),
+        .operationUsed(alu_operationB_used),
+        .outOperation(alu_operationB),
+        .outOperationValid(alu_operationB_valid)
+    );
+
+    assign alu_reservB_used = alu_operationB_used & alu_buffer_opB[96];
+
+    alu aluB(
+        .clk(clk),
+        .inOperation(alu_operationB),
+        .inValid(alu_operationB_valid),
+        .outData(forwardB)
+    );
     
   
     always @(posedge clk) begin

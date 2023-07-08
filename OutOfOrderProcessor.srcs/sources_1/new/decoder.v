@@ -22,10 +22,10 @@
 
 module decoder(
     input clk,
-    input [31:0] instruct, input [31:0] pc, input [5:0] ROB_loc,
+    input [31:0] instruct, input [31:0] pc, input [5:0] ROB_loc, input in_valid,
     output [11:0] out_rd, output [4:0] out_rs1, output [4:0] out_rs2,
     input [38:0] data_rs1, input [38:0] data_rs2,
-    output [100:0] output_data, output [14:0] output_loc, output [31:0] output_pc
+    output [100:0] output_data, output [15:0] output_loc, output [31:0] output_pc
     ); //TODO: Add stall and flush and validity
     
     wire [4:0] opcode = instruct[6:2];
@@ -95,6 +95,7 @@ module decoder(
     reg [31:0] d2_pc = 32'h11111111;
     reg [5:0] d2_ROB_loc = 6'b111111;
     reg [1:0] d2_opcodeC = 2'b00;
+    reg d2_valid = 1'b0;
 
     reg d2_use_rd = 1'b0;
     reg d2_use_rs1 = 1'b0;
@@ -114,12 +115,14 @@ module decoder(
     wire d2_rs1_look = d2_use_rs1 & data_rs1[6];
     wire d2_rs2_look = d2_use_rs2 & data_rs2[6];
 
-    // [98:94] d2_rd, [93:89] d2_opcode, [88:86] d2_opcodeB, [85:80] d2_ROB_loc
+    // [100:96] d2_rd, [95:94] d2_opcodeC, [93:89] d2_opcode, [88:86] d2_opcodeB, [85:80] d2_ROB_loc
     // [79:48] d2_rs1_data, [47] d2_rs1_busy, [46:41] d2_rs1_loc, [40:9] d2_rs2_data, [8] d2_rs2_busy, [7:2] d2_rs2_loc
     // [1] d2_rs1_look, [0] d2_rs2_look 
     
-    assign output_data = {d2_opcodeC, d2_rd, d2_opcode, d2_opcodeB, d2_ROB_loc, d2_rs1_data, data_rs1[6:0], d2_rs2_data, data_rs2[6:0], d2_rs1_look, d2_rs2_look};
-    assign output_loc = {d2_is_alu, d2_is_mem_unit, d2_is_branch_unit, d2_imm[11:0]};
+    assign output_data = {d2_rd, d2_opcodeC, d2_opcode, d2_opcodeB, d2_ROB_loc, d2_rs1_data, data_rs1[6:0], d2_rs2_data, data_rs2[6:0], d2_rs1_look, d2_rs2_look};
+    
+    // [15] d2_valid, [14] d2_is_alu, [13] d2_is_mem, [12] d2_is_branch, [11:0] d2_imm
+    assign output_loc = {d2_valid, d2_is_alu, d2_is_mem_unit, d2_is_branch_unit, d2_imm[11:0]};
     assign output_pc = d2_pc;
 
     always @(posedge clk) begin
@@ -131,10 +134,11 @@ module decoder(
         d2_pc <= pc;
         d2_ROB_loc <= ROB_loc;
         d2_opcodeC <= opcodeC;
+        d2_valid <= in_valid;
 
-        d2_is_alu <= is_alu;
-        d2_is_mem_unit <= is_mem_unit;
-        d2_is_branch_unit <= is_branch_unit;
+        d2_is_alu <= in_valid && is_alu;
+        d2_is_mem_unit <= in_valid && is_mem_unit;
+        d2_is_branch_unit <= in_valid && is_branch_unit;
         d2_use_rd <= use_rd;
         d2_use_rs1 <= use_rs1;
         d2_use_rs2 <= use_rs2;
