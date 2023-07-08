@@ -116,7 +116,7 @@ module reservation_station
         end
         
         for(i = 0; i < R_SIZE; i = i + 1) begin
-            if(operation[i][94] == 1'b1) begin
+            if(operation[i][96] == 1'b1) begin
                 if(forwardA[38] == 1'b1) begin
                     if(operation[i][1] == 1'b1 && operation[i][46:41] == forwardA[37:32]) begin
                         operation[i][1] <= 1'b0;
