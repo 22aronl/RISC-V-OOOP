@@ -5,10 +5,12 @@ verilog xil_defaultlib  --include "../../../../OutOfOrderProcessor.gen/sources_1
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/cpu.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/decoder.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/display.v" \
+"../../../../OutOfOrderProcessor.srcs/sources_1/new/load_store_unit.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/mem.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/queue_feeder.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/regs.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/reservation_station.v" \
+"../../../../OutOfOrderProcessor.srcs/sources_1/new/store_buffer.v" \
 
 sv xil_defaultlib  --include "../../../../OutOfOrderProcessor.gen/sources_1/bd/OOOP/ipshared/30ef" \
 "../../../../OutOfOrderProcessor.srcs/sim_1/new/Test_Memory.sv" \

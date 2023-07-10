@@ -27,7 +27,8 @@ module cpu(
     output [3:0] an,
     output [15:0] led
     );
-
+    
+    parameter ROB_SIZE = 64;
     
     reg [31:0] pc = 32'h00000000;
 
@@ -51,12 +52,12 @@ module cpu(
     wire [31:0] instructB;
     wire [31:0] instructC;
     
-    wire [31:1] raddr = {{31{1'b0}}, 1'b1};
+    wire [31:1] raddr;// = {{31{1'b0}}, 1'b1};
     wire [31:0] rdata;
     
-    reg wen = 1'b1;
-    wire [31:1] waddr = {{16{1'b0}}, sw};
-    wire [31:0] wdata = {32{1'b1}};
+    wire wen;
+    wire [31:1] waddr;
+    wire [31:0] wdata;
     
     mem mem(
         .clk(clk),
@@ -190,6 +191,8 @@ module cpu(
         d3_validC <= d2_validC;
     end
 
+
+    //forward [38:0] : [38] is valid, [37:32] ROB_loc, [31:0] is data
     wire [38:0] forwardA;
     wire [38:0] forwardB;
     wire [38:0] forwardC;
@@ -200,15 +203,15 @@ module cpu(
     wire [5:0] ROB_locC;
     
     wire [100:0] output_dataA;
-    wire [15:0] output_locA;
+    wire [16:0] output_locA;
     wire [31:0] output_pcA;
 
     wire [100:0] output_dataB;
-    wire [15:0] output_locB;
+    wire [16:0] output_locB;
     wire [31:0] output_pcB;
 
     wire [100:0] output_dataC;
-    wire [15:0] output_locC;
+    wire [16:0] output_locC;
     wire [31:0] output_pcC;
 
 
@@ -270,17 +273,62 @@ module cpu(
     reg [5:0] ROBhead = 5'h00;
     reg [5:0] ROBtail = 5'h00;
     
+    // [64] Ready Bit, [63:32] Value, [31:0] PC
+    reg [64:0] ROB [0: ROB_SIZE - 1];
+    // [19] take_jump, [18] is_write_reg, [17] is_store, [16:12] reg_num, [11:0] store_offset
+    reg [19:0] ROBhelper [0 : ROB_SIZE - 1];
+    reg [31:0] ROBpc [0: ROB_SIZE - 1]; //this is so inefficient :') only exists because of jal & jalr
+    
     always @(posedge clk) begin
-        ROBtail <= (ROBtail + 3) % 64;
+        ROBtail <= (ROBtail + 3) % ROB_SIZE - 1;
+    end
+    
+    
+    wire [5:0] d_ROBA = output_dataA[85:80];
+    wire [5:0] d_ROBB = output_dataB[85:80];
+    wire [5:0] d_ROBC = output_dataC[85:80];
+    
+    always @(posedge clk) begin
+        ROB[d_ROBA][31:0] <= output_pcA;
+        ROB[d_ROBB][31:0] <= output_pcB;
+        ROB[d_ROBC][31:0] <= output_pcC;
+
+        ROBhelper[d_ROBA] <= {output_locA[12], output_locA[16], !output_locA[16] & output_locA[13], output_dataA[100:96], output_locA[11:0]};
+        ROBhelper[d_ROBB] <= {output_locA[12], output_locB[16], !output_locB[16] & output_locB[13], output_dataB[100:96], output_locB[11:0]};
+        ROBhelper[d_ROBC] <= {output_locA[12], output_locC[16], !output_locC[16] & output_locC[13], output_dataC[100:96], output_locC[11:0]};
+
+        if(forwardA[38] == 1'b1) begin
+            ROB[forwardA[37:32]][63:32] <= forwardA[31:0];
+            ROB[forwardA[37:32]][64] <= 1'b1;
+        end
+
+        if(forwardB[38] == 1'b1) begin
+            ROB[forwardB[37:32]][63:32] <= forwardB[31:0];
+            ROB[forwardB[37:32]][64] <= 1'b1;
+        end
+
+        if(forwardC[38] == 1'b1) begin
+            ROB[forwardC[37:32]][63:32] <= forwardC[31:0];
+            ROB[forwardC[37:32]][64] <= 1'b1;
+        end
+
+        if(forwardD[38] == 1'b1) begin
+            ROB[forwardD[37:32]][63:32] <= forwardD[31:0];
+            ROB[forwardD[37:32]][64] <= 1'b1;
+        end
     end
     
     assign ROB_locA = ROBtail;
-    assign ROB_locB = (ROBtail + 1) % 64;
-    assign ROB_locC = (ROBtail + 2) % 64;
+    assign ROB_locB = (ROBtail + 1) % ROB_SIZE;
+    assign ROB_locC = (ROBtail + 2) % ROB_SIZE;
     
+
     // // // // // 
-    // ALU // //
+    //          //  
+    //   ALU    //
+    //          //
     // // // // //
+
     wire [95:0] output_aluA;
     wire [95:0] output_aluB;
     wire [95:0] output_aluC;
@@ -311,7 +359,7 @@ module cpu(
     buffer alu_buffer(
         .clk(clk),
         .flush(1'b0),
-        .taken({alu_reservA_used & alu_reservB_used, alu_reservA_used ^ alu_reservB_used}),
+        .taken({1'b0, alu_reservA_used}),
         .forwardA(forwardA),
         .forwardB(forwardB),
         .forwardC(forwardC),
@@ -358,31 +406,226 @@ module cpu(
     // alu module B
     // // //
 
-    wire alu_operationB_used;
-    wire [79:0] alu_operationB;
-    wire alu_operationB_valid;
+    wire alu_operationB_used = 1'b0;
+//    wire [79:0] alu_operationB;
+//    wire alu_operationB_valid;
     
-    reservation_station alu_reservationB(
+//    reservation_station alu_reservationB(
+//        .clk(clk),
+//        .flush(1'b0),
+//        .forwardA(forwardA),
+//        .forwardB(forwardB),
+//        .forwardC(forwardC),
+//        .forwardD(forwardD),
+//        .inOperation(alu_buffer_opB),
+//        .operationUsed(alu_operationB_used),
+//        .outOperation(alu_operationB),
+//        .outOperationValid(alu_operationB_valid)
+//    );
+
+//    assign alu_reservB_used = alu_operationB_used & alu_buffer_opB[96];
+
+//    alu aluB(
+//        .clk(clk),
+//        .inOperation(alu_operationB),
+//        .inValid(alu_operationB_valid),
+//        .outData(forwardB)
+//    );
+
+    
+    // // // // // //
+    //             //
+    // Branch Unit //
+    //             //
+    // // // // // //
+
+    wire [95:0] output_branchA;
+    wire [95:0] output_branchB;
+    wire [95:0] output_branchC;
+    wire output_branchA_valid;
+    wire output_branchB_valid;
+    wire output_branchC_valid;
+
+    queue_feeder branch_feeder(
+        .inOperationA(output_dataA[95:0]),
+        .inOperationB(output_dataB[95:0]),
+        .inOperationC(output_dataC[95:0]),
+        .validA(output_locA[15] & output_locA[12]),
+        .validB(output_locB[15] & output_locB[12]),
+        .validC(output_locC[15] & output_locC[12]),
+        .outOperationA(output_branchA),
+        .outOperationB(output_branchB),
+        .outOperationC(output_branchC),
+        .outValidA(output_branchA_valid),
+        .outValidB(output_branchB_valid),
+        .outValidC(output_branchC_valid)
+    );
+
+
+    wire [96:0] branch_buffer_op;
+    wire branch_reserv_used;
+
+    buffer branch_buffer(
+        .clk(clk),
+        .flush(1'b0),
+        .taken({1'b0, branch_reserv_used}),
+        .forwardA(forwardA),
+        .forwardB(forwardB),
+        .forwardC(forwardC),
+        .forwardD(forwardD),
+        .validA(output_branchA_valid),
+        .validB(output_branchB_valid),
+        .validC(output_branchC_valid),
+        .input_dataA(output_branchA),
+        .input_dataB(output_branchB),
+        .input_dataC(output_branchC),
+        .outOperation0(branch_buffer_op),
+        .outOperation1()
+    );
+
+
+    wire branch_operation_used;
+    wire [79:0] branch_operation;
+    wire branch_operation_valid;
+
+    reservation_station branch_reservation(
         .clk(clk),
         .flush(1'b0),
         .forwardA(forwardA),
         .forwardB(forwardB),
         .forwardC(forwardC),
         .forwardD(forwardD),
-        .inOperation(alu_buffer_opB),
-        .operationUsed(alu_operationB_used),
-        .outOperation(alu_operationB),
-        .outOperationValid(alu_operationB_valid)
+        .inOperation(branch_buffer_op),
+        .operationUsed(branch_operation_used),
+        .outOperation(branch_operation),
+        .outOperationValid(branch_operation_valid)
     );
 
-    assign alu_reservB_used = alu_operationB_used & alu_buffer_opB[96];
+    assign branch_reserv_used = branch_operation_used & branch_buffer_op[96];
 
-    alu aluB(
+    // Branch Functional Unit
+    wire b_valid = branch_operation_valid;
+    wire [4:0] b_opcode = branch_operation[77:73];
+    wire [2:0] b_opcodeB = branch_operation[72:70];
+    wire [5:0] b_rob_loc = branch_operation[69:64];
+    wire [31:0] b_data_rs1 = branch_operation[63:32];
+    wire [31:0] b_data_rs2 = branch_operation[31:0];
+    wire [31:0] b_pc = ROB[b_rob_loc][31:0]; //potential timing issue
+    wire [11:0] b_offset_s = ROBhelper[b_rob_loc][11:0];
+    wire [31:0] b_offset = {{21{b_offset_s[11]}}, b_offset_s[10:0], 1'b0};
+
+    wire b_forward = b_pc + 4;
+    wire [31:0] b_pc_jump = (b_opcode == 5'b11011) ? b_data_rs1 + b_data_rs2 :
+                            (b_opcode == 5'b11001) ? b_data_rs1 + b_data_rs2 : //this might have issue on decode being set right
+                            (b_opcode == 5'b11000) ? 
+                                (b_opcodeB == 3'b000) ? (b_data_rs1 == b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
+                                (b_opcodeB == 3'b001) ? (b_data_rs1 != b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
+                                (b_opcodeB == 3'b100) ? ($signed(b_data_rs1) < $signed(b_data_rs2)) ? b_pc + b_offset : b_pc + 2 :
+                                (b_opcodeB == 3'b101) ? ($signed(b_data_rs1) >= $signed(b_data_rs2)) ? b_pc + b_offset : b_pc + 2 :
+                                (b_opcodeB == 3'b110) ? (b_data_rs1 < b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
+                                (b_opcodeB == 3'b111) ? (b_data_rs1 >= b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
+                                b_pc + 2 :
+                                b_pc + 2;
+
+
+    assign forwardC = {1'b1, b_rob_loc, b_forward};
+    always @(posedge clk) begin
+        ROBpc[b_rob_loc] <= b_pc_jump; //potential timing issue
+    end
+    
+    
+    // // // // // // // //
+    //                   //
+    //  Load Store Unit  //
+    //                   //
+    // // // // // // // //
+    
+    wire [95:0] output_loadA;
+    wire [95:0] output_loadB;
+    wire [95:0] output_loadC;
+    wire output_loadA_valid;
+    wire output_loadB_valid;
+    wire output_loadC_valid;
+
+    queue_feeder load_feeder(
+        .inOperationA(output_dataA[95:0]),
+        .inOperationB(output_dataB[95:0]),
+        .inOperationC(output_dataC[95:0]),
+        .validA(output_locA[15] & output_locA[13]),
+        .validB(output_locB[15] & output_locB[13]),
+        .validC(output_locC[15] & output_locC[13]),
+        .outOperationA(output_loadA),
+        .outOperationB(output_loadB),
+        .outOperationC(output_loadC),
+        .outValidA(output_loadA_valid),
+        .outValidB(output_loadB_valid),
+        .outValidC(output_loadC_valid)
+    );
+
+    wire [96:0] load_buffer_op;
+    wire load_reserv_used;
+
+    buffer load_buffer(
         .clk(clk),
-        .inOperation(alu_operationB),
-        .inValid(alu_operationB_valid),
-        .outData(forwardB)
+        .flush(1'b0),
+        .taken({1'b0, load_reserv_used}),
+        .forwardA(forwardA),
+        .forwardB(forwardB),
+        .forwardC(forwardC),
+        .forwardD(forwardD),
+        .validA(output_loadA_valid),
+        .validB(output_loadB_valid),
+        .validC(output_loadC_valid),
+        .input_dataA(output_loadA),
+        .input_dataB(output_loadB),
+        .input_dataC(output_loadC),
+        .outOperation0(load_buffer_op),
+        .outOperation1()
     );
+    
+    
+    //[95:94] d2_opcodeC, [93:89] d2_opcode, [88:86] d2_opcodeB, [85:80] d2_ROB_loc
+    // [79:48] d2_rs1_data, [47] d2_rs1_busy, [46:41] d2_rs1_loc, [40:9] d2_rs2_data, [8] d2_rs2_busy, [7:2] d2_rs2_loc
+    // [1] d2_rs1_look, [0] d2_rs2_look 
+    wire lsu_used = load_buffer_op[96] == 1'b1 & load_buffer_op[1:0] == 2'b00;
+    wire lsu_stall;
+    assign load_reserv_used = lsu_used & !lsu_stall;
+    wire [11:0] lsu_offset = ROBhelper[load_buffer_op[85:80]][11:0];
+    
+    reg [1:0] store_buffer_commit = 2'b00;
+    
+    load_store_unit lsu(
+        .clk(clk), .flush(1'b0), .stores_to_commit(store_buffer_commit),
+        .inOperation({load_buffer_op[96] && load_buffer_op[1:0] == 2'b00, load_buffer_op[93:48], load_buffer_op[40:9]}), .offset(lsu_offset),
+        .commit_data(wdata), .commit_valid(wen), .commit_loc(waddr),
+        .mem_loc(raddr),
+        .mem_data(rdata),
+        .out_data(forwardD),
+        .load_stall(lsu_stall)
+    );
+
+    
+    always @(posedge clk) begin
+        if(forwardA[38] == 1'b1) begin
+            in_num <= forwardA[4:0];
+            in_loc <= 2'b00;
+        end
+
+        if(forwardB[38] == 1'b1) begin
+            in_num <= forwardB[4:0];
+            in_loc <= 2'b01;
+        end
+
+        if(forwardC[38] == 1'b1) begin
+            in_num <= forwardC[4:0];
+            in_loc <= 2'b10;
+        end
+
+        if(forwardD[38] == 1'b1) begin
+            in_num <= forwardD[4:0];
+            in_loc <= 2'b11;
+        end
+    end
     
   
     always @(posedge clk) begin

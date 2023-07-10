@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1,106.334 ns"></ZoomStartTime>
-      <ZoomEndTime time="2,568.335 ns"></ZoomEndTime>
-      <Cursor1Time time="1,430.334 ns"></Cursor1Time>
+      <ZoomStartTime time="4,175.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="7,865.001 ns"></ZoomEndTime>
+      <Cursor1Time time="6,250.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="174"></NameColumnWidth>
-      <ValueColumnWidth column_width="126"></ValueColumnWidth>
+      <ValueColumnWidth column_width="119"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="11" />
    <wvobject fp_name="/Test_Memory/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,7 +27,6 @@
    <wvobject fp_name="group127" type="group">
       <obj_property name="label">decodeA</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/Test_Memory/cpu/decoderA/pc" type="array">
          <obj_property name="ElementShortName">pc[31:0]</obj_property>
          <obj_property name="ObjectShortName">pc[31:0]</obj_property>
@@ -93,8 +92,8 @@
          <obj_property name="ObjectShortName">d2_rs2_look</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderA/output_loc" type="array">
-         <obj_property name="ElementShortName">output_loc[15:0]</obj_property>
-         <obj_property name="ObjectShortName">output_loc[15:0]</obj_property>
+         <obj_property name="ElementShortName">output_loc[16:0]</obj_property>
+         <obj_property name="ObjectShortName">output_loc[16:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderA/out_rd" type="array">
          <obj_property name="ElementShortName">out_rd[11:0]</obj_property>
@@ -104,7 +103,6 @@
    <wvobject fp_name="group1234" type="group">
       <obj_property name="label">decodeB</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/Test_Memory/cpu/decoderB/pc" type="array">
          <obj_property name="ElementShortName">pc[31:0]</obj_property>
          <obj_property name="ObjectShortName">pc[31:0]</obj_property>
@@ -170,8 +168,8 @@
          <obj_property name="ObjectShortName">d2_rs2_look</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderB/output_loc" type="array">
-         <obj_property name="ElementShortName">output_loc[15:0]</obj_property>
-         <obj_property name="ObjectShortName">output_loc[15:0]</obj_property>
+         <obj_property name="ElementShortName">output_loc[16:0]</obj_property>
+         <obj_property name="ObjectShortName">output_loc[16:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderB/out_rd" type="array">
          <obj_property name="ElementShortName">out_rd[11:0]</obj_property>
@@ -306,7 +304,6 @@
    <wvobject fp_name="group491" type="group">
       <obj_property name="label">alu_reservationA</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/Test_Memory/cpu/alu_operationA" type="array">
          <obj_property name="ElementShortName">alu_operationA[79:0]</obj_property>
          <obj_property name="ObjectShortName">alu_operationA[79:0]</obj_property>
@@ -347,42 +344,74 @@
    <wvobject fp_name="group1110" type="group">
       <obj_property name="label">alu_reservationB</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-      <wvobject fp_name="/Test_Memory/cpu/alu_operationB" type="array">
-         <obj_property name="ElementShortName">alu_operationB[79:0]</obj_property>
-         <obj_property name="ObjectShortName">alu_operationB[79:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/alu_operationB_valid" type="logic">
-         <obj_property name="ElementShortName">alu_operationB_valid</obj_property>
-         <obj_property name="ObjectShortName">alu_operationB_valid</obj_property>
-      </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/alu_operationB_used" type="logic">
          <obj_property name="ElementShortName">alu_operationB_used</obj_property>
          <obj_property name="ObjectShortName">alu_operationB_used</obj_property>
       </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/alu_reservationB/inOperation" type="array">
-         <obj_property name="ElementShortName">inOperation[96:0]</obj_property>
-         <obj_property name="ObjectShortName">inOperation[96:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group774" type="group">
+      <obj_property name="label">lsu</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/load_buffer_op" type="array">
+         <obj_property name="ElementShortName">load_buffer_op[96:0]</obj_property>
+         <obj_property name="ObjectShortName">load_buffer_op[96:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/alu_reservationB/committed" type="array">
-         <obj_property name="ElementShortName">committed[7:0]</obj_property>
-         <obj_property name="ObjectShortName">committed[7:0]</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/lsu_used" type="logic">
+         <obj_property name="ElementShortName">lsu_used</obj_property>
+         <obj_property name="ObjectShortName">lsu_used</obj_property>
       </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/alu_reservationB/check" type="array">
-         <obj_property name="ElementShortName">check[7:0]</obj_property>
-         <obj_property name="ObjectShortName">check[7:0]</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/lsu_stall" type="logic">
+         <obj_property name="ElementShortName">lsu_stall</obj_property>
+         <obj_property name="ObjectShortName">lsu_stall</obj_property>
       </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/alu_reservationB/commit_loc" type="array">
-         <obj_property name="ElementShortName">commit_loc[2:0]</obj_property>
-         <obj_property name="ObjectShortName">commit_loc[2:0]</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/load_reserv_used" type="logic">
+         <obj_property name="ElementShortName">load_reserv_used</obj_property>
+         <obj_property name="ObjectShortName">load_reserv_used</obj_property>
       </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/alu_reservationB/operationIndex" type="array">
-         <obj_property name="ElementShortName">operationIndex[2:0]</obj_property>
-         <obj_property name="ObjectShortName">operationIndex[2:0]</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/head" type="array">
+         <obj_property name="ElementShortName">head[3:0]</obj_property>
+         <obj_property name="ObjectShortName">head[3:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/alu_reservationB/operationUsed" type="logic">
-         <obj_property name="ElementShortName">operationUsed</obj_property>
-         <obj_property name="ObjectShortName">operationUsed</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/tail" type="array">
+         <obj_property name="ElementShortName">tail[3:0]</obj_property>
+         <obj_property name="ObjectShortName">tail[3:0]</obj_property>
       </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/load_data_out" type="array">
+         <obj_property name="ElementShortName">load_data_out[31:0]</obj_property>
+         <obj_property name="ObjectShortName">load_data_out[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/op_load_data" type="array">
+         <obj_property name="ElementShortName">op_load_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">op_load_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/mem_data" type="array">
+         <obj_property name="ElementShortName">mem_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/out_data" type="array">
+         <obj_property name="ElementShortName">out_data[38:0]</obj_property>
+         <obj_property name="ObjectShortName">out_data[38:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/load_opcodeB" type="array">
+         <obj_property name="ElementShortName">load_opcodeB[0:7][2:0]</obj_property>
+         <obj_property name="ObjectShortName">load_opcodeB[0:7][2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/store_buffer_valid" type="logic">
+         <obj_property name="ElementShortName">store_buffer_valid</obj_property>
+         <obj_property name="ObjectShortName">store_buffer_valid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/store_buffer_data" type="array">
+         <obj_property name="ElementShortName">store_buffer_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">store_buffer_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/inOperation" type="array">
+         <obj_property name="ElementShortName">inOperation[78:0]</obj_property>
+         <obj_property name="ObjectShortName">inOperation[78:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/load_buffer_op" type="array">
+      <obj_property name="ElementShortName">load_buffer_op[96:0]</obj_property>
+      <obj_property name="ObjectShortName">load_buffer_op[96:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>

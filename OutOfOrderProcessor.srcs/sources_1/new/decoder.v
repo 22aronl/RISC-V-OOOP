@@ -25,7 +25,7 @@ module decoder(
     input [31:0] instruct, input [31:0] pc, input [5:0] ROB_loc, input in_valid,
     output [11:0] out_rd, output [4:0] out_rs1, output [4:0] out_rs2,
     input [38:0] data_rs1, input [38:0] data_rs2,
-    output [100:0] output_data, output [15:0] output_loc, output [31:0] output_pc
+    output [100:0] output_data, output [16:0] output_loc, output [31:0] output_pc
     ); //TODO: Add stall and flush and validity
     
     wire [4:0] opcode = instruct[6:2];
@@ -67,6 +67,7 @@ module decoder(
     
     wire is_branch_store = is_branch | is_store;
     wire use_imm = is_lui | is_auipc | is_mimm | is_load | is_jal | is_jalr;
+    wire use_offset = is_store | is_branch;
     wire [31:0] imm = is_lui ? {instruct[31:12], {12'b0}} :
                         is_auipc ? {instruct[31:12], {12'b0}} :
                         is_mimm ? {{21{instruct[31]}}, instruct[30:20]} :
@@ -108,6 +109,7 @@ module decoder(
     reg d2_is_branch_store = 1'b0;
     reg d2_is_mreg = 1'b0;
     reg d2_is_auipc = 1'b0;
+    reg d2_use_offset = 1'b0;
     
     wire [31:0] d2_rs1_data = d2_is_auipc ? d2_pc : data_rs1[38:7];
     wire [31:0] d2_rs2_data = d2_use_imm ? d2_imm : data_rs2[38:7];
@@ -121,8 +123,8 @@ module decoder(
     
     assign output_data = {d2_rd, d2_opcodeC, d2_opcode, d2_opcodeB, d2_ROB_loc, d2_rs1_data, data_rs1[6:0], d2_rs2_data, data_rs2[6:0], d2_rs1_look, d2_rs2_look};
     
-    // [15] d2_valid, [14] d2_is_alu, [13] d2_is_mem, [12] d2_is_branch, [11:0] d2_imm
-    assign output_loc = {d2_valid, d2_is_alu, d2_is_mem_unit, d2_is_branch_unit, d2_imm[11:0]};
+    // [16] d2_use_offset, [15] d2_valid, [14] d2_is_alu, [13] d2_is_mem, [12] d2_is_branch, [11:0] d2_imm
+    assign output_loc = {d2_use_offset, d2_valid, d2_is_alu, d2_is_mem_unit, d2_is_branch_unit, d2_imm[11:0]};
     assign output_pc = d2_pc;
 
     always @(posedge clk) begin
@@ -147,6 +149,7 @@ module decoder(
         d2_is_branch_store <= is_branch_store;
         d2_is_mreg <= is_mreg;
         d2_is_auipc <= is_auipc;
+        d2_use_offset <= use_offset;
     end
     
 endmodule

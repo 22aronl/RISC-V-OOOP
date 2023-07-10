@@ -44,7 +44,7 @@ module buffer
 
     initial begin
         for(i = 0; i < Q_SIZE; i = i + 1) begin
-            valid[i] = 1'b0;
+            valid[i] <= 1'b0;
         end
     end
 
@@ -72,12 +72,7 @@ module buffer
         end
 
         tail <= (tail + validA + validB + validC) % Q_SIZE;
-    end
-
-    //forward: [38] valid, [37:32] rob_loc, [31:0] data
-    // [79:48] d2_rs1_data, [47] d2_rs1_busy, [46:41] d2_rs1_loc, [40:9] d2_rs2_data, [8] d2_rs2_busy, [7:2] d2_rs2_loc\
-
-    always @(posedge clk) begin
+        
         for(i = 0; i < Q_SIZE; i = i + 1) begin
             if(valid[i] == 1'b1) begin
                 if(forwardA[38] == 1'b1) begin
@@ -130,5 +125,9 @@ module buffer
             end
         end
     end
+
+    //forward: [38] valid, [37:32] rob_loc, [31:0] data
+    // [79:48] d2_rs1_data, [47] d2_rs1_busy, [46:41] d2_rs1_loc, [40:9] d2_rs2_data, [8] d2_rs2_busy, [7:2] d2_rs2_loc\
+
     
 endmodule

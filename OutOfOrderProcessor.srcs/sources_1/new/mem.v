@@ -21,7 +21,7 @@
 
 
 module mem 
-    #(  parameter INSTR_TIMING = 2,  
+    #(  parameter INSTR_TIMING = 3,  
         parameter CYCLE_TIMING = 8)
     (   input clk,
         input [31:1] raddr0, output [31:0] rdata0,
@@ -30,7 +30,7 @@ module mem
         input [31:1] raddr3, output [31:0] rdata3,
         input wen, input [31:1] waddr, input [31:0] wdata);
 
-    reg [31:0]data[0:16'h7fff];
+    reg [31:0]data[0:16'h1000];
 
     /* Simulation -- read initial content from file */
     initial begin

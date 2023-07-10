@@ -175,9 +175,21 @@
         </spirit:wire>
       </spirit:port>
     </spirit:ports>
+    <spirit:modelParameters>
+      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
+        <spirit:name>ROB_SIZE</spirit:name>
+        <spirit:displayName>Rob Size</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROB_SIZE">64</spirit:value>
+      </spirit:modelParameter>
+    </spirit:modelParameters>
   </spirit:model>
   <spirit:description>xilinx.com:module_ref:cpu:1.0</spirit:description>
   <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>ROB_SIZE</spirit:name>
+      <spirit:displayName>Rob Size</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROB_SIZE">64</spirit:value>
+    </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">OOOP_cpu_0_0</spirit:value>
