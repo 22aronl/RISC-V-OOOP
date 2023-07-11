@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Mon Jul 10 04:02:14 2023
+| Date         : Mon Jul 10 16:31:03 2023
 | Host         : DESKTOP-M2KV102 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file cpu_control_sets_placed.rpt
 | Design       : cpu
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |   347 |
-|    Minimum number of control sets                        |   347 |
+| Total control sets                                       |   331 |
+|    Minimum number of control sets                        |   331 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |  1585 |
+| Unused register locations in slices containing registers |  1614 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |   347 |
+| Total control sets |   331 |
 | >= 0 to < 4        |     4 |
 | >= 4 to < 6        |    13 |
-| >= 6 to < 8        |    89 |
+| >= 6 to < 8        |    73 |
 | >= 8 to < 10       |     7 |
-| >= 10 to < 12      |    76 |
-| >= 12 to < 14      |     4 |
+| >= 10 to < 12      |    64 |
+| >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |   154 |
+| >= 16              |   170 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,368 +58,352 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             817 |          310 |
+| No           | No                    | No                     |             898 |          380 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              87 |           62 |
-| Yes          | No                    | No                     |            5967 |         3684 |
+| No           | Yes                   | No                     |              87 |           53 |
+| Yes          | No                    | No                     |            6049 |         3786 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             112 |           34 |
+| Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+-----------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
-|  Clock Signal  |                 Enable Signal                 |                Set/Reset Signal               | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+-----------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG |                                               | mem/rdata1_[0]                                |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG |                                               | mem/rdata0_[0]                                |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG |                                               | mem/rdata2_[0]                                |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG |                                               | mem/rdata3_[0]                                |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | display/display_second[3]_i_1_n_0             |                                               |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | display/display_first[3]_i_1_n_0              |                                               |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | display/display_third[3]_i_1_n_0              |                                               |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | display/display_fourth[3]_i_1_n_0             |                                               |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_3[0]       |                                               |                2 |              5 |         2.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_7[0]       |                                               |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_5[0]       |                                               |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_2[0]       |                                               |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_4[0]       |                                               |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG | load_buffer/store_buffer_reg[0][64][0]        |                                               |                3 |              5 |         1.67 |
-|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_6[0]       |                                               |                2 |              5 |         2.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_0[0]       |                                               |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_1[0]       |                                               |                2 |              5 |         2.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[19][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[13][52]_i_1_n_0             |                                               |                5 |              6 |         1.20 |
-|  clk_IBUF_BUFG | load_buffer/queue[1][13]_i_1__0_n_0           |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[13][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[19][52]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[14][13]_i_1_n_0             |                                               |                5 |              6 |         1.20 |
-|  clk_IBUF_BUFG | load_buffer/queue[12][52]_i_1__0_n_0          |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[30][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[15][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[1][52]_i_1_n_0              |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/p_0_in[79]                        |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[16][52]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/p_0_in[40]                        |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[15][52]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[14][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[16][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[17][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[31][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[18][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[17][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2_0[0]                  |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[2][52]_i_1__0_n_0           |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__1_1[0]                  |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[30][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__1_0[1]                  |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[28][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2_1[0]                  |                                               |                5 |              6 |         1.20 |
-|  clk_IBUF_BUFG | load_buffer/queue[27][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2[1]                    |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[2][13]_i_1__0_n_0           |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2[0]                    |                                               |                5 |              6 |         1.20 |
-|  clk_IBUF_BUFG | load_buffer/queue[28][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__1_0[0]                  |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[25][13]_i_1__0_n_0          |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[31][52]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[23][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2_2[0]                  |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[25][52]_i_1__0_n_0          |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2_2[1]                  |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[18][13]_i_1__0_n_0          |                                               |                5 |              6 |         1.20 |
-|  clk_IBUF_BUFG | load_buffer/queue[23][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[22][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[24][52]_i_1__0_n_0          |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[27][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[24][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[8][52]_i_1__0_n_0           |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[7][52]_i_1__0_n_0           |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[21][52]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[21][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[4][52]_i_1__0_n_0           |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[6][13]_i_1__0_n_0           |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[3][52]_i_1_n_0              |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[22][13]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[3][13]_i_1__0_n_0           |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[4][13]_i_1__0_n_0           |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[6][52]_i_1__0_n_0           |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[0][13]_i_1__0_n_0           |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[0][52]_i_1__0_n_0           |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[11][13]_i_1__0_n_0          |                                               |                5 |              6 |         1.20 |
-|  clk_IBUF_BUFG | load_buffer/queue[10][13]_i_1__0_n_0          |                                               |                5 |              6 |         1.20 |
-|  clk_IBUF_BUFG | load_buffer/queue[12][13]_i_1__0_n_0          |                                               |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[20][52]_i_1_n_0             |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[11][52]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[10][52]_i_1__0_n_0          |                                               |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[20][13]_i_1__0_n_0          |                                               |                4 |              6 |         1.50 |
-|  clk_IBUF_BUFG | lsu/load_data[4][32]_i_1_n_0                  |                                               |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG | lsu/load_data[2][32]_i_1_n_0                  |                                               |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[14][37]_i_1_n_0 | lsu/store_buffer/store_buffer[14][63]_i_1_n_0 |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[13][37]_i_1_n_0 | lsu/store_buffer/store_buffer[13][63]_i_1_n_0 |                1 |              7 |         7.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[15][37]_i_1_n_0 | lsu/store_buffer/store_buffer[15][46]_i_1_n_0 |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[1][37]_i_1_n_0  | lsu/store_buffer/store_buffer[1][63]_i_1_n_0  |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG | lsu/load_data[1][32]_i_1_n_0                  |                                               |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[0][64]_i_1_n_0  | lsu/store_buffer/store_buffer[0][62]_i_1_n_0  |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[12][37]_i_1_n_0 | lsu/store_buffer/store_buffer[12][63]_i_1_n_0 |                1 |              7 |         7.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[8][37]_i_1_n_0  | lsu/store_buffer/store_buffer[8][63]_i_1_n_0  |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[11][37]_i_1_n_0 | lsu/store_buffer/store_buffer[11][63]_i_1_n_0 |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[2][37]_i_1_n_0  | lsu/store_buffer/store_buffer[2][63]_i_1_n_0  |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[3][37]_i_1_n_0  | lsu/store_buffer/store_buffer[3][63]_i_1_n_0  |                1 |              7 |         7.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[10][37]_i_1_n_0 | lsu/store_buffer/store_buffer[10][63]_i_1_n_0 |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[4][37]_i_1_n_0  | lsu/store_buffer/store_buffer[4][63]_i_1_n_0  |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[9][37]_i_1_n_0  | lsu/store_buffer/store_buffer[9][63]_i_1_n_0  |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[6][37]_i_1_n_0  | lsu/store_buffer/store_buffer[6][63]_i_1_n_0  |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[5][37]_i_1_n_0  | lsu/store_buffer/store_buffer[5][63]_i_1_n_0  |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[7][64]_i_1_n_0  | lsu/store_buffer/store_buffer[7][63]_i_1_n_0  |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/load_data[7][32]_i_1_n_0                  |                                               |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG | lsu/load_data[5][32]_i_1_n_0                  |                                               |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/load_data[0][32]_i_1_n_0                  |                                               |                1 |              7 |         7.00 |
-|  clk_IBUF_BUFG | lsu/load_data[6][32]_i_1_n_0                  |                                               |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | lsu/load_data[3][32]_i_1_n_0                  |                                               |                1 |              7 |         7.00 |
-|  clk_IBUF_BUFG |                                               | mem/data_reg_2_1_9                            |                3 |              8 |         2.67 |
-|  clk_IBUF_BUFG |                                               | mem/data_reg_4_1_9                            |                4 |              8 |         2.00 |
-|  clk_IBUF_BUFG |                                               | mem/data_reg_3_1_9                            |                4 |              8 |         2.00 |
-|  clk_IBUF_BUFG | load_buffer/head_reg[4]_1                     |                                               |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG |                                               | mem/data_reg_2_0_8                            |                5 |              9 |         1.80 |
-|  clk_IBUF_BUFG |                                               | mem/data_reg_3_0_8                            |                5 |              9 |         1.80 |
-|  clk_IBUF_BUFG |                                               | mem/data_reg_4_0_8                            |                5 |              9 |         1.80 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_3[0]               |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[14][37]_i_1_n_0 |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[13][37]_i_1_n_0 |                                               |                2 |             11 |         5.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[15][37]_i_1_n_0 |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_0[0]               |                                               |                6 |             11 |         1.83 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_34[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[12][37]_i_1_n_0 |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[11][37]_i_1_n_0 |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_35[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[3][37]_i_1_n_0  |                                               |                2 |             11 |         5.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[10][37]_i_1_n_0 |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[4][37]_i_1_n_0  |                                               |                2 |             11 |         5.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[9][37]_i_1_n_0  |                                               |                6 |             11 |         1.83 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[6][37]_i_1_n_0  |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[8][37]_i_1_n_0  |                                               |                2 |             11 |         5.50 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[5][37]_i_1_n_0  |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_7[0]               |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_33[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_11[0]              |                                               |                9 |             11 |         1.22 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_17[0]              |                                               |                7 |             11 |         1.57 |
-|  clk_IBUF_BUFG | decoderA/E[0]                                 |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_13[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_18[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_12[0]              |                                               |                6 |             11 |         1.83 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_20[0]              |                                               |                6 |             11 |         1.83 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_21[0]              |                                               |               10 |             11 |         1.10 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_23[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_24[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_25[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_28[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_30[0]              |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_32[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_19[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_26[0]              |                                               |                7 |             11 |         1.57 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_29[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_22[0]              |                                               |                8 |             11 |         1.38 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_5[0]               |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_2[0]               |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_4[0]               |                                               |                6 |             11 |         1.83 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_12[0]              |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_7[0]               |                                               |                7 |             11 |         1.57 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_17[0]              |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_2[0]               |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_1[0]               |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_10[0]              |                                               |                6 |             11 |         1.83 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_7[0]               |                                               |                7 |             11 |         1.57 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_16[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_9[0]               |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_3[0]               |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_6[0]               |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_4[0]               |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_15[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_3[0]               |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_0[0]               |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_6[0]               |                                               |                9 |             11 |         1.22 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_8[0]               |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_5[0]               |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_14[0]              |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_11[0]              |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_13[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_18[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_14[0]              |                                               |                2 |             11 |         5.50 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_2[0]               |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_4[0]               |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_31[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_5[0]               |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_16[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_6[0]               |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_8[0]               |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_9[0]               |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_0[0]               |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_1[0]               |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_15[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_1[0]               |                                               |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_10[0]              |                                               |                4 |             11 |         2.75 |
-|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_27[0]              |                                               |                5 |             11 |         2.20 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[7][64]_i_1_n_0  |                                               |                6 |             12 |         2.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[1][37]_i_1_n_0  |                                               |                4 |             12 |         3.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[0][64]_i_1_n_0  |                                               |                3 |             12 |         4.00 |
-|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[2][37]_i_1_n_0  |                                               |                2 |             12 |         6.00 |
-|  clk_IBUF_BUFG | load_buffer/queue[15][93]_i_1__0_n_0          |                                               |               11 |             25 |         2.27 |
-|  clk_IBUF_BUFG | load_buffer/tail_reg[0]_rep_14[0]             |                                               |               14 |             25 |         1.79 |
-|  clk_IBUF_BUFG | load_buffer/queue[30][93]_i_1__0_n_0          |                                               |               15 |             25 |         1.67 |
-|  clk_IBUF_BUFG | load_buffer/tail_reg[0]_rep_0                 |                                               |                9 |             25 |         2.78 |
-|  clk_IBUF_BUFG | load_buffer/queue[18][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[16][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[17][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/E[0]                              |                                               |               10 |             25 |         2.50 |
-|  clk_IBUF_BUFG | load_buffer/queue[31][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/p_0_in[95]                        |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/tail_reg[3]_0[0]                  |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/tail_reg[0]_rep_15[0]             |                                               |               13 |             25 |         1.92 |
-|  clk_IBUF_BUFG | load_buffer/queue[6][93]_i_1__0_n_0           |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[1][93]_i_1__0_n_0           |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[3][93]_i_1__0_n_0           |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[4][93]_i_1__0_n_0           |                                               |               13 |             25 |         1.92 |
-|  clk_IBUF_BUFG | load_buffer/queue[21][93]_i_1__0_n_0          |                                               |               11 |             25 |         2.27 |
-|  clk_IBUF_BUFG | load_buffer/queue[24][93]_i_1__0_n_0          |                                               |               14 |             25 |         1.79 |
-|  clk_IBUF_BUFG | load_buffer/queue[20][93]_i_1__0_n_0          |                                               |               11 |             25 |         2.27 |
-|  clk_IBUF_BUFG | load_buffer/queue[0][93]_i_1__0_n_0           |                                               |               11 |             25 |         2.27 |
-|  clk_IBUF_BUFG | load_buffer/queue[10][93]_i_1__0_n_0          |                                               |               16 |             25 |         1.56 |
-|  clk_IBUF_BUFG | load_buffer/queue[23][93]_i_1__0_n_0          |                                               |               13 |             25 |         1.92 |
-|  clk_IBUF_BUFG | load_buffer/queue[11][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[12][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[25][93]_i_1__0_n_0          |                                               |               15 |             25 |         1.67 |
-|  clk_IBUF_BUFG | load_buffer/queue[19][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[22][93]_i_1__0_n_0          |                                               |               11 |             25 |         2.27 |
-|  clk_IBUF_BUFG | load_buffer/queue[27][93]_i_1__0_n_0          |                                               |               15 |             25 |         1.67 |
-|  clk_IBUF_BUFG | load_buffer/queue[13][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[14][93]_i_1__0_n_0          |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | load_buffer/queue[28][93]_i_1__0_n_0          |                                               |               11 |             25 |         2.27 |
-|  clk_IBUF_BUFG | load_buffer/queue[2][93]_i_1__0_n_0           |                                               |               12 |             25 |         2.08 |
-|  clk_IBUF_BUFG | alu_buffer/queue[13][95]_i_1_n_0              |                                               |               19 |             28 |         1.47 |
-|  clk_IBUF_BUFG | alu_buffer/queue[3][95]_i_1_n_0               |                                               |               19 |             28 |         1.47 |
-|  clk_IBUF_BUFG | alu_buffer/p_0_in[95]                         |                                               |               13 |             28 |         2.15 |
-|  clk_IBUF_BUFG | alu_buffer/queue[14][95]_i_1_n_0              |                                               |               16 |             28 |         1.75 |
-|  clk_IBUF_BUFG | alu_buffer/E[0]                               |                                               |               16 |             28 |         1.75 |
-|  clk_IBUF_BUFG | alu_buffer/queue[22][95]_i_1_n_0              |                                               |               22 |             28 |         1.27 |
-|  clk_IBUF_BUFG | alu_buffer/queue[15][95]_i_1_n_0              |                                               |               15 |             28 |         1.87 |
-|  clk_IBUF_BUFG | alu_buffer/queue[6][95]_i_1_n_0               |                                               |               15 |             28 |         1.87 |
-|  clk_IBUF_BUFG | alu_buffer/queue[17][95]_i_1_n_0              |                                               |               16 |             28 |         1.75 |
-|  clk_IBUF_BUFG | alu_buffer/queue[27][95]_i_1_n_0              |                                               |               15 |             28 |         1.87 |
-|  clk_IBUF_BUFG | alu_buffer/tail_reg[3]_4[0]                   |                                               |               19 |             28 |         1.47 |
-|  clk_IBUF_BUFG | alu_buffer/queue[16][95]_i_1_n_0              |                                               |               19 |             28 |         1.47 |
-|  clk_IBUF_BUFG | alu_buffer/tail_reg[0]_rep_9[0]               |                                               |               19 |             28 |         1.47 |
-|  clk_IBUF_BUFG | alu_buffer/tail_reg[0]_rep_20[0]              |                                               |               19 |             28 |         1.47 |
-|  clk_IBUF_BUFG | alu_buffer/queue[31][95]_i_1_n_0              |                                               |               20 |             28 |         1.40 |
-|  clk_IBUF_BUFG | alu_buffer/tail_reg[0]_rep_21[0]              |                                               |               18 |             28 |         1.56 |
-|  clk_IBUF_BUFG | alu_buffer/queue[30][95]_i_1_n_0              |                                               |               20 |             28 |         1.40 |
-|  clk_IBUF_BUFG | alu_buffer/queue[28][95]_i_1_n_0              |                                               |               16 |             28 |         1.75 |
-|  clk_IBUF_BUFG | alu_buffer/queue[2][95]_i_1_n_0               |                                               |               13 |             28 |         2.15 |
-|  clk_IBUF_BUFG | alu_buffer/queue[19][95]_i_1_n_0              |                                               |               18 |             28 |         1.56 |
-|  clk_IBUF_BUFG | alu_buffer/queue[18][95]_i_1_n_0              |                                               |               16 |             28 |         1.75 |
-|  clk_IBUF_BUFG | alu_buffer/queue[20][95]_i_1_n_0              |                                               |               17 |             28 |         1.65 |
-|  clk_IBUF_BUFG | alu_buffer/queue[0][95]_i_1_n_0               |                                               |               17 |             28 |         1.65 |
-|  clk_IBUF_BUFG | alu_buffer/queue[11][95]_i_1_n_0              |                                               |               13 |             28 |         2.15 |
-|  clk_IBUF_BUFG | alu_buffer/queue[1][95]_i_1_n_0               |                                               |               18 |             28 |         1.56 |
-|  clk_IBUF_BUFG | alu_buffer/queue[21][95]_i_1_n_0              |                                               |               19 |             28 |         1.47 |
-|  clk_IBUF_BUFG | alu_buffer/queue[25][95]_i_1_n_0              |                                               |               15 |             28 |         1.87 |
-|  clk_IBUF_BUFG | alu_buffer/queue[10][95]_i_1_n_0              |                                               |               16 |             28 |         1.75 |
-|  clk_IBUF_BUFG | alu_buffer/queue[24][95]_i_1_n_0              |                                               |               14 |             28 |         2.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[12][95]_i_1_n_0              |                                               |               15 |             28 |         1.87 |
-|  clk_IBUF_BUFG | alu_buffer/queue[4][95]_i_1_n_0               |                                               |               18 |             28 |         1.56 |
-|  clk_IBUF_BUFG | alu_buffer/queue[23][95]_i_1_n_0              |                                               |               18 |             28 |         1.56 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[5][96]_i_1_n_0     |                                               |               10 |             29 |         2.90 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[6][96]_i_1_n_0     |                                               |               10 |             29 |         2.90 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[7][96]_i_1_n_0     |                                               |               13 |             29 |         2.23 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[1]                 |                                               |               11 |             29 |         2.64 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[1][96]_i_1_n_0     |                                               |                9 |             29 |         3.22 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[2][96]_i_1_n_0     |                                               |               10 |             29 |         2.90 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[3][96]_i_1_n_0     |                                               |               10 |             29 |         2.90 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[4][96]_i_1_n_0     |                                               |                9 |             29 |         3.22 |
-|  clk_IBUF_BUFG |                                               | alu_reservationA/operation_reg[1][0]_0[37]    |               32 |             32 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[3][79]_i_1_n_0               |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[4][40]_i_1_n_0               |                                               |               20 |             33 |         1.65 |
-|  clk_IBUF_BUFG | alu_buffer/queue[4][79]_i_1_n_0               |                                               |               25 |             33 |         1.32 |
-|  clk_IBUF_BUFG | alu_buffer/queue[7][79]_i_1_n_0               |                                               |               29 |             33 |         1.14 |
-|  clk_IBUF_BUFG | alu_buffer/queue[6][40]_i_1_n_0               |                                               |               21 |             33 |         1.57 |
-|  clk_IBUF_BUFG | alu_buffer/queue[6][79]_i_1_n_0               |                                               |               27 |             33 |         1.22 |
-|  clk_IBUF_BUFG | alu_buffer/queue[8][79]_i_1_n_0               |                                               |               30 |             33 |         1.10 |
-|  clk_IBUF_BUFG | alu_buffer/queue[30][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[31][40]_i_1_n_0              |                                               |               31 |             33 |         1.06 |
-|  clk_IBUF_BUFG | alu_buffer/queue[31][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[27][79]_i_1_n_0              |                                               |               30 |             33 |         1.10 |
-|  clk_IBUF_BUFG | alu_buffer/queue[28][40]_i_1_n_0              |                                               |               29 |             33 |         1.14 |
-|  clk_IBUF_BUFG | alu_buffer/queue[28][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[2][40]_i_1_n_0               |                                               |               20 |             33 |         1.65 |
-|  clk_IBUF_BUFG | alu_buffer/queue[2][79]_i_1_n_0               |                                               |               22 |             33 |         1.50 |
-|  clk_IBUF_BUFG | alu_buffer/queue[16][40]_i_1_n_0              |                                               |               28 |             33 |         1.18 |
-|  clk_IBUF_BUFG | alu_buffer/queue[16][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[18][40]_i_1_n_0              |                                               |               28 |             33 |         1.18 |
-|  clk_IBUF_BUFG | alu_buffer/queue[15][40]_i_1_n_0              |                                               |               28 |             33 |         1.18 |
-|  clk_IBUF_BUFG | alu_buffer/queue[14][79]_i_1_n_0              |                                               |               32 |             33 |         1.03 |
-|  clk_IBUF_BUFG | alu_buffer/p_0_in[79]                         |                                               |               32 |             33 |         1.03 |
-|  clk_IBUF_BUFG | alu_buffer/p_0_in[40]                         |                                               |               29 |             33 |         1.14 |
-|  clk_IBUF_BUFG | alu_buffer/queue[14][40]_i_1_n_0              |                                               |               30 |             33 |         1.10 |
-|  clk_IBUF_BUFG | alu_buffer/queue[21][79]_i_1_n_0              |                                               |               32 |             33 |         1.03 |
-|  clk_IBUF_BUFG | alu_buffer/queue[13][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[1][40]_i_1_n_0               |                                               |               27 |             33 |         1.22 |
-|  clk_IBUF_BUFG | alu_buffer/queue[12][40]_i_1_n_0              |                                               |               23 |             33 |         1.43 |
-|  clk_IBUF_BUFG | alu_buffer/queue[12][79]_i_1_n_0              |                                               |               27 |             33 |         1.22 |
-|  clk_IBUF_BUFG | alu_buffer/queue[11][79]_i_1_n_0              |                                               |               32 |             33 |         1.03 |
-|  clk_IBUF_BUFG | alu_buffer/queue[21][40]_i_1_n_0              |                                               |               25 |             33 |         1.32 |
-|  clk_IBUF_BUFG | alu_buffer/queue[22][79]_i_1_n_0              |                                               |               32 |             33 |         1.03 |
-|  clk_IBUF_BUFG | alu_buffer/queue[11][40]_i_1_n_0              |                                               |               27 |             33 |         1.22 |
-|  clk_IBUF_BUFG | alu_buffer/queue[10][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[22][40]_i_1_n_0              |                                               |               29 |             33 |         1.14 |
-|  clk_IBUF_BUFG | alu_buffer/queue[20][79]_i_1_n_0              |                                               |               32 |             33 |         1.03 |
-|  clk_IBUF_BUFG | alu_buffer/queue[10][40]_i_1_n_0              |                                               |               32 |             33 |         1.03 |
-|  clk_IBUF_BUFG | alu_buffer/queue[20][40]_i_1_n_0              |                                               |               30 |             33 |         1.10 |
-|  clk_IBUF_BUFG | alu_buffer/queue[13][40]_i_1_n_0              |                                               |               28 |             33 |         1.18 |
-|  clk_IBUF_BUFG | alu_buffer/queue[1][79]_i_1_n_0               |                                               |               30 |             33 |         1.10 |
-|  clk_IBUF_BUFG | alu_buffer/queue[0][79]_i_1_n_0               |                                               |               32 |             33 |         1.03 |
-|  clk_IBUF_BUFG | alu_buffer/queue[0][40]_i_1_n_0               |                                               |               28 |             33 |         1.18 |
-|  clk_IBUF_BUFG | alu_buffer/queue[19][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | alu_buffer/queue[23][79]_i_1_n_0              |                                               |               28 |             33 |         1.18 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__1[1]                    |                                               |               26 |             33 |         1.27 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__12[0]                   |                                               |               28 |             33 |         1.18 |
-|  clk_IBUF_BUFG | alu_buffer/queue[18][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__12[1]                   |                                               |               25 |             33 |         1.32 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__3[0]                    |                                               |               26 |             33 |         1.27 |
-|  clk_IBUF_BUFG | alu_buffer/queue[19][40]_i_1_n_0              |                                               |               31 |             33 |         1.06 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__9[0]                    |                                               |               24 |             33 |         1.38 |
-|  clk_IBUF_BUFG | alu_buffer/queue[30][40]_i_1_n_0              |                                               |               29 |             33 |         1.14 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__4[0]                    |                                               |               23 |             33 |         1.43 |
-|  clk_IBUF_BUFG | alu_buffer/queue[17][40]_i_1_n_0              |                                               |               30 |             33 |         1.10 |
-|  clk_IBUF_BUFG | alu_buffer/queue[17][79]_i_1_n_0              |                                               |               33 |             33 |         1.00 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__1[0]                    |                                               |               24 |             33 |         1.38 |
-|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__9[1]                    |                                               |               31 |             33 |         1.06 |
-|  clk_IBUF_BUFG | alu_buffer/queue[15][79]_i_1_n_0              |                                               |               28 |             33 |         1.18 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[0][79]_i_1_n_0     |                                               |               11 |             33 |         3.00 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[0][40]_i_1_n_0     |                                               |               11 |             33 |         3.00 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[1][40]_i_1_n_0     |                                               |               12 |             33 |         2.75 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[2][40]_i_1_n_0     |                                               |               12 |             33 |         2.75 |
-|  clk_IBUF_BUFG | alu_buffer/queue[3][40]_i_1_n_0               |                                               |               26 |             33 |         1.27 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[1][79]_i_1_n_0     |                                               |               13 |             33 |         2.54 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[2][79]_i_1_n_0     |                                               |               12 |             33 |         2.75 |
-|  clk_IBUF_BUFG | alu_buffer/queue[23][40]_i_1_n_0              |                                               |               27 |             33 |         1.22 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[3][40]_i_1_n_0     |                                               |               13 |             33 |         2.54 |
-|  clk_IBUF_BUFG | alu_buffer/queue[24][79]_i_1_n_0              |                                               |               27 |             33 |         1.22 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[4][40]_i_1_n_0     |                                               |               13 |             33 |         2.54 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[3][79]_i_1_n_0     |                                               |               17 |             33 |         1.94 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[5][79]_i_1_n_0     |                                               |               15 |             33 |         2.20 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[4][79]_i_1_n_0     |                                               |               22 |             33 |         1.50 |
-|  clk_IBUF_BUFG | alu_buffer/queue[24][40]_i_1_n_0              |                                               |               26 |             33 |         1.27 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[5][40]_i_1_n_0     |                                               |               20 |             33 |         1.65 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[6][79]_i_1_n_0     |                                               |               12 |             33 |         2.75 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[6][40]_i_1_n_0     |                                               |               14 |             33 |         2.36 |
-|  clk_IBUF_BUFG | alu_buffer/queue[25][40]_i_1_n_0              |                                               |               24 |             33 |         1.38 |
-|  clk_IBUF_BUFG | alu_buffer/queue[25][79]_i_1_n_0              |                                               |               26 |             33 |         1.27 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[7][40]_i_1_n_0     |                                               |               17 |             33 |         1.94 |
-|  clk_IBUF_BUFG | alu_reservationA/operation[7][79]_i_1_n_0     |                                               |               16 |             33 |         2.06 |
-|  clk_IBUF_BUFG | alu_buffer/queue[27][40]_i_1_n_0              |                                               |               22 |             33 |         1.50 |
-|  clk_IBUF_BUFG |                                               |                                               |              311 |            924 |         2.97 |
-+----------------+-----------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
++----------------+-----------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |                 Enable Signal                 |               Set/Reset Signal              | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+-----------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG |                                               | mem/rdata2__reg[30]_0[0]                    |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG |                                               | mem/rdata3_[0]                              |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG |                                               | mem/rdata0__reg[30]_0[0]                    |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG |                                               | mem/rdata1__reg[30]_0[0]                    |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | display/display_third[3]_i_1_n_0              |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | display/display_fourth[3]_i_1_n_0             |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | display/display_second[3]_i_1_n_0             |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | display/display_first[3]_i_1_n_0              |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_1[0]       |                                             |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_0[0]       |                                             |                2 |              5 |         2.50 |
+|  clk_IBUF_BUFG | lsu/store_buffer/E[0]                         |                                             |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_3[0]       |                                             |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_6[0]       |                                             |                2 |              5 |         2.50 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_4[0]       |                                             |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_2[0]       |                                             |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_valid__reg_5[0]       |                                             |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_data_[4]_i_1_n_0      |                                             |                2 |              5 |         2.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[28][52]_i_1__0_n_0          |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[27][52]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2_0[1]                  |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__1[0]                    |                                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2_0[0]                  |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2_1[0]                  |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[2][52]_i_1__0_n_0           |                                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2_1[1]                  |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2[1]                    |                                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__2[0]                    |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__3_0[0]                  |                                             |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__1_0[0]                  |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[6][13]_i_1__0_n_0           |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/p_0_in[79]                        |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/p_0_in[40]                        |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[30][13]_i_1__0_n_0          |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[3][13]_i_1__0_n_0           |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[31][13]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[3][52]_i_1_n_0              |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[30][52]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[31][52]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[7][52]_i_1__0_n_0           |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[4][52]_i_1__0_n_0           |                                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[4][13]_i_1__0_n_0           |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[28][13]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[2][13]_i_1__0_n_0           |                                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[8][52]_i_1__0_n_0           |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[6][52]_i_1__0_n_0           |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[27][13]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[24][52]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[25][52]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[24][13]_i_1__0_n_0          |                                             |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[25][13]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[23][52]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[22][13]_i_1__0_n_0          |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[21][52]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[23][13]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[22][52]_i_1__0_n_0          |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[19][52]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[1][13]_i_1__0_n_0           |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[20][52]_i_1_n_0             |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[20][13]_i_1__0_n_0          |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[21][13]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[1][52]_i_1_n_0              |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[18][13]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[16][52]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[16][13]_i_1__0_n_0          |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[17][13]_i_1__0_n_0          |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[19][13]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[17][52]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[18][52]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[15][52]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[13][52]_i_1_n_0             |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[14][52]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[14][13]_i_1_n_0             |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[15][13]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[11][52]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[13][13]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[12][13]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[12][52]_i_1__0_n_0          |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | load_buffer/queue[0][13]_i_1__0_n_0           |                                             |                6 |              6 |         1.00 |
+|  clk_IBUF_BUFG | load_buffer/queue[10][52]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[11][13]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[10][13]_i_1__0_n_0          |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | load_buffer/queue[0][52]_i_1__0_n_0           |                                             |                5 |              6 |         1.20 |
+|  clk_IBUF_BUFG | lsu/load_data[5][32]_i_1_n_0                  |                                             |                3 |              7 |         2.33 |
+|  clk_IBUF_BUFG | lsu/load_data[2][32]_i_1_n_0                  |                                             |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG | lsu/load_data[1][32]_i_1_n_0                  |                                             |                3 |              7 |         2.33 |
+|  clk_IBUF_BUFG | lsu/load_data[0][32]_i_1_n_0                  |                                             |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG | lsu/load_data[7][32]_i_1_n_0                  |                                             |                3 |              7 |         2.33 |
+|  clk_IBUF_BUFG | lsu/load_data[6][32]_i_1_n_0                  |                                             |                4 |              7 |         1.75 |
+|  clk_IBUF_BUFG | lsu/load_data[3][32]_i_1_n_0                  |                                             |                4 |              7 |         1.75 |
+|  clk_IBUF_BUFG | lsu/load_data[4][32]_i_1_n_0                  |                                             |                4 |              7 |         1.75 |
+|  clk_IBUF_BUFG |                                               | mem/rdata1__reg[6]_0                        |                4 |              8 |         2.00 |
+|  clk_IBUF_BUFG |                                               | mem/rdata2__reg[6]_0                        |                3 |              8 |         2.67 |
+|  clk_IBUF_BUFG |                                               | mem/rdata0__reg[6]_0                        |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/tail[3]_i_1__1_n_0           |                                             |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG |                                               | decoderB/d2_imm[30]_i_1_n_0                 |                3 |              9 |         3.00 |
+|  clk_IBUF_BUFG |                                               | decoderC/d2_imm[30]_i_1_n_0                 |                4 |              9 |         2.25 |
+|  clk_IBUF_BUFG |                                               | decoderA/d2_imm[30]_i_1_n_0                 |                2 |              9 |         4.50 |
+|  clk_IBUF_BUFG | decoderC/E[0]                                 |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderC/d2_ROB_loc_reg[1]_36[0]              |                                             |                6 |             11 |         1.83 |
+|  clk_IBUF_BUFG | decoderC/d2_ROB_loc_reg[0]_rep_15[0]          |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_4[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_3[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_1[0]               |                                             |               11 |             11 |         1.00 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_10[0]          |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_13[0]          |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_3[0]           |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/E[0]                                 |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_1[0]           |                                             |                5 |             11 |         2.20 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_2[0]           |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_4[0]           |                                             |                6 |             11 |         1.83 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_11[0]          |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_12[0]          |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_10[0]              |                                             |                2 |             11 |         5.50 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_9[0]               |                                             |                5 |             11 |         2.20 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_10[0]              |                                             |               10 |             11 |         1.10 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_13[0]              |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_4[0]               |                                             |               11 |             11 |         1.00 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_3[0]               |                                             |                9 |             11 |         1.22 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_0[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_5[0]               |                                             |                2 |             11 |         5.50 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_5[0]           |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_0[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_7[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_13[0]              |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_11[0]              |                                             |                2 |             11 |         5.50 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_2[0]               |                                             |                5 |             11 |         2.20 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_5[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_8[0]           |                                             |                2 |             11 |         5.50 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_0[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_15[0]              |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_2[0]               |                                             |                2 |             11 |         5.50 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_6[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_6[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_12[0]              |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_0[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_1[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_0[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_4[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_11[0]              |                                             |                5 |             11 |         2.20 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_9[0]           |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_16[0]              |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_2[0]               |                                             |                2 |             11 |         5.50 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_8[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[1]_14[0]              |                                             |                2 |             11 |         5.50 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_5[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_2[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_6[0]           |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_12[0]              |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_8[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_9[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_3[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_8[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_5[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_3[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[3]_1[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[2]_7[0]               |                                             |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_1[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_7[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[0]_rep_7[0]           |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[5]_1[0]               |                                             |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG | decoderA/d2_ROB_loc_reg[4]_14[0]              |                                             |                5 |             11 |         2.20 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[3][37]_i_1_n_0  |                                             |                4 |             18 |         4.50 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[9][37]_i_1_n_0  |                                             |                3 |             18 |         6.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[6][37]_i_1_n_0  |                                             |                5 |             18 |         3.60 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[12][37]_i_1_n_0 |                                             |                6 |             18 |         3.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[8][37]_i_1_n_0  |                                             |                5 |             18 |         3.60 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[13][37]_i_1_n_0 |                                             |                3 |             18 |         6.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[10][37]_i_1_n_0 |                                             |                4 |             18 |         4.50 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[14][37]_i_1_n_0 |                                             |                5 |             18 |         3.60 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[11][37]_i_1_n_0 |                                             |                4 |             18 |         4.50 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[4][37]_i_1_n_0  |                                             |                4 |             18 |         4.50 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[5][37]_i_1_n_0  |                                             |                6 |             18 |         3.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[15][37]_i_1_n_0 |                                             |                3 |             18 |         6.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[2][37]_i_1_n_0  |                                             |                3 |             19 |         6.33 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[7][64]_i_1_n_0  |                                             |                4 |             19 |         4.75 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[0][64]_i_1_n_0  |                                             |                7 |             19 |         2.71 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[1][37]_i_1_n_0  |                                             |                7 |             19 |         2.71 |
+|  clk_IBUF_BUFG | load_buffer/queue[27][93]_i_1__0_n_0          |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[28][93]_i_1__0_n_0          |                                             |               15 |             25 |         1.67 |
+|  clk_IBUF_BUFG | load_buffer/queue[10][93]_i_1__0_n_0          |                                             |               16 |             25 |         1.56 |
+|  clk_IBUF_BUFG | load_buffer/queue[0][93]_i_1__0_n_0           |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[12][93]_i_1__0_n_0          |                                             |               13 |             25 |         1.92 |
+|  clk_IBUF_BUFG | load_buffer/queue[11][93]_i_1__0_n_0          |                                             |               13 |             25 |         1.92 |
+|  clk_IBUF_BUFG | load_buffer/queue[15][93]_i_1__0_n_0          |                                             |               11 |             25 |         2.27 |
+|  clk_IBUF_BUFG | load_buffer/queue[13][93]_i_1__0_n_0          |                                             |               15 |             25 |         1.67 |
+|  clk_IBUF_BUFG | load_buffer/queue[14][93]_i_1__0_n_0          |                                             |               17 |             25 |         1.47 |
+|  clk_IBUF_BUFG | load_buffer/queue[17][93]_i_1__0_n_0          |                                             |               15 |             25 |         1.67 |
+|  clk_IBUF_BUFG | load_buffer/queue[18][93]_i_1__0_n_0          |                                             |               17 |             25 |         1.47 |
+|  clk_IBUF_BUFG | load_buffer/queue[16][93]_i_1__0_n_0          |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[20][93]_i_1__0_n_0          |                                             |               15 |             25 |         1.67 |
+|  clk_IBUF_BUFG | load_buffer/queue[19][93]_i_1__0_n_0          |                                             |               13 |             25 |         1.92 |
+|  clk_IBUF_BUFG | load_buffer/queue[1][93]_i_1__0_n_0           |                                             |               17 |             25 |         1.47 |
+|  clk_IBUF_BUFG | load_buffer/queue[21][93]_i_1__0_n_0          |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[22][93]_i_1__0_n_0          |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[23][93]_i_1__0_n_0          |                                             |               13 |             25 |         1.92 |
+|  clk_IBUF_BUFG | load_buffer/queue[25][93]_i_1__0_n_0          |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[24][93]_i_1__0_n_0          |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[2][93]_i_1__0_n_0           |                                             |               12 |             25 |         2.08 |
+|  clk_IBUF_BUFG | load_buffer/tail_reg[0]_18[0]                 |                                             |               16 |             25 |         1.56 |
+|  clk_IBUF_BUFG | load_buffer/tail_reg[3]_4[0]                  |                                             |               16 |             25 |         1.56 |
+|  clk_IBUF_BUFG | load_buffer/tail_reg[0]_9[0]                  |                                             |               12 |             25 |         2.08 |
+|  clk_IBUF_BUFG | load_buffer/tail_reg[0]_19[0]                 |                                             |               13 |             25 |         1.92 |
+|  clk_IBUF_BUFG | load_buffer/E[0]                              |                                             |               12 |             25 |         2.08 |
+|  clk_IBUF_BUFG | load_buffer/p_0_in[95]                        |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[30][93]_i_1__0_n_0          |                                             |               16 |             25 |         1.56 |
+|  clk_IBUF_BUFG | load_buffer/queue[31][93]_i_1__0_n_0          |                                             |               15 |             25 |         1.67 |
+|  clk_IBUF_BUFG | load_buffer/queue[3][93]_i_1__0_n_0           |                                             |               17 |             25 |         1.47 |
+|  clk_IBUF_BUFG | load_buffer/queue[4][93]_i_1__0_n_0           |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | load_buffer/queue[6][93]_i_1__0_n_0           |                                             |               14 |             25 |         1.79 |
+|  clk_IBUF_BUFG | alu_buffer/queue[3][94]_i_1_n_0               |                                             |               14 |             27 |         1.93 |
+|  clk_IBUF_BUFG | alu_buffer/queue[1][94]_i_1_n_0               |                                             |               15 |             27 |         1.80 |
+|  clk_IBUF_BUFG | alu_buffer/p_0_in[95]                         |                                             |               13 |             27 |         2.08 |
+|  clk_IBUF_BUFG | alu_buffer/queue[24][94]_i_1_n_0              |                                             |               14 |             27 |         1.93 |
+|  clk_IBUF_BUFG | alu_buffer/queue[13][94]_i_1_n_0              |                                             |               14 |             27 |         1.93 |
+|  clk_IBUF_BUFG | alu_buffer/queue[23][94]_i_1_n_0              |                                             |               19 |             27 |         1.42 |
+|  clk_IBUF_BUFG | alu_buffer/queue[15][94]_i_1_n_0              |                                             |               12 |             27 |         2.25 |
+|  clk_IBUF_BUFG | alu_buffer/E[0]                               |                                             |               14 |             27 |         1.93 |
+|  clk_IBUF_BUFG | alu_buffer/queue[18][94]_i_1_n_0              |                                             |               16 |             27 |         1.69 |
+|  clk_IBUF_BUFG | alu_buffer/queue[14][94]_i_1_n_0              |                                             |               15 |             27 |         1.80 |
+|  clk_IBUF_BUFG | alu_buffer/queue[4][94]_i_1_n_0               |                                             |               13 |             27 |         2.08 |
+|  clk_IBUF_BUFG | alu_buffer/queue[2][94]_i_1_n_0               |                                             |               14 |             27 |         1.93 |
+|  clk_IBUF_BUFG | alu_buffer/queue[6][94]_i_1_n_0               |                                             |               16 |             27 |         1.69 |
+|  clk_IBUF_BUFG | alu_buffer/queue[21][94]_i_1_n_0              |                                             |               12 |             27 |         2.25 |
+|  clk_IBUF_BUFG | alu_buffer/queue[22][94]_i_1_n_0              |                                             |               16 |             27 |         1.69 |
+|  clk_IBUF_BUFG | alu_buffer/queue[16][94]_i_1_n_0              |                                             |               16 |             27 |         1.69 |
+|  clk_IBUF_BUFG | alu_buffer/queue[11][94]_i_1_n_0              |                                             |               15 |             27 |         1.80 |
+|  clk_IBUF_BUFG | alu_buffer/queue[12][94]_i_1_n_0              |                                             |               13 |             27 |         2.08 |
+|  clk_IBUF_BUFG | alu_buffer/queue[17][94]_i_1_n_0              |                                             |               13 |             27 |         2.08 |
+|  clk_IBUF_BUFG | alu_buffer/queue[20][94]_i_1_n_0              |                                             |               20 |             27 |         1.35 |
+|  clk_IBUF_BUFG | alu_buffer/queue[31][94]_i_1_n_0              |                                             |               18 |             27 |         1.50 |
+|  clk_IBUF_BUFG | alu_buffer/queue[19][94]_i_1_n_0              |                                             |               16 |             27 |         1.69 |
+|  clk_IBUF_BUFG | alu_buffer/queue[30][94]_i_1_n_0              |                                             |               14 |             27 |         1.93 |
+|  clk_IBUF_BUFG | alu_buffer/queue[0][94]_i_1_n_0               |                                             |               12 |             27 |         2.25 |
+|  clk_IBUF_BUFG | alu_buffer/queue[28][94]_i_1_n_0              |                                             |               15 |             27 |         1.80 |
+|  clk_IBUF_BUFG | alu_buffer/queue[10][94]_i_1_n_0              |                                             |               18 |             27 |         1.50 |
+|  clk_IBUF_BUFG | alu_buffer/queue[27][94]_i_1_n_0              |                                             |               12 |             27 |         2.25 |
+|  clk_IBUF_BUFG | alu_buffer/tail_reg[0]_11[0]                  |                                             |               16 |             27 |         1.69 |
+|  clk_IBUF_BUFG | alu_buffer/tail_reg[0]_19[0]                  |                                             |               14 |             27 |         1.93 |
+|  clk_IBUF_BUFG | alu_buffer/tail_reg[3]_4[0]                   |                                             |               14 |             27 |         1.93 |
+|  clk_IBUF_BUFG | alu_buffer/tail_reg[0]_18[0]                  |                                             |               17 |             28 |         1.65 |
+|  clk_IBUF_BUFG | alu_buffer/queue[25][95]_i_1_n_0              |                                             |               16 |             28 |         1.75 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[1]                 |                                             |               12 |             29 |         2.42 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[1][96]_i_1_n_0     |                                             |               12 |             29 |         2.42 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[2][96]_i_1_n_0     |                                             |               13 |             29 |         2.23 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[4][96]_i_1_n_0     |                                             |               12 |             29 |         2.42 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[3][96]_i_1_n_0     |                                             |               11 |             29 |         2.64 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[5][96]_i_1_n_0     |                                             |               13 |             29 |         2.23 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[6][96]_i_1_n_0     |                                             |               12 |             29 |         2.42 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[7][96]_i_1_n_0     |                                             |               13 |             29 |         2.23 |
+|  clk_IBUF_BUFG |                                               | alu_reservationA/operation_reg[2][93]_0[37] |               31 |             32 |         1.03 |
+|  clk_IBUF_BUFG | alu_buffer/queue[19][40]_i_1_n_0              |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_buffer/queue[21][79]_i_1_n_0              |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | alu_buffer/queue[17][79]_i_1_n_0              |                                             |               33 |             33 |         1.00 |
+|  clk_IBUF_BUFG | alu_buffer/queue[4][79]_i_1_n_0               |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | alu_buffer/queue[18][79]_i_1_n_0              |                                             |               32 |             33 |         1.03 |
+|  clk_IBUF_BUFG | alu_buffer/queue[4][40]_i_1_n_0               |                                             |               22 |             33 |         1.50 |
+|  clk_IBUF_BUFG | alu_buffer/queue[18][40]_i_1_n_0              |                                             |               31 |             33 |         1.06 |
+|  clk_IBUF_BUFG | alu_buffer/queue[16][40]_i_1_n_0              |                                             |               32 |             33 |         1.03 |
+|  clk_IBUF_BUFG | alu_buffer/queue[15][79]_i_1_n_0              |                                             |               23 |             33 |         1.43 |
+|  clk_IBUF_BUFG | alu_buffer/queue[6][79]_i_1_n_0               |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | alu_buffer/queue[17][40]_i_1_n_0              |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_buffer/queue[15][40]_i_1_n_0              |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | alu_buffer/queue[7][79]_i_1_n_0               |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | alu_buffer/queue[6][40]_i_1_n_0               |                                             |               25 |             33 |         1.32 |
+|  clk_IBUF_BUFG | alu_buffer/queue[14][79]_i_1_n_0              |                                             |               32 |             33 |         1.03 |
+|  clk_IBUF_BUFG | alu_buffer/queue[14][40]_i_1_n_0              |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_buffer/queue[8][79]_i_1_n_0               |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | alu_buffer/queue[12][79]_i_1_n_0              |                                             |               20 |             33 |         1.65 |
+|  clk_IBUF_BUFG | alu_buffer/p_0_in[40]                         |                                             |               33 |             33 |         1.00 |
+|  clk_IBUF_BUFG | alu_buffer/queue[13][79]_i_1_n_0              |                                             |               32 |             33 |         1.03 |
+|  clk_IBUF_BUFG | alu_buffer/queue[16][79]_i_1_n_0              |                                             |               31 |             33 |         1.06 |
+|  clk_IBUF_BUFG | alu_buffer/queue[12][40]_i_1_n_0              |                                             |               22 |             33 |         1.50 |
+|  clk_IBUF_BUFG | alu_buffer/queue[31][40]_i_1_n_0              |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_buffer/queue[25][40]_i_1_n_0              |                                             |               24 |             33 |         1.38 |
+|  clk_IBUF_BUFG | alu_buffer/queue[0][79]_i_1_n_0               |                                             |               32 |             33 |         1.03 |
+|  clk_IBUF_BUFG | alu_buffer/queue[24][40]_i_1_n_0              |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_buffer/queue[11][79]_i_1_n_0              |                                             |               31 |             33 |         1.06 |
+|  clk_IBUF_BUFG | alu_buffer/queue[30][40]_i_1_n_0              |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_buffer/queue[27][79]_i_1_n_0              |                                             |               27 |             33 |         1.22 |
+|  clk_IBUF_BUFG | alu_buffer/queue[10][40]_i_1_n_0              |                                             |               27 |             33 |         1.22 |
+|  clk_IBUF_BUFG | alu_buffer/queue[11][40]_i_1_n_0              |                                             |               27 |             33 |         1.22 |
+|  clk_IBUF_BUFG | alu_buffer/queue[10][79]_i_1_n_0              |                                             |               31 |             33 |         1.06 |
+|  clk_IBUF_BUFG | alu_buffer/queue[0][40]_i_1_n_0               |                                             |               28 |             33 |         1.18 |
+|  clk_IBUF_BUFG | alu_buffer/queue[27][40]_i_1_n_0              |                                             |               20 |             33 |         1.65 |
+|  clk_IBUF_BUFG | alu_buffer/queue[13][40]_i_1_n_0              |                                             |               31 |             33 |         1.06 |
+|  clk_IBUF_BUFG | alu_buffer/queue[28][40]_i_1_n_0              |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_buffer/queue[28][79]_i_1_n_0              |                                             |               33 |             33 |         1.00 |
+|  clk_IBUF_BUFG | alu_buffer/queue[23][40]_i_1_n_0              |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | alu_buffer/queue[21][40]_i_1_n_0              |                                             |               24 |             33 |         1.38 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__10[0]                   |                                             |               27 |             33 |         1.22 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__13[0]                   |                                             |               27 |             33 |         1.22 |
+|  clk_IBUF_BUFG | alu_buffer/queue[2][40]_i_1_n_0               |                                             |               22 |             33 |         1.50 |
+|  clk_IBUF_BUFG | alu_buffer/queue[3][40]_i_1_n_0               |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__4[0]                    |                                             |               28 |             33 |         1.18 |
+|  clk_IBUF_BUFG | alu_buffer/queue[23][79]_i_1_n_0              |                                             |               31 |             33 |         1.06 |
+|  clk_IBUF_BUFG | alu_buffer/queue[22][79]_i_1_n_0              |                                             |               33 |             33 |         1.00 |
+|  clk_IBUF_BUFG | alu_buffer/queue[25][79]_i_1_n_0              |                                             |               28 |             33 |         1.18 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__13[1]                   |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__3[1]                    |                                             |               26 |             33 |         1.27 |
+|  clk_IBUF_BUFG | alu_buffer/queue[22][40]_i_1_n_0              |                                             |               30 |             33 |         1.10 |
+|  clk_IBUF_BUFG | alu_buffer/queue[30][79]_i_1_n_0              |                                             |               32 |             33 |         1.03 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__3[0]                    |                                             |               25 |             33 |         1.32 |
+|  clk_IBUF_BUFG | alu_buffer/p_0_in[79]                         |                                             |               32 |             33 |         1.03 |
+|  clk_IBUF_BUFG | alu_buffer/queue[2][79]_i_1_n_0               |                                             |               22 |             33 |         1.50 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__9[0]                    |                                             |               28 |             33 |         1.18 |
+|  clk_IBUF_BUFG | alu_buffer/queue[24][79]_i_1_n_0              |                                             |               27 |             33 |         1.22 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[0][40]_i_1_n_0     |                                             |               16 |             33 |         2.06 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[0][79]_i_1_n_0     |                                             |                9 |             33 |         3.67 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[1][40]_i_1_n_0     |                                             |               14 |             33 |         2.36 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[1][79]_i_1_n_0     |                                             |               11 |             33 |         3.00 |
+|  clk_IBUF_BUFG | alu_buffer/queue[31][79]_i_1_n_0              |                                             |               33 |             33 |         1.00 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[2][40]_i_1_n_0     |                                             |               15 |             33 |         2.20 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[2][79]_i_1_n_0     |                                             |               11 |             33 |         3.00 |
+|  clk_IBUF_BUFG | alu_buffer/queue[20][79]_i_1_n_0              |                                             |               32 |             33 |         1.03 |
+|  clk_IBUF_BUFG | lsu/d2_valid_reg_rep__9[1]                    |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_buffer/queue[20][40]_i_1_n_0              |                                             |               31 |             33 |         1.06 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[4][40]_i_1_n_0     |                                             |               14 |             33 |         2.36 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[4][79]_i_1_n_0     |                                             |               13 |             33 |         2.54 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[3][40]_i_1_n_0     |                                             |               25 |             33 |         1.32 |
+|  clk_IBUF_BUFG | alu_buffer/queue[1][79]_i_1_n_0               |                                             |               33 |             33 |         1.00 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[5][40]_i_1_n_0     |                                             |               17 |             33 |         1.94 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[5][79]_i_1_n_0     |                                             |               16 |             33 |         2.06 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[6][40]_i_1_n_0     |                                             |               17 |             33 |         1.94 |
+|  clk_IBUF_BUFG | alu_buffer/queue[3][79]_i_1_n_0               |                                             |               33 |             33 |         1.00 |
+|  clk_IBUF_BUFG | alu_buffer/queue[1][40]_i_1_n_0               |                                             |               29 |             33 |         1.14 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[6][79]_i_1_n_0     |                                             |               15 |             33 |         2.20 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[7][40]_i_1_n_0     |                                             |               19 |             33 |         1.74 |
+|  clk_IBUF_BUFG | alu_buffer/queue[19][79]_i_1_n_0              |                                             |               31 |             33 |         1.06 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[7][79]_i_1_n_0     |                                             |               13 |             33 |         2.54 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[3][79]_i_1_n_0     |                                             |               10 |             33 |         3.30 |
+|  clk_IBUF_BUFG |                                               |                                             |              381 |           1030 |         2.70 |
++----------------+-----------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
 
 

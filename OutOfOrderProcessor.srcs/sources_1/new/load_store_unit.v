@@ -22,9 +22,9 @@
 
 module load_store_unit(
     input clk, input flush, input [1:0] stores_to_commit,
-    input [78:0] inOperation, input [11:0] offset, 
-    output [31:0] commit_data, output [31:0] commit_loc, output commit_valid,
-    output [31:0] mem_loc,
+    input [78:0] inOperation0, input [11:0] offset0, 
+    output [31:0] commit_data, output [31:1] commit_loc, output commit_valid,
+    output [31:1] mem_loc,
     input [31:0] mem_data,
     output [38:0] out_data,
     output load_stall
@@ -38,6 +38,9 @@ module load_store_unit(
     reg [3:0] head = 4'b0000;
     reg [3:0] tail = LOAD_SIZE - 1;
     integer i;
+    
+    reg [78:0] inOperation = 0;
+    reg [11:0] offset = 0;
 
     wire [31:0] load_data_out = load_data[head][32] ? load_data[head][31:0] : mem_data;
     wire [31:0] op_load_data = (load_opcodeB[head] == 3'b000) ? {{25{load_data_out[7]}}, load_data_out[6:0]} :
@@ -52,14 +55,17 @@ module load_store_unit(
     wire is_ld = (inOperation[77:74] == 4'b0000);
     wire [2:0] opcodeB = inOperation[72:70];
     wire [5:0] rob_loc = inOperation[69:64];
-    wire [4:0] rs1 = inOperation[63:32];
-    wire [4:0] rs2 = inOperation[31:0];
+    wire [31:0] rs1 = inOperation[63:32];
+    wire [31:0] rs2 = inOperation[31:0];
     wire [31:0] data = is_ld ? rs1 + rs2 : rs1 + {{22{offset[11]}}, offset[10:0]};
 
     wire store_buffer_valid;
     wire [31:0] store_buffer_data;
 
     always @(posedge clk) begin
+        inOperation <= inOperation0;
+        offset <= offset0;
+    
         if(flush) begin
             head = 4'b0000;
             tail = LOAD_SIZE - 1;
@@ -77,12 +83,12 @@ module load_store_unit(
             tail <= (tail + 1) % LOAD_SIZE;
 
             if(store_buffer_valid) begin
-                load_data[tail] <= {1'b1, store_buffer_data};
+                load_data[(tail + LOAD_SIZE - 1) % LOAD_SIZE] <= {1'b1, store_buffer_data};
             end
         end
     end
 
-    assign mem_loc = data;
+    assign mem_loc = data[31:1];
     assign mem_valid = is_ld;
 
     //sb & sh are not stored

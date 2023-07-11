@@ -21,7 +21,7 @@
 
 
 module mem 
-    #(  parameter INSTR_TIMING = 3,  
+    #(  parameter INSTR_TIMING = 2,  
         parameter CYCLE_TIMING = 8)
     (   input clk,
         input [31:1] raddr0, output [31:0] rdata0,
@@ -30,7 +30,7 @@ module mem
         input [31:1] raddr3, output [31:0] rdata3,
         input wen, input [31:1] waddr, input [31:0] wdata);
 
-    reg [31:0]data[0:16'h1000];
+    reg [31:0]data[0:16'h1d00];
 
     /* Simulation -- read initial content from file */
     initial begin
@@ -58,10 +58,10 @@ module mem
 
     integer i;
     always @(posedge clk) begin
-        buf_raddr0[INSTR_TIMING - 1] <= raddr0;
-        buf_raddr1[INSTR_TIMING - 1] <= raddr1;
-        buf_raddr2[INSTR_TIMING - 1] <= raddr2;
-        buf_raddr3[CYCLE_TIMING - 1] <= raddr3;
+        buf_raddr0[INSTR_TIMING - 1] <= data[raddr0];
+        buf_raddr1[INSTR_TIMING - 1] <= data[raddr1];
+        buf_raddr2[INSTR_TIMING - 1] <= data[raddr2];
+        buf_raddr3[CYCLE_TIMING - 1] <= data[raddr3];
         buf_wen[CYCLE_TIMING - 1] <= wen;
         buf_waddr[CYCLE_TIMING - 1] <= waddr;
         buf_wdata[CYCLE_TIMING - 1] <= wdata;
@@ -72,9 +72,9 @@ module mem
             buf_raddr2[i] <= buf_raddr2[i + 1];
         end
         
-        rdata0_ <= data[buf_raddr0[0]];
-        rdata1_ <= data[buf_raddr1[0]];
-        rdata2_ <= data[buf_raddr2[0]];
+        rdata0_ <= buf_raddr0[0];
+        rdata1_ <= buf_raddr1[0];
+        rdata2_ <= buf_raddr2[0];
         
         for(i = 0; i < CYCLE_TIMING - 1; i = i + 1) begin
             buf_raddr3[i] <= buf_raddr3[i + 1];

@@ -41,7 +41,7 @@ module reservation_station
     endgenerate
     
     assign operationUsed = (!committed[0]) | (!committed[1]) | (!committed[2]) | (!committed[3]) | (!committed[4]) | 
-                            (!committed[5]) | (!committed[6]) | (!committed[7]) | (!committed[8]);
+                            (!committed[5]) | (!committed[6]) | (!committed[7]);
     assign outOperationValid = check > 0;
     
     wire [LOG_R - 1 : 0] commit_loc = (!committed[0]) ? 0 : (!committed[1]) ? 1 : (!committed[2]) ? 2 : (!committed[3]) ? 3 : 
@@ -101,7 +101,7 @@ module reservation_station
     always @(posedge clk) begin
         if(flush) begin
             for(i = 0; i < R_SIZE; i = i + 1) begin
-                committed[i] = 1'b0;
+                committed[i] <= 1'b0;
             end
         end
         else begin

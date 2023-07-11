@@ -25,7 +25,7 @@ module store_buffer(
     input [31:0] data, input [31:0] location, input input_valid, //a store instruction
     input [31:0] search_location, //location to search for in a load,
     output [31:0] search_data, output search_valid, //the output for search_location one cycle later
-    output [31:0] commit_data, output [31:0] commit_loc, output commit_valid, //committing to memory
+    output [31:0] commit_data, output [31:1] commit_loc, output commit_valid, //committing to memory
     output store_stall //stall if the store buffer is full
     );
 
@@ -45,12 +45,15 @@ module store_buffer(
     reg [31:0] rcommit_data = 32'b00;
     reg [31:0] rcommit_loc = 32'b0;
     assign commit_data = rcommit_data;
-    assign commit_loc = rcommit_loc;
+    assign commit_loc = rcommit_loc[31:1];
     assign commit_valid = rcommit_valid & rcommit_write;
 
 
     reg [31:0] search_data_ = 32'b0;
     reg search_valid_ = 1'b0;
+
+    reg [31:0] search_data2_ = 32'b0;
+    reg search_valid2_ = 1'b0;
 
     assign search_data = search_data_;
     assign search_valid = search_valid_;
@@ -66,6 +69,9 @@ module store_buffer(
                 search_valid_ <= 1'b1;
             end
         end
+
+//        search_data2_ <= search_data_;
+//        search_valid2_ <= search_valid_;
 
         rcommit_write <= store_buffer[0][65];
         rcommit_valid <= store_buffer[0][64];

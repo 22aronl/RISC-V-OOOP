@@ -146,6 +146,13 @@ module cpu(
     reg pcA_valid = 1'b1;
     reg pcB_valid = 1'b1;
     reg pcC_valid = 1'b1;
+
+    reg [31:0] d0_pcA;
+    reg [31:0] d0_pcB;
+    reg [31:0] d0_pcC;
+    reg d0_validA = 1'b0;
+    reg d0_validB = 1'b0;
+    reg d0_validC = 1'b0;
     
     reg [31:0] d1_pcA;
     reg [31:0] d1_pcB;
@@ -175,6 +182,13 @@ module cpu(
         d1_validA <= pcA_valid;
         d1_validB <= pcB_valid;
         d1_validC <= pcC_valid;
+
+        //d1_pcA <= d0_pcA;
+        //d1_pcB <= d0_pcB;
+        //d1_pcC <= d0_pcC;
+        //d1_validA <= d0_validA;
+        //d1_validB <= d0_validB;
+        //d1_validC <= d0_validC;
         
         d2_pcA <= d1_pcA;
         d2_pcB <= d1_pcB;
@@ -280,7 +294,7 @@ module cpu(
     reg [31:0] ROBpc [0: ROB_SIZE - 1]; //this is so inefficient :') only exists because of jal & jalr
     
     always @(posedge clk) begin
-        ROBtail <= (ROBtail + 3) % ROB_SIZE - 1;
+        ROBtail <= (ROBtail + 6) % ROB_SIZE;
     end
     
     
@@ -514,7 +528,7 @@ module cpu(
     wire [11:0] b_offset_s = ROBhelper[b_rob_loc][11:0];
     wire [31:0] b_offset = {{21{b_offset_s[11]}}, b_offset_s[10:0], 1'b0};
 
-    wire b_forward = b_pc + 4;
+    wire [31:0] b_forward = b_pc + 4;
     wire [31:0] b_pc_jump = (b_opcode == 5'b11011) ? b_data_rs1 + b_data_rs2 :
                             (b_opcode == 5'b11001) ? b_data_rs1 + b_data_rs2 : //this might have issue on decode being set right
                             (b_opcode == 5'b11000) ? 
@@ -561,6 +575,12 @@ module cpu(
         .outValidB(output_loadB_valid),
         .outValidC(output_loadC_valid)
     );
+    
+    wire [31:0] forwardAVal = forwardA[31:0];
+    wire [5:0] forwardARob = forwardA[37:32];
+    wire [31:0] forwardDval = forwardD[31:0];
+    wire [5:0] forwardDRob = forwardD[37:32];
+    
 
     wire [96:0] load_buffer_op;
     wire load_reserv_used;
@@ -596,7 +616,7 @@ module cpu(
     
     load_store_unit lsu(
         .clk(clk), .flush(1'b0), .stores_to_commit(store_buffer_commit),
-        .inOperation({load_buffer_op[96] && load_buffer_op[1:0] == 2'b00, load_buffer_op[93:48], load_buffer_op[40:9]}), .offset(lsu_offset),
+        .inOperation0({load_buffer_op[96] && load_buffer_op[1:0] == 2'b00, load_buffer_op[93:48], load_buffer_op[40:9]}), .offset0(lsu_offset),
         .commit_data(wdata), .commit_valid(wen), .commit_loc(waddr),
         .mem_loc(raddr),
         .mem_data(rdata),
