@@ -21,8 +21,8 @@
 
 
 module buffer    
-    #(  parameter Q_SIZE = 32,
-        parameter Q_LOG_SIZE = 5)
+    #(  parameter Q_SIZE = 16,
+        parameter Q_LOG_SIZE = 4)
     (
     input clk, input flush, input [1:0] taken,
     input [38:0] forwardA, input [38:0] forwardB, input [38:0] forwardC, input [38:0] forwardD,
@@ -87,17 +87,17 @@ module buffer
                     end
                 end
 
-                if(forwardB[38] == 1'b1) begin
-                    if(queue[i][1] == 1'b1 && queue[i][46:41] == forwardB[37:32]) begin
-                        queue[i][1] <= 1'b0;
-                        queue[i][79:48] <= forwardB[31:0];
-                    end
+//                if(forwardB[38] == 1'b1) begin
+//                    if(queue[i][1] == 1'b1 && queue[i][46:41] == forwardB[37:32]) begin
+//                        queue[i][1] <= 1'b0;
+//                        queue[i][79:48] <= forwardB[31:0];
+//                    end
 
-                    if(queue[i][0] == 1'b1 && queue[i][7:2] == forwardB[37:32]) begin
-                        queue[i][0] <= 1'b0;
-                        queue[i][40:9] <= forwardB[31:0];
-                    end
-                end
+//                    if(queue[i][0] == 1'b1 && queue[i][7:2] == forwardB[37:32]) begin
+//                        queue[i][0] <= 1'b0;
+//                        queue[i][40:9] <= forwardB[31:0];
+//                    end
+//                end
 
                 if(forwardC[38] == 1'b1) begin
                     if(queue[i][1] == 1'b1 && queue[i][46:41] == forwardC[37:32]) begin

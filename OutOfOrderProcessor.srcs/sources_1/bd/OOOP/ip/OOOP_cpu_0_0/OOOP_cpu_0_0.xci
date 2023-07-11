@@ -8,11 +8,11 @@
     "gen_directory": "../../../../../../OutOfOrderProcessor.gen/sources_1/bd/OOOP/ip/OOOP_cpu_0_0",
     "parameters": {
       "component_parameters": {
-        "ROB_SIZE": [ { "value": "64", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "ROB_SIZE": [ { "value": "32", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "Component_Name": [ { "value": "OOOP_cpu_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "model_parameters": {
-        "ROB_SIZE": [ { "value": "64", "resolve_type": "generated", "format": "long", "usage": "all" } ]
+        "ROB_SIZE": [ { "value": "32", "resolve_type": "generated", "format": "long", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "artix7" } ],

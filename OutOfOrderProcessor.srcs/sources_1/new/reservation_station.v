@@ -21,8 +21,8 @@
 
 
 module reservation_station
-    #(  parameter R_SIZE = 8,
-        parameter LOG_R = 3)
+    #(  parameter R_SIZE = 4,
+        parameter LOG_R = 2)
     (
     input clk, input flush, 
     input [38:0] forwardA, input [38:0] forwardB, input [38:0] forwardC, input [38:0] forwardD,
@@ -40,21 +40,21 @@ module reservation_station
         end
     endgenerate
     
-    assign operationUsed = (!committed[0]) | (!committed[1]) | (!committed[2]) | (!committed[3]) | (!committed[4]) | 
-                            (!committed[5]) | (!committed[6]) | (!committed[7]);
+    assign operationUsed = (!committed[0]) | (!committed[1]) | (!committed[2]) | (!committed[3]) | (!committed[4]);// | 
+                            //(!committed[5]) | (!committed[6]) | (!committed[7]);
     assign outOperationValid = check > 0;
     
-    wire [LOG_R - 1 : 0] commit_loc = (!committed[0]) ? 0 : (!committed[1]) ? 1 : (!committed[2]) ? 2 : (!committed[3]) ? 3 : 
-                                     (!committed[4]) ? 4 : (!committed[5]) ? 5 : (!committed[6]) ? 6 : (!committed[7]) ? 7 : 8;
+    wire [LOG_R - 1 : 0] commit_loc = (!committed[0]) ? 0 : (!committed[1]) ? 1 : (!committed[2]) ? 2 : (!committed[3]) ? 3 : 4;//
+                                     //(!committed[4]) ? 4 : (!committed[5]) ? 5 : (!committed[6]) ? 6 : (!committed[7]) ? 7 : 8;
 
     wire [LOG_R - 1 : 0] operationIndex = (committed[0] && (operation[0][1:0] == 2'b00)) ? 0 :
                                             (committed[1] && (operation[1][1:0] == 2'b00)) ? 1 :
                                             (committed[2] && (operation[2][1:0] == 2'b00)) ? 2 :
-                                            (committed[3] && (operation[3][1:0] == 2'b00)) ? 3 :
-                                            (committed[4] && (operation[4][1:0] == 2'b00)) ? 4 :
-                                            (committed[5] && (operation[5][1:0] == 2'b00)) ? 5 :
-                                            (committed[6] && (operation[6][1:0] == 2'b00)) ? 6 :
-                                            (committed[7] && (operation[7][1:0] == 2'b00)) ? 7 : 8;
+                                            (committed[3] && (operation[3][1:0] == 2'b00)) ? 3 : 4;
+                                            //(committed[4] && (operation[4][1:0] == 2'b00)) ? 4 :
+                                            //(committed[5] && (operation[5][1:0] == 2'b00)) ? 5 :
+                                            //(committed[6] && (operation[6][1:0] == 2'b00)) ? 6 :
+                                            //(committed[7] && (operation[7][1:0] == 2'b00)) ? 7 : 8;
                                             
     
 //    wire [LOG_R - 1 : 0] commit_loc; //I have no clue how this works
@@ -129,17 +129,17 @@ module reservation_station
                     end
                 end
 
-                if(forwardB[38] == 1'b1) begin
-                    if(operation[i][1] == 1'b1 && operation[i][46:41] == forwardB[37:32]) begin
-                        operation[i][1] <= 1'b0;
-                        operation[i][79:48] <= forwardB[31:0];
-                    end
+//                if(forwardB[38] == 1'b1) begin
+//                    if(operation[i][1] == 1'b1 && operation[i][46:41] == forwardB[37:32]) begin
+//                        operation[i][1] <= 1'b0;
+//                        operation[i][79:48] <= forwardB[31:0];
+//                    end
 
-                    if(operation[i][0] == 1'b1 && operation[i][7:2] == forwardB[37:32]) begin
-                        operation[i][0] <= 1'b0;
-                        operation[i][40:9] <= forwardB[31:0];
-                    end
-                end
+//                    if(operation[i][0] == 1'b1 && operation[i][7:2] == forwardB[37:32]) begin
+//                        operation[i][0] <= 1'b0;
+//                        operation[i][40:9] <= forwardB[31:0];
+//                    end
+//                end
 
                 if(forwardC[38] == 1'b1) begin
                     if(operation[i][1] == 1'b1 && operation[i][46:41] == forwardC[37:32]) begin

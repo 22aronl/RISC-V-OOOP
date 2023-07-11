@@ -31,8 +31,8 @@ module regs(
     input [5:0] rob_locA, input [4:0] rob_waddrA, input rob_wenA,
     input [5:0] rob_locB, input [4:0] rob_waddrB, input rob_wenB,
     input [5:0] rob_locC, input [4:0] rob_waddrC, input rob_wenC,
-    input wen0, input [2:0]waddr0, input [15:0]wdata0, input [5:0] wrob0,
-    input wen1, input [2:0]waddr1, input [15:0]wdata1, input [5:0] wrob1
+    input wen0, input [4:0]waddr0, input [31:0]wdata0, input [5:0] wrob0,
+    input wen1, input [4:0]waddr1, input [31:0]wdata1, input [5:0] wrob1
     );
     
     reg [31:0] data [0:31];
