@@ -40,11 +40,11 @@ module reservation_station
         end
     endgenerate
     
-    assign operationUsed = (!committed[0]) | (!committed[1]) | (!committed[2]) | (!committed[3]) | (!committed[4]);// | 
+    assign operationUsed = (!committed[0]) | (!committed[1]) | (!committed[2]) | (!committed[3]);// | (!committed[4]); | 
                             //(!committed[5]) | (!committed[6]) | (!committed[7]);
     assign outOperationValid = check > 0;
     
-    wire [LOG_R - 1 : 0] commit_loc = (!committed[0]) ? 0 : (!committed[1]) ? 1 : (!committed[2]) ? 2 : (!committed[3]) ? 3 : 4;//
+    wire [LOG_R - 1 : 0] commit_loc = (!committed[0]) ? 0 : (!committed[1]) ? 1 : (!committed[2]) ? 2 : 3;//(!committed[3]) ? 3 : 4;//
                                      //(!committed[4]) ? 4 : (!committed[5]) ? 5 : (!committed[6]) ? 6 : (!committed[7]) ? 7 : 8;
 
     wire [LOG_R - 1 : 0] operationIndex = (committed[0] && (operation[0][1:0] == 2'b00)) ? 0 :

@@ -44,16 +44,16 @@ module cpu(
     
     wire [31:0] pcA = pc;
     wire [31:0] pcB = pc + 2;
-    wire [31:0] pcC = pc + 4;
+//    wire [31:0] pcC = pc + 4;
     
     
     wire [31:1] raddr0 = pc;
     wire [31:1] raddr1 = pc + 2;
-    wire [31:1] raddr2 = pc + 4;
+//    wire [31:1] raddr2 = pc + 4;
     
     wire [31:0] instructA;
     wire [31:0] instructB;
-    wire [31:0] instructC;
+//    wire [31:0] instructC;
     
     wire [31:1] raddr;// = {{31{1'b0}}, 1'b1};
     wire [31:0] rdata;
@@ -66,11 +66,11 @@ module cpu(
         .clk(clk),
         .raddr0(pcA[31:1]),
         .raddr1(pcB[31:1]),
-        .raddr2(pcC[31:1]),
+//        .raddr2(pcC[31:1]),
         .raddr3(raddr),
         .rdata0(instructA),
         .rdata1(instructB),
-        .rdata2(instructC),
+//        .rdata2(instructC),
         .rdata3(rdata),
         .wen(wen),
         .waddr(waddr),
@@ -80,15 +80,15 @@ module cpu(
 
     wire [4:0] regsA [0:1];
     wire [4:0] regsB [0:1];
-    wire [4:0] regsC [0:1];
+//    wire [4:0] regsC [0:1];
 
     wire [38:0] rdataA [0:1];
     wire [38:0] rdataB [0:1];
-    wire [38:0] rdataC [0:1];
+//    wire [38:0] rdataC [0:1];
 
     wire [11:0] rdA;
     wire [11:0] rdB;
-    wire [11:0] rdC;
+//    wire [11:0] rdC;
 
     wire r_wen0;
     wire [4:0] r_waddr0;
@@ -112,19 +112,19 @@ module cpu(
         .rdata2(rdataB[0]),
         .reg3(regsB[1]),
         .rdata3(rdataB[1]),
-        .reg4(regsC[0]),
-        .rdata4(rdataC[0]),
-        .reg5(regsC[1]),
-        .rdata5(rdataC[1]),
+//        .reg4(regsC[0]),
+//        .rdata4(rdataC[0]),
+//        .reg5(regsC[1]),
+//        .rdata5(rdataC[1]),
         .rob_locA(rdA[11:6]),
         .rob_waddrA(rdA[5:1]),
         .rob_wenA(rdA[0]),
         .rob_locB(rdB[11:6]),
         .rob_waddrB(rdB[5:1]),
         .rob_wenB(rdB[0]),
-        .rob_locC(rdC[11:6]),
-        .rob_waddrC(rdC[5:1]),
-        .rob_wenC(rdC[0]),
+//        .rob_locC(rdC[11:6]),
+//        .rob_waddrC(rdC[5:1]),
+//        .rob_wenC(rdC[0]),
         .wen0(r_wen0),
         .waddr0(r_waddr0),
         .wdata0(r_wdata0),
@@ -142,9 +142,9 @@ module cpu(
             led_light[3] <= 1'b1;
         end
         
-        if(instructC[1] === 1'b1) begin
-            led_light[2] <= 1'b1;
-        end
+//        if(instructC[1] === 1'b1) begin
+//            led_light[2] <= 1'b1;
+//        end
         
         if(instructB[1] === 1'b1) begin
             led_light[1] <= 1'b1;
@@ -158,43 +158,43 @@ module cpu(
     //pc staller
     reg pcA_valid = 1'b1;
     reg pcB_valid = 1'b1;
-    reg pcC_valid = 1'b1;
+//    reg pcC_valid = 1'b1;
 
     reg [31:0] d0_pcA;
     reg [31:0] d0_pcB;
-    reg [31:0] d0_pcC;
+//    reg [31:0] d0_pcC;
     reg d0_validA = 1'b0;
     reg d0_validB = 1'b0;
-    reg d0_validC = 1'b0;
+//    reg d0_validC = 1'b0;
     
     reg [31:0] d1_pcA;
     reg [31:0] d1_pcB;
-    reg [31:0] d1_pcC;
+//    reg [31:0] d1_pcC;
     reg d1_validA = 1'b0;
     reg d1_validB = 1'b0;
-    reg d1_validC = 1'b0;
+//    reg d1_validC = 1'b0;
     
     reg [31:0] d2_pcA;
     reg [31:0] d2_pcB;
-    reg [31:0] d2_pcC;
+//    reg [31:0] d2_pcC;
     reg d2_validA = 1'b0;
     reg d2_validB = 1'b0;
-    reg d2_validC = 1'b0;
+//    reg d2_validC = 1'b0;
     
     reg [31:0] d3_pcA;
     reg [31:0] d3_pcB;
-    reg [31:0] d3_pcC;
+//    reg [31:0] d3_pcC;
     reg d3_validA = 1'b0;
     reg d3_validB = 1'b0;
-    reg d3_validC = 1'b0; //inefficient
+//    reg d3_validC = 1'b0; //inefficient
     
     always @(posedge clk) begin
         d1_pcA <= pcA;
         d1_pcB <= pcB;
-        d1_pcC <= pcC;
+//        d1_pcC <= pcC;
         d1_validA <= pcA_valid;
         d1_validB <= pcB_valid;
-        d1_validC <= pcC_valid;
+//        d1_validC <= pcC_valid;
 
         //d1_pcA <= d0_pcA;
         //d1_pcB <= d0_pcB;
@@ -205,23 +205,23 @@ module cpu(
         
         d2_pcA <= d1_pcA;
         d2_pcB <= d1_pcB;
-        d2_pcC <= d1_pcC;
+//        d2_pcC <= d1_pcC;
         d2_validA <= d1_validA;
         d2_validB <= d1_validB;
-        d2_validC <= d1_validC;
+//        d2_validC <= d1_validC;
         
         d3_pcA <= d2_pcA;
         d3_pcB <= d2_pcB;
-        d3_pcC <= d2_pcC;
+//        d3_pcC <= d2_pcC;
         d3_validA <= d2_validA;
         d3_validB <= d2_validB;
-        d3_validC <= d2_validC;
+//        d3_validC <= d2_validC;
     end
 
 
     //forward [38:0] : [38] is valid, [37:32] ROB_loc, [31:0] is data
     wire [38:0] forwardA;
-    wire [38:0] forwardB;
+//    wire [38:0] forwardB;
     wire [38:0] forwardC;
     wire [38:0] forwardD;
 
@@ -274,21 +274,21 @@ module cpu(
         .output_pc(output_pcB)
     );
 
-    decoder decoderC(
-        .clk(clk),
-        .instruct(instructC),
-        .pc(d3_pcC),
-        .ROB_loc(ROB_locC),
-        .in_valid(d3_validC),
-        .out_rd(rdC),
-        .out_rs1(regsC[0]),
-        .out_rs2(regsC[1]),
-        .data_rs1(rdataC[0]),
-        .data_rs2(rdataC[1]),
-        .output_data(output_dataC),
-        .output_loc(output_locC),
-        .output_pc(output_pcC)
-    );
+//    decoder decoderC(
+//        .clk(clk),
+//        .instruct(instructC),
+//        .pc(d3_pcC),
+//        .ROB_loc(ROB_locC),
+//        .in_valid(d3_validC),
+//        .out_rd(rdC),
+//        .out_rs1(regsC[0]),
+//        .out_rs2(regsC[1]),
+//        .data_rs1(rdataC[0]),
+//        .data_rs2(rdataC[1]),
+//        .output_data(output_dataC),
+//        .output_loc(output_locC),
+//        .output_pc(output_pcC)
+//    );
     
     
     // // // // // //
@@ -330,24 +330,24 @@ module cpu(
 
     wire [95:0] output_aluA;
     wire [95:0] output_aluB;
-    wire [95:0] output_aluC;
+//    wire [95:0] output_aluC;
     wire output_aluA_valid;
     wire output_aluB_valid;
-    wire output_aluC_valid;
+//    wire output_aluC_valid;
 
     queue_feeder alu_feeder(
         .inOperationA(output_dataA[95:0]),
         .inOperationB(output_dataB[95:0]),
-        .inOperationC(output_dataC[95:0]),
+//        .inOperationC(output_dataC[95:0]),
         .validA(output_locA[15] & output_locA[14]),
         .validB(output_locB[15] & output_locB[14]),
-        .validC(output_locC[15] & output_locC[14]),
+//        .validC(output_locC[15] & output_locC[14]),
         .outOperationA(output_aluA),
         .outOperationB(output_aluB),
-        .outOperationC(output_aluC),
+//        .outOperationC(output_aluC),
         .outValidA(output_aluA_valid),
-        .outValidB(output_aluB_valid),
-        .outValidC(output_aluC_valid)
+        .outValidB(output_aluB_valid)
+//        .outValidC(output_aluC_valid)
     );
 
     wire [96:0] alu_buffer_opA;
@@ -360,15 +360,14 @@ module cpu(
         .flush(flush),
         .taken({1'b0, alu_reservA_used}),
         .forwardA(forwardA),
-        .forwardB(forwardB),
         .forwardC(forwardC),
         .forwardD(forwardD),
         .validA(output_aluA_valid),
         .validB(output_aluB_valid),
-        .validC(output_aluC_valid),
+//        .validC(output_aluC_valid),
         .input_dataA(output_aluA),
         .input_dataB(output_aluB),
-        .input_dataC(output_aluC),
+//        .input_dataC(output_aluC),
         .outOperation0(alu_buffer_opA),
         .outOperation1(alu_buffer_opB)
     );
@@ -383,7 +382,7 @@ module cpu(
         .clk(clk),
         .flush(flush),
         .forwardA(forwardA),
-        .forwardB(forwardB),
+        .forwardB(),
         .forwardC(forwardC),
         .forwardD(forwardD),
         .inOperation(alu_buffer_opA),
@@ -440,24 +439,24 @@ module cpu(
 
     wire [95:0] output_branchA;
     wire [95:0] output_branchB;
-    wire [95:0] output_branchC;
+//    wire [95:0] output_branchC;
     wire output_branchA_valid;
     wire output_branchB_valid;
-    wire output_branchC_valid;
+//    wire output_branchC_valid;
 
     queue_feeder branch_feeder(
         .inOperationA(output_dataA[95:0]),
         .inOperationB(output_dataB[95:0]),
-        .inOperationC(output_dataC[95:0]),
+//        .inOperationC(output_dataC[95:0]),
         .validA(output_locA[15] & output_locA[12]),
         .validB(output_locB[15] & output_locB[12]),
-        .validC(output_locC[15] & output_locC[12]),
+//        .validC(output_locC[15] & output_locC[12]),
         .outOperationA(output_branchA),
         .outOperationB(output_branchB),
-        .outOperationC(output_branchC),
+//        .outOperationC(output_branchC),
         .outValidA(output_branchA_valid),
-        .outValidB(output_branchB_valid),
-        .outValidC(output_branchC_valid)
+        .outValidB(output_branchB_valid)
+//        .outValidC(output_branchC_valid)
     );
 
 
@@ -469,15 +468,14 @@ module cpu(
         .flush(flush),
         .taken({1'b0, branch_reserv_used}),
         .forwardA(forwardA),
-        .forwardB(forwardB),
         .forwardC(forwardC),
         .forwardD(forwardD),
         .validA(output_branchA_valid),
         .validB(output_branchB_valid),
-        .validC(output_branchC_valid),
+//        .validC(output_branchC_valid),
         .input_dataA(output_branchA),
         .input_dataB(output_branchB),
-        .input_dataC(output_branchC),
+//        .input_dataC(output_branchC),
         .outOperation0(branch_buffer_op),
         .outOperation1()
     );
@@ -491,7 +489,7 @@ module cpu(
         .clk(clk),
         .flush(flush),
         .forwardA(forwardA),
-        .forwardB(forwardB),
+        .forwardB(),
         .forwardC(forwardC),
         .forwardD(forwardD),
         .inOperation(branch_buffer_op),
@@ -542,24 +540,24 @@ module cpu(
     
     wire [95:0] output_loadA;
     wire [95:0] output_loadB;
-    wire [95:0] output_loadC;
+//    wire [95:0] output_loadC;
     wire output_loadA_valid;
     wire output_loadB_valid;
-    wire output_loadC_valid;
+//    wire output_loadC_valid;
 
     queue_feeder load_feeder(
         .inOperationA(output_dataA[95:0]),
         .inOperationB(output_dataB[95:0]),
-        .inOperationC(output_dataC[95:0]),
+//        .inOperationC(output_dataC[95:0]),
         .validA(output_locA[15] & output_locA[13]),
         .validB(output_locB[15] & output_locB[13]),
-        .validC(output_locC[15] & output_locC[13]),
+//        .validC(output_locC[15] & output_locC[13]),
         .outOperationA(output_loadA),
         .outOperationB(output_loadB),
-        .outOperationC(output_loadC),
+//        .outOperationC(output_loadC),
         .outValidA(output_loadA_valid),
-        .outValidB(output_loadB_valid),
-        .outValidC(output_loadC_valid)
+        .outValidB(output_loadB_valid) //,
+//        .outValidC(output_loadC_valid)
     );
     
     wire [31:0] forwardAVal = forwardA[31:0];
@@ -576,15 +574,14 @@ module cpu(
         .flush(flush),
         .taken({1'b0, load_reserv_used}),
         .forwardA(forwardA),
-        .forwardB(forwardB),
         .forwardC(forwardC),
         .forwardD(forwardD),
         .validA(output_loadA_valid),
         .validB(output_loadB_valid),
-        .validC(output_loadC_valid),
+//        .validC(output_loadC_valid),
         .input_dataA(output_loadA),
         .input_dataB(output_loadB),
-        .input_dataC(output_loadC),
+//        .input_dataC(output_loadC),
         .outOperation0(load_buffer_op),
         .outOperation1()
     );
@@ -694,10 +691,10 @@ module cpu(
             ROB[forwardA[37:32]][64] <= 1'b1;
         end
 
-        if(forwardB[38] == 1'b1) begin
-            ROB[forwardB[37:32]][63:32] <= forwardB[31:0];
-            ROB[forwardB[37:32]][64] <= 1'b1;
-        end
+//        if(forwardB[38] == 1'b1) begin
+//            ROB[forwardB[37:32]][63:32] <= forwardB[31:0];
+//            ROB[forwardB[37:32]][64] <= 1'b1;
+//        end
 
         if(forwardC[38] == 1'b1) begin
             ROB[forwardC[37:32]][63:32] <= forwardC[31:0];
@@ -716,10 +713,10 @@ module cpu(
             in_loc <= 2'b00;
         end
 
-        if(forwardB[38] == 1'b1) begin
-            in_num <= forwardB[4:0];
-            in_loc <= 2'b01;
-        end
+//        if(forwardB[38] == 1'b1) begin
+//            in_num <= forwardB[4:0];
+//            in_loc <= 2'b01;
+//        end
 
         if(forwardC[38] == 1'b1) begin
             in_num <= forwardC[4:0];
