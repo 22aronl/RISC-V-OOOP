@@ -351,14 +351,13 @@ module cpu(
     );
 
     wire [96:0] alu_buffer_opA;
-    wire [96:0] alu_buffer_opB;
     wire alu_reservA_used;
     wire alu_reservB_used;
 
-    buffer alu_buffer(
+    queue alu_queue(
         .clk(clk),
         .flush(flush),
-        .taken({1'b0, alu_reservA_used}),
+        .taken(alu_reservA_used),
         .forwardA(forwardA),
         .forwardC(forwardC),
         .forwardD(forwardD),
@@ -368,9 +367,25 @@ module cpu(
         .input_dataA(output_aluA),
         .input_dataB(output_aluB),
 //        .input_dataC(output_aluC),
-        .outOperation0(alu_buffer_opA),
-        .outOperation1(alu_buffer_opB)
+        .outOperation0(alu_buffer_opA)
     );
+
+//     buffer alu_buffer(
+//         .clk(clk),
+//         .flush(flush),
+//         .taken({1'b0, alu_reservA_used}),
+//         .forwardA(forwardA),
+//         .forwardC(forwardC),
+//         .forwardD(forwardD),
+//         .validA(output_aluA_valid),
+//         .validB(output_aluB_valid),
+// //        .validC(output_aluC_valid),
+//         .input_dataA(output_aluA),
+//         .input_dataB(output_aluB),
+// //        .input_dataC(output_aluC),
+//         .outOperation0(alu_buffer_opA),
+//         .outOperation1(alu_buffer_opB)
+//     );
 
     // // // 
     // alu module A
@@ -463,10 +478,10 @@ module cpu(
     wire [96:0] branch_buffer_op;
     wire branch_reserv_used;
 
-    buffer branch_buffer(
+    queue branch_queue(
         .clk(clk),
         .flush(flush),
-        .taken({1'b0, branch_reserv_used}),
+        .taken(branch_reserv_used),
         .forwardA(forwardA),
         .forwardC(forwardC),
         .forwardD(forwardD),
@@ -476,9 +491,25 @@ module cpu(
         .input_dataA(output_branchA),
         .input_dataB(output_branchB),
 //        .input_dataC(output_branchC),
-        .outOperation0(branch_buffer_op),
-        .outOperation1()
+        .outOperation0(branch_buffer_op)
     );
+
+//     buffer branch_buffer(
+//         .clk(clk),
+//         .flush(flush),
+//         .taken({1'b0, branch_reserv_used}),
+//         .forwardA(forwardA),
+//         .forwardC(forwardC),
+//         .forwardD(forwardD),
+//         .validA(output_branchA_valid),
+//         .validB(output_branchB_valid),
+// //        .validC(output_branchC_valid),
+//         .input_dataA(output_branchA),
+//         .input_dataB(output_branchB),
+// //        .input_dataC(output_branchC),
+//         .outOperation0(branch_buffer_op),
+//         .outOperation1()
+//     );
 
 
     wire branch_operation_used;
@@ -512,17 +543,43 @@ module cpu(
     wire [31:0] b_offset = {{21{b_offset_s[11]}}, b_offset_s[10:0], 1'b0};
 
     wire [31:0] b_forward = b_pc + 4;
-    wire [31:0] b_pc_jump = (b_opcode == 5'b11011) ? b_data_rs1 + b_data_rs2 :
-                            (b_opcode == 5'b11001) ? b_data_rs1 + b_data_rs2 : //this might have issue on decode being set right
-                            (b_opcode == 5'b11000) ? 
-                                (b_opcodeB == 3'b000) ? (b_data_rs1 == b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
-                                (b_opcodeB == 3'b001) ? (b_data_rs1 != b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
-                                (b_opcodeB == 3'b100) ? ($signed(b_data_rs1) < $signed(b_data_rs2)) ? b_pc + b_offset : b_pc + 2 :
-                                (b_opcodeB == 3'b101) ? ($signed(b_data_rs1) >= $signed(b_data_rs2)) ? b_pc + b_offset : b_pc + 2 :
-                                (b_opcodeB == 3'b110) ? (b_data_rs1 < b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
-                                (b_opcodeB == 3'b111) ? (b_data_rs1 >= b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
-                                b_pc + 2 :
-                                b_pc + 2;
+
+//    reg [31:0] b_pc_jump_b;
+
+//    always @(*) begin
+//        case(b_opcode)
+//            3'b000: b_pc_jump_b = (b_data_rs1 == b_data_rs2) ? b_pc + b_offset : b_pc + 2;
+//            3'b001: b_pc_jump_b = (b_data_rs1 != b_data_rs2) ? b_pc + b_offset : b_pc + 2;
+//            3'b100: b_pc_jump_b = ($signed(b_data_rs1) < $signed(b_data_rs2)) ? b_pc + b_offset : b_pc + 2;
+//            3'b101: b_pc_jump_b = ($signed(b_data_rs1) >= $signed(b_data_rs2)) ? b_pc + b_offset : b_pc + 2;
+//            3'b110: b_pc_jump_b = (b_data_rs1 < b_data_rs2) ? b_pc + b_offset : b_pc + 2;
+//            3'b111: b_pc_jump_b = (b_data_rs1 >= b_data_rs2) ? b_pc + b_offset : b_pc + 2;
+//            default: b_pc_jump_b = b_pc + 2;
+//        endcase
+//    end
+
+//    reg [31:0] b_pc_jump;
+
+//    always @(*) begin
+//        case(b_opcode)
+//            5'b11011: b_pc_jump = b_data_rs1 + b_data_rs2;
+//            5'b11001: b_pc_jump = b_data_rs1 + b_data_rs2;
+//            5'b11000: b_pc_jump = b_pc_jump_b;
+//            default: b_pc_jump = b_pc + 2;
+//        endcase
+//    end
+
+     wire [31:0] b_pc_jump = (b_opcode == 5'b11011) ? b_data_rs1 + b_data_rs2 :
+                             (b_opcode == 5'b11001) ? b_data_rs1 + b_data_rs2 : //this might have issue on decode being set right
+                             (b_opcode == 5'b11000) ? 
+                                 (b_opcodeB == 3'b000) ? (b_data_rs1 == b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
+                                 (b_opcodeB == 3'b001) ? (b_data_rs1 != b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
+                                 (b_opcodeB == 3'b100) ? ($signed(b_data_rs1) < $signed(b_data_rs2)) ? b_pc + b_offset : b_pc + 2 :
+                                 (b_opcodeB == 3'b101) ? ($signed(b_data_rs1) >= $signed(b_data_rs2)) ? b_pc + b_offset : b_pc + 2 :
+                                 (b_opcodeB == 3'b110) ? (b_data_rs1 < b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
+                                 (b_opcodeB == 3'b111) ? (b_data_rs1 >= b_data_rs2) ? b_pc + b_offset : b_pc + 2 :
+                                 b_pc + 2 :
+                                 b_pc + 2;
 
     
     assign forwardC = {1'b1, b_rob_loc, b_forward};
@@ -569,10 +626,10 @@ module cpu(
     wire [96:0] load_buffer_op;
     wire load_reserv_used;
 
-    buffer load_buffer(
+    queue load_queue(
         .clk(clk),
         .flush(flush),
-        .taken({1'b0, load_reserv_used}),
+        .taken(load_reserv_used),
         .forwardA(forwardA),
         .forwardC(forwardC),
         .forwardD(forwardD),
@@ -582,9 +639,25 @@ module cpu(
         .input_dataA(output_loadA),
         .input_dataB(output_loadB),
 //        .input_dataC(output_loadC),
-        .outOperation0(load_buffer_op),
-        .outOperation1()
+        .outOperation0(load_buffer_op)
     );
+
+//     buffer load_buffer(
+//         .clk(clk),
+//         .flush(flush),
+//         .taken({1'b0, load_reserv_used}),
+//         .forwardA(forwardA),
+//         .forwardC(forwardC),
+//         .forwardD(forwardD),
+//         .validA(output_loadA_valid),
+//         .validB(output_loadB_valid),
+// //        .validC(output_loadC_valid),
+//         .input_dataA(output_loadA),
+//         .input_dataB(output_loadB),
+// //        .input_dataC(output_loadC),
+//         .outOperation0(load_buffer_op),
+//         .outOperation1()
+//     );
     
     
     //[95:94] d2_opcodeC, [93:89] d2_opcode, [88:86] d2_opcodeB, [85:80] d2_ROB_loc

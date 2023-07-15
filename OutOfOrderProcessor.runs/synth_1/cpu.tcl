@@ -71,7 +71,6 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL-1065} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
@@ -91,11 +90,11 @@ OPTRACE "Adding files" START { }
 read_mem {{C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/file.mem}}
 read_verilog -library xil_defaultlib {
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/alu.v}
-  {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/buffer.v}
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/decoder.v}
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/display.v}
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/load_store_unit.v}
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v}
+  {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/queue.v}
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/queue_feeder.v}
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/regs.v}
   {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/reservation_station.v}

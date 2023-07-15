@@ -1,12 +1,12 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  --include "../../../../OutOfOrderProcessor.gen/sources_1/bd/OOOP/ipshared/30ef" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/alu.v" \
-"../../../../OutOfOrderProcessor.srcs/sources_1/new/buffer.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/cpu.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/decoder.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/display.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/load_store_unit.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/mem.v" \
+"../../../../OutOfOrderProcessor.srcs/sources_1/new/queue.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/queue_feeder.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/regs.v" \
 "../../../../OutOfOrderProcessor.srcs/sources_1/new/reservation_station.v" \

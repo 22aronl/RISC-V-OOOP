@@ -43,6 +43,19 @@ module load_store_unit(
     reg [11:0] offset = 0;
 
     wire [31:0] load_data_out = load_data[head][32] ? load_data[head][31:0] : mem_data;
+    
+//    reg [31:0] op_load_data;
+//    always @(*) begin
+//        case(load_opcodeB[head]) 
+//            3'b000: op_load_data = {{25{load_data_out[7]}}, load_data_out[6:0]};
+//            3'b001: op_load_data = {{17{load_data_out[15]}}, load_data_out[14:0]};
+//            3'b010: op_load_data = load_data_out;
+//            3'b100: op_load_data = {{24{1'b0}}, load_data_out[7:0]};
+//            3'b101: op_load_data =  {{16{1'b0}}, load_data_out[15:0]};
+//            default: op_load_data = 32'b0;
+//        endcase
+//    end
+    
     wire [31:0] op_load_data = (load_opcodeB[head] == 3'b000) ? {{25{load_data_out[7]}}, load_data_out[6:0]} :
                                 (load_opcodeB[head] == 3'b001) ? {{17{load_data_out[15]}}, load_data_out[14:0]} :
                                 (load_opcodeB[head] == 3'b010) ? load_data_out :
@@ -62,10 +75,7 @@ module load_store_unit(
     wire store_buffer_valid;
     wire [31:0] store_buffer_data;
 
-    always @(posedge clk) begin
-        inOperation <= inOperation0;
-        offset <= offset0;
-    
+    always @(*) begin
         if(flush) begin
             head = 4'b0000;
             tail = LOAD_SIZE - 1;
@@ -74,17 +84,21 @@ module load_store_unit(
                 load_data[i][32] = 1'b0;
             end
         end
-        else begin
-            load_rob[tail] <= {inOperation[78], rob_loc};
-            load_data[tail][32] <= 1'b0;
-            load_opcodeB[tail] <= opcodeB;
-            load_rob[head][6] <= 1'b0;
-            head <= (head + 1) % LOAD_SIZE;
-            tail <= (tail + 1) % LOAD_SIZE;
+    end
 
-            if(store_buffer_valid) begin
-                load_data[(tail + LOAD_SIZE - 1) % LOAD_SIZE] <= {1'b1, store_buffer_data};
-            end
+    always @(posedge clk) begin
+        inOperation <= inOperation0;
+        offset <= offset0;
+        
+        load_rob[tail] <= {inOperation[78], rob_loc};
+        load_data[tail][32] <= 1'b0;
+        load_opcodeB[tail] <= opcodeB;
+        load_rob[head][6] <= 1'b0;
+        head <= (head + 1) % LOAD_SIZE;
+        tail <= (tail + 1) % LOAD_SIZE;
+
+        if(store_buffer_valid) begin
+            load_data[(tail + LOAD_SIZE - 1) % LOAD_SIZE] <= {1'b1, store_buffer_data};
         end
     end
 

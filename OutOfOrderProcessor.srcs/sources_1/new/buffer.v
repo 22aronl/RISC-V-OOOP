@@ -72,25 +72,11 @@ module buffer
         if(validA) begin
             valid[tail] <= 1'b1;
             queue[tail] <= input_dataA;
-//            q_front[tail] <= input_dataA[95:80];
-//            q_rs1_data[tail] <= input_dataA[79:48];
-//            q_rs1_loc[tail] <= input_dataA[46:41];
-//            q_rs2_data[tail] <= input_dataA[40:9];
-//            q_rs2_loc[tail] <= input_dataA[7:2];
-//            q_rs1_look[tail] <= input_dataA[1];
-//            q_rs2_look[tail] <= input_dataA[0];
         end
 
         if(validB) begin
             valid[(tail + 1)%Q_SIZE] <= 1'b1;
             queue[(tail + 1)%Q_SIZE] <= input_dataB;
-//            q_front[(tail + 1)%Q_SIZE] <= input_dataB[95:80];
-//            q_rs1_data[(tail + 1)%Q_SIZE] <= input_dataB[79:48];
-//            q_rs1_loc[(tail + 1)%Q_SIZE] <= input_dataB[46:41];
-//            q_rs2_data[(tail + 1)%Q_SIZE] <= input_dataB[40:9];
-//            q_rs2_loc[(tail + 1)%Q_SIZE] <= input_dataB[7:2];
-//            q_rs1_look[(tail + 1)%Q_SIZE] <= input_dataB[1];
-//            q_rs2_look[(tail + 1)%Q_SIZE] <= input_dataB[0];
         end
 
 //        if(validC) begin

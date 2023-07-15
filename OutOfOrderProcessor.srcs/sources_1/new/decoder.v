@@ -68,6 +68,11 @@ module decoder(
     wire is_branch_store = is_branch | is_store;
     wire use_imm = is_lui | is_auipc | is_mimm | is_load | is_jal | is_jalr;
     wire use_offset = is_store | is_branch;
+    
+//    reg [31:0] imm;
+//    always @(*) begin
+        
+//    end
     wire [31:0] imm = is_lui ? {instruct[31:12], {12'b0}} :
                         is_auipc ? {instruct[31:12], {12'b0}} :
                         is_mimm ? {{21{instruct[31]}}, instruct[30:20]} :
