@@ -88,6 +88,26 @@ module reservation_station
     
     assign outOperation = {operation[operationIndex][95:80], operation[operationIndex][79:48], operation[operationIndex][40:9]};
     
+    wire [31:0] in_rs1 = inOperation[1] ? 
+                            (forwardA[38] && inOperation[46:41] === forwardA[37:32]) ? forwardA[31:0] :
+                            (forwardC[38] && inOperation[46:41] === forwardC[37:32]) ? forwardC[31:0] :
+                            (forwardD[38] && inOperation[46:41] === forwardD[37:32]) ? forwardD[31:0] :
+                            inOperation[79:48] : inOperation[79:48];
+    wire in_rs1_use = inOperation[1] && 
+                            !((forwardA[38] && inOperation[46:41] === forwardA[37:32]) || 
+                            (forwardC[38] && inOperation[46:41] === forwardC[37:32]) ||
+                            (forwardD[38] && inOperation[46:41] === forwardD[37:32]));
+    wire [31:0] in_rs2 = inOperation[0] ? 
+                            (forwardA[38] && inOperation[7:2] === forwardA[37:32]) ? forwardA[31:0] :
+                            (forwardC[38] && inOperation[7:2] === forwardC[37:32]) ? forwardC[31:0] :
+                            (forwardD[38] && inOperation[7:2] === forwardD[37:32]) ? forwardD[31:0] :
+                            inOperation[40:9] : inOperation[40:9];
+                           
+    wire in_rs2_use = inOperation[0] && 
+                            !((forwardA[38] && inOperation[7:2] === forwardA[37:32]) ||
+                            (forwardC[38] && inOperation[7:2] === forwardC[37:32]) ||
+                            (forwardD[38] && inOperation[7:2] === forwardD[37:32]));
+    
     
     integer i;
     
@@ -106,7 +126,7 @@ module reservation_station
         end
         else begin
             if(operationUsed && inOperation[96]) begin
-                operation[commit_loc] <= inOperation;
+                operation[commit_loc] <= {inOperation[96:80], in_rs1, inOperation[47:41], in_rs2, inOperation[8:2],  in_rs1_use, in_rs2_use};
                 committed[commit_loc] <= 1'b1;
             end
         end

@@ -31,7 +31,7 @@ module load_store_unit(
     );
 
     parameter LOAD_WAIT = 2;
-    parameter LOAD_SIZE = 8;
+    parameter LOAD_SIZE = 4;
     reg [6:0] load_rob [0:LOAD_SIZE-1];
     reg [32:0] load_data [0:LOAD_SIZE-1];
     reg [2:0] load_opcodeB [0:LOAD_SIZE-1];
@@ -75,7 +75,11 @@ module load_store_unit(
     wire store_buffer_valid;
     wire [31:0] store_buffer_data;
 
-    always @(*) begin
+//    always @(*) begin
+        
+//    end
+
+    always @(posedge clk) begin
         if(flush) begin
             head = 4'b0000;
             tail = LOAD_SIZE - 1;
@@ -84,21 +88,20 @@ module load_store_unit(
                 load_data[i][32] = 1'b0;
             end
         end
-    end
-
-    always @(posedge clk) begin
-        inOperation <= inOperation0;
-        offset <= offset0;
-        
-        load_rob[tail] <= {inOperation[78], rob_loc};
-        load_data[tail][32] <= 1'b0;
-        load_opcodeB[tail] <= opcodeB;
-        load_rob[head][6] <= 1'b0;
-        head <= (head + 1) % LOAD_SIZE;
-        tail <= (tail + 1) % LOAD_SIZE;
-
-        if(store_buffer_valid) begin
-            load_data[(tail + LOAD_SIZE - 1) % LOAD_SIZE] <= {1'b1, store_buffer_data};
+        else begin
+            inOperation <= inOperation0;
+            offset <= offset0;
+            
+            load_rob[tail] <= {inOperation[78], rob_loc};
+            load_data[tail][32] <= 1'b0;
+            load_opcodeB[tail] <= opcodeB;
+            load_rob[head][6] <= 1'b0;
+            head <= (head + 1) % LOAD_SIZE;
+            tail <= (tail + 1) % LOAD_SIZE;
+    
+            if(store_buffer_valid) begin
+                load_data[(tail + LOAD_SIZE - 1) % LOAD_SIZE] <= {1'b1, store_buffer_data};
+            end
         end
     end
 

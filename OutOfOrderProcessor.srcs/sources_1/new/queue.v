@@ -21,8 +21,8 @@
 
 
 module queue
-    #(  parameter Q_SIZE = 16,
-        parameter Q_LOG_SIZE = 4,
+    #(  parameter Q_SIZE = 8,
+        parameter Q_LOG_SIZE = 3,
         parameter R_SIZE = 4,
         parameter R_LOG_SIZE = 2
     )
@@ -38,18 +38,57 @@ module queue
     reg [95:0] queue [0: Q_SIZE - 1];
 
     reg [Q_LOG_SIZE - 1:0] head = 0;
+    
 
     assign outOperation0 = {valid[0], queue[0]};
 
     wire head_valid = valid[head];
     integer i;
     always @(posedge clk) begin
-        if(head_valid && !taken) begin
+        for(i = 0; i < Q_SIZE; i = i + 1) begin
+            if(forwardA[38] == 1'b1) begin
+                if(queue[i][1] == 1'b1 && queue[i][46:41] == forwardA[37:32]) begin
+                    queue[i][1] = 1'b0;
+                    queue[i][79:48] = forwardA[31:0];
+                end
+
+                if(queue[i][0] == 1'b1 && queue[i][7:2] == forwardA[37:32]) begin
+                    queue[i][0] = 1'b0;
+                    queue[i][40:9] = forwardA[31:0];
+                end
+            end
+
+            if(forwardC[38] == 1'b1) begin
+                if(queue[i][1] == 1'b1 && queue[i][46:41] == forwardC[37:32]) begin
+                    queue[i][1] = 1'b0;
+                    queue[i][79:48] = forwardC[31:0];
+                end
+
+                if(queue[i][0] == 1'b1 && queue[i][7:2] == forwardC[37:32]) begin
+                    queue[i][0] = 1'b0;
+                    queue[i][40:9] = forwardC[31:0];
+                end
+            end
+
+            if(forwardD[38] == 1'b1) begin
+                if(queue[i][1] == 1'b1 && queue[i][46:41] == forwardD[37:32]) begin
+                    queue[i][1] = 1'b0;
+                    queue[i][79:48] = forwardD[31:0];
+                end
+
+                if(queue[i][0] == 1'b1 && queue[i][7:2] == forwardD[37:32]) begin
+                    queue[i][0] = 1'b0;
+                    queue[i][40:9] = forwardD[31:0];
+                end
+            end
+        end
+
+        if(!taken) begin
             valid[head] <= validA;
             queue[head] <= input_dataA;
             valid[head + 1] <= validB;
             queue[head + 1] <= input_dataB;
-            head <= (head + validA + validB);
+            head = (head + validA + validB);
         end
         else begin
             for(i = 0; i < Q_SIZE - 2; i = i + 1) begin
@@ -57,13 +96,15 @@ module queue
                 queue[i] <= queue[i + 1];
             end
             valid[Q_SIZE - 1] <= 1'b0;
-            head <= (head + validA + validB - taken);
+            
             valid[head - 1] <= validA;
             queue[head - 1] <= input_dataA;
             valid[head] <= validB;
             queue[head] <= input_dataB;
+            head <= (head + validA + validB - taken);
         end
     end
+
     
     initial begin
         for(i = 0; i < Q_SIZE; i = i + 1) begin

@@ -28,7 +28,7 @@ module cpu(
     output [15:0] led
     );
     
-    parameter ROB_SIZE = 32;
+    parameter ROB_SIZE = 16;
     
     reg [31:0] pc = 32'h00000000;
 
@@ -241,6 +241,9 @@ module cpu(
     wire [16:0] output_locC;
     wire [31:0] output_pcC;
 
+    wire [100:0] output_dataA_;
+    wire [100:0] output_dataB_;
+
 
     decoder decoderA(
         .clk(clk),
@@ -253,10 +256,16 @@ module cpu(
         .out_rs2(regsA[1]),
         .data_rs1(rdataA[0]),
         .data_rs2(rdataA[1]),
-        .output_data(output_dataA),
+        .output_data(output_dataA_),
         .output_loc(output_locA),
         .output_pc(output_pcA)
     ); //TODO: fill out output_data, output_loc, output_pc
+
+    forward_check forward_checkA(
+        .forwardA(forwardA), .forwardC(forwardC), .forwardD(forwardD),
+        .inOperation(output_dataA_), 
+        .outOperation(output_dataA)
+    );
 
     decoder decoderB(
         .clk(clk),
@@ -269,9 +278,15 @@ module cpu(
         .out_rs2(regsB[1]),
         .data_rs1(rdataB[0]),
         .data_rs2(rdataB[1]),
-        .output_data(output_dataB),
+        .output_data(output_dataB_),
         .output_loc(output_locB),
         .output_pc(output_pcB)
+    );
+
+    forward_check forward_checkB(
+        .forwardA(forwardA), .forwardC(forwardC), .forwardD(forwardD),
+        .inOperation(output_dataB_), 
+        .outOperation(output_dataB)
     );
 
 //    decoder decoderC(
@@ -354,7 +369,7 @@ module cpu(
     wire alu_reservA_used;
     wire alu_reservB_used;
 
-    queue alu_queue(
+    queue #(.Q_SIZE(8), .Q_LOG_SIZE(3)) alu_queue(
         .clk(clk),
         .flush(flush),
         .taken(alu_reservA_used),
@@ -582,7 +597,7 @@ module cpu(
                                  b_pc + 2;
 
     
-    assign forwardC = {1'b1, b_rob_loc, b_forward};
+    assign forwardC = {b_valid, b_rob_loc, b_forward};
     always @(posedge clk) begin
         //ROB updates  moved lower 
         //ROBpc[b_rob_loc] <= b_pc_jump; //potential timing issue
@@ -617,8 +632,10 @@ module cpu(
 //        .outValidC(output_loadC_valid)
     );
     
+    wire forwardAValid = forwardA[38];
     wire [31:0] forwardAVal = forwardA[31:0];
     wire [5:0] forwardARob = forwardA[37:32];
+    wire forwardDValid = forwardD[38];
     wire [31:0] forwardDval = forwardD[31:0];
     wire [5:0] forwardDRob = forwardD[37:32];
     
@@ -696,18 +713,18 @@ module cpu(
     // // // // // //
 
     wire [5:0] rone_i = ROBhead;
-    wire [5:0] rtwo_i = (ROBhead + 1) % ROB_SIZE;
+     wire [5:0] rtwo_i = (ROBhead + 1) % ROB_SIZE;
 
     wire ROB_one_ready = ROB[rone_i][64] == 1'b1;
-    wire ROB_two_ready = ROB[rtwo_i][64] == 1'b1;
+     wire ROB_two_ready = ROB[rtwo_i][64] == 1'b1;
     
     wire ROB_one_jump = ROBhelper[rone_i][19];
-    wire ROB_two_jump = ROBhelper[rtwo_i][19];
+     wire ROB_two_jump = ROBhelper[rtwo_i][19];
     wire [31:0] ROB_one_pc = ROB[rone_i][31:0];
-    wire [31:0] ROB_two_pc = ROB[rtwo_i][31:0];
+     wire [31:0] ROB_two_pc = ROB[rtwo_i][31:0];
 
     wire ROB_one_store = ROB_one_ready & ROBhelper[rone_i][17];
-    wire ROB_two_store = (ROB_one_ready & !ROB_one_jump) & ROB_two_ready & ROBhelper[rtwo_i][17];
+     wire ROB_two_store = (ROB_one_ready & !ROB_one_jump) & ROB_two_ready & ROBhelper[rtwo_i][17];
 
     assign flush = 1'b0;//ROB_one_jump | ROB_two_jump;
 
@@ -717,29 +734,20 @@ module cpu(
     assign r_wdata0 = ROB[rone_i][63:32];
     assign r_wrob0 = rone_i;
 
-    assign r_wen1 = ROB_one_ready & ROB_two_ready & !ROB_one_jump & ROBhelper[rtwo_i][18];
-    assign r_waddr1 = ROBhelper[rtwo_i][16:12];
-    assign r_wdata1 = ROB[rtwo_i][63:32];
-    assign r_wrob1 = rtwo_i;
+     assign r_wen1 = ROB_one_ready & ROB_two_ready & !ROB_one_jump & ROBhelper[rtwo_i][18];
+     assign r_waddr1 = ROBhelper[rtwo_i][16:12];
+     assign r_wdata1 = ROB[rtwo_i][63:32];
+     assign r_wrob1 = rtwo_i;
 
-    assign store_buffer_commit = ROB_one_store + ROB_two_store;
+    assign store_buffer_commit = ROB_one_store;// + ROB_two_store;
     
     always @(posedge clk) begin
-        pc <= pc + 6;
+        pc <= pc + 4;
 
         if(ROB_one_ready) begin
             if(ROB_one_jump) begin
                 pc <= ROB_one_pc;
-                ROBhead <= (ROBtail + 2) % ROB_SIZE;
-            end
-            else if(ROB_two_ready) begin
-                if(ROB_two_jump) begin
-                    pc <= ROB_two_pc;
-                    ROBhead <= (ROBtail + 3) % ROB_SIZE;
-                end
-                else begin
-                    ROBhead <= (ROBhead + 2) % ROB_SIZE;
-                end
+                ROBhead <= (ROBtail + 1) % ROB_SIZE;
             end
             else begin
                 ROBhead <= (ROBhead + 1) % ROB_SIZE;

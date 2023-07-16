@@ -1,0 +1,219 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Sun Jul 16 07:25:29 2023
+| Host         : DESKTOP-M2KV102 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file cpu_control_sets_placed.rpt
+| Design       : cpu
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |   141 |
+|    Minimum number of control sets                        |   141 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   364 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |   141 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |    36 |
+| >= 6 to < 8        |     4 |
+| >= 8 to < 10       |     3 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     2 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    93 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |            3621 |         2536 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              75 |           49 |
+| Yes          | No                    | No                     |            3364 |         1421 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+------------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |                  Enable Signal                 |               Set/Reset Signal              | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+------------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG |                                                | mem/Q[0]                                    |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG |                                                | mem/rdata0__reg[30]_0[0]                    |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG |                                                | mem/rdata3_[0]                              |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_9[0]                        |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_7[0]                        |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_28[0]                       |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_18[0]                       |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_12[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_23[0]                       |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_13[0]                       |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_4[0]                        |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_22[0]                       |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | aluA/E[0]                                      |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | display/display_second[3]_i_1_n_0              |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | display/display_fourth[3]_i_1_n_0              |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_15[0]                       |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_2[0]                        |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | display/display_third[3]_i_1_n_0               |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_25[0]                       |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_14[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_6[0]                        |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_11[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_8[0]                        |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_26[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_29[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_21[0]                       |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_5[0]                        |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_20[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_0[0]                        |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_10[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_17[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/E[0]                                       |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | display/display_first[3]_i_1_n_0               |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_19[0]                       |                                             |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_1[0]                        |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_24[0]                       |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_27[0]                       |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_3[0]                        |                                             |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | mem/rdata1__reg[9]_16[0]                       |                                             |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | lsu/load_rob[2][5]_i_1_n_0                     |                                             |                4 |              6 |         1.50 |
+|  clk_IBUF_BUFG | lsu/load_rob[1][5]_i_1_n_0                     |                                             |                1 |              6 |         6.00 |
+|  clk_IBUF_BUFG | lsu/load_rob[3][5]_i_1_n_0                     |                                             |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG | lsu/load_rob[0][5]_i_1_n_0                     |                                             |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/count                         |                                             |                3 |              8 |         2.67 |
+|  clk_IBUF_BUFG |                                                | mem/rdata1__reg[5]_0                        |                4 |              8 |         2.00 |
+|  clk_IBUF_BUFG |                                                | mem/rdata0__reg[6]_0                        |                4 |              8 |         2.00 |
+|  clk_IBUF_BUFG |                                                | mem/rdata1__reg[6]_0                        |                6 |             12 |         2.00 |
+|  clk_IBUF_BUFG |                                                | mem/rdata0__reg[2]_0                        |                3 |             12 |         4.00 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[5]_3                   |                                             |               15 |             20 |         1.33 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[2]_rep_4[0]            |                                             |               11 |             20 |         1.82 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[2]_rep_2[0]            |                                             |               14 |             20 |         1.43 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[2]_rep_3[0]            |                                             |               13 |             20 |         1.54 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[2]_rep_1[0]            |                                             |               13 |             20 |         1.54 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[5]_8[0]                |                                             |               12 |             20 |         1.67 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[5]_7[0]                |                                             |               12 |             20 |         1.67 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[3]_rep__1_0[0]         |                                             |               10 |             20 |         2.00 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[3]_rep__2_0[0]         |                                             |                8 |             20 |         2.50 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[5]_0                   |                                             |                8 |             20 |         2.50 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[5]_1                   |                                             |               12 |             20 |         1.67 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[5]_2                   |                                             |               12 |             20 |         1.67 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[5]_4                   |                                             |               13 |             20 |         1.54 |
+|  clk_IBUF_BUFG | decoderB/d2_ROB_loc_reg[5]_5                   |                                             |               13 |             20 |         1.54 |
+|  clk_IBUF_BUFG | decoderB/E[0]                                  |                                             |               11 |             20 |         1.82 |
+|  clk_IBUF_BUFG | branch_reservation/operation[3][96]_i_1_n_0    |                                             |               10 |             23 |         2.30 |
+|  clk_IBUF_BUFG | alu_queue/E[0]                                 |                                             |               10 |             23 |         2.30 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[2][96]_i_1__0_n_0   |                                             |               10 |             23 |         2.30 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[3][96]_i_1__0_n_0   |                                             |               11 |             23 |         2.09 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[1][96]_i_1__0_n_0   |                                             |               11 |             23 |         2.09 |
+|  clk_IBUF_BUFG | branch_reservation/operation[0][96]_i_1_n_0    |                                             |               10 |             23 |         2.30 |
+|  clk_IBUF_BUFG | branch_reservation/operation[1][96]_i_1_n_0    |                                             |                9 |             23 |         2.56 |
+|  clk_IBUF_BUFG | branch_reservation/operation[2][96]_i_1_n_0    |                                             |               10 |             23 |         2.30 |
+|  clk_IBUF_BUFG | regs/data[22][31]_i_1_n_0                      |                                             |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | regs/data[23][31]_i_1_n_0                      |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | regs/data[0][31]_i_1_n_0                       |                                             |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | regs/data[10][31]_i_1_n_0                      |                                             |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | regs/data[11][31]_i_1_n_0                      |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | regs/data[12][31]_i_1_n_0                      |                                             |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | regs/data[13][31]_i_1_n_0                      |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | regs/data[14][31]_i_1_n_0                      |                                             |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | regs/data[16][31]_i_1_n_0                      |                                             |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | regs/data[15][31]_i_1_n_0                      |                                             |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | regs/data[18][31]_i_1_n_0                      |                                             |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | regs/data[17][31]_i_1_n_0                      |                                             |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | regs/data[19][31]_i_1_n_0                      |                                             |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | regs/data[1][31]_i_1_n_0                       |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | regs/data[20][31]_i_1_n_0                      |                                             |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | regs/data[21][31]_i_1_n_0                      |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | regs/data[25][31]_i_1_n_0                      |                                             |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | regs/data[24][31]_i_1_n_0                      |                                             |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | regs/data[27][31]_i_1_n_0                      |                                             |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | regs/data[28][31]_i_1_n_0                      |                                             |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | regs/data[29][31]_i_1_n_0                      |                                             |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | regs/data[2][31]_i_1_n_0                       |                                             |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | regs/data[30][31]_i_1_n_0                      |                                             |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | regs/data[3][31]_i_1_n_0                       |                                             |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | regs/data[5][31]_i_1_n_0                       |                                             |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | regs/data[4][31]_i_1_n_0                       |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | regs/data[7][31]_i_1_n_0                       |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | regs/data[6][31]_i_1_n_0                       |                                             |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | regs/data[8][31]_i_1_n_0                       |                                             |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | regs/data[9][31]_i_1_n_0                       |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | regs/data[26][31]_i_1_n_0                      |                                             |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG |                                                | alu_reservationA/operation_reg[2][93]_0[37] |               29 |             32 |         1.10 |
+|  clk_IBUF_BUFG | lsu/store_buffer/tail_reg[1]_2                 |                                             |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | lsu/store_buffer/tail_reg[1]_0                 |                                             |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | lsu/store_buffer/tail_reg[1]_1                 |                                             |               17 |             32 |         1.88 |
+|  clk_IBUF_BUFG | lsu/store_buffer/p_1_in[0]                     |                                             |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/search_data_0                 |                                             |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[3][79]_i_1_n_0      |                                             |               25 |             33 |         1.32 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[1][40]_i_1_n_0      |                                             |               18 |             33 |         1.83 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[0][40]_i_1__0_n_0   |                                             |               18 |             33 |         1.83 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[2][40]_i_1_n_0      |                                             |               23 |             33 |         1.43 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[3][40]_i_1_n_0      |                                             |               24 |             33 |         1.38 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[0][79]_i_1__0_n_0   |                                             |               18 |             33 |         1.83 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[2][79]_i_1_n_0      |                                             |               25 |             33 |         1.32 |
+|  clk_IBUF_BUFG | alu_reservationA/operation[1][79]_i_1_n_0      |                                             |               18 |             33 |         1.83 |
+|  clk_IBUF_BUFG | branch_reservation/operation[0][40]_i_1_n_0    |                                             |               17 |             33 |         1.94 |
+|  clk_IBUF_BUFG | branch_reservation/operation[0][79]_i_1_n_0    |                                             |               19 |             33 |         1.74 |
+|  clk_IBUF_BUFG | branch_reservation/operation[1][40]_i_1__0_n_0 |                                             |               21 |             33 |         1.57 |
+|  clk_IBUF_BUFG | branch_reservation/operation[1][79]_i_1__0_n_0 |                                             |               23 |             33 |         1.43 |
+|  clk_IBUF_BUFG | branch_reservation/operation[2][40]_i_1__0_n_0 |                                             |               23 |             33 |         1.43 |
+|  clk_IBUF_BUFG | branch_reservation/operation[2][79]_i_1__0_n_0 |                                             |               22 |             33 |         1.50 |
+|  clk_IBUF_BUFG | branch_reservation/operation[3][40]_i_1__0_n_0 |                                             |               21 |             33 |         1.57 |
+|  clk_IBUF_BUFG | branch_reservation/operation[3][79]_i_1__0_n_0 |                                             |               24 |             33 |         1.38 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[4][63]_i_1_n_0   |                                             |               16 |             64 |         4.00 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[7][63]_i_1_n_0   |                                             |               17 |             64 |         3.76 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[3][63]_i_1_n_0   |                                             |               17 |             64 |         3.76 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[1][63]_i_1_n_0   |                                             |               14 |             64 |         4.57 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[15][63]_i_1_n_0  |                                             |               17 |             64 |         3.76 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[14][63]_i_1_n_0  |                                             |               14 |             64 |         4.57 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[6][63]_i_1_n_0   |                                             |               15 |             64 |         4.27 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[13][63]_i_1_n_0  |                                             |               19 |             64 |         3.37 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[8][63]_i_1_n_0   |                                             |               12 |             64 |         5.33 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[12][63]_i_1_n_0  |                                             |               14 |             64 |         4.57 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[11][63]_i_1_n_0  |                                             |               13 |             64 |         4.92 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[5][63]_i_1_n_0   |                                             |               11 |             64 |         5.82 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[10][63]_i_1_n_0  |                                             |               15 |             64 |         4.27 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[0][63]_i_1_n_0   |                                             |               12 |             64 |         5.33 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer1_in[34]          |                                             |               14 |             64 |         4.57 |
+|  clk_IBUF_BUFG | lsu/store_buffer/store_buffer[9][63]_i_1_n_0   |                                             |               19 |             64 |         3.37 |
+|  clk_IBUF_BUFG |                                                |                                             |             2538 |           3740 |         1.47 |
++----------------+------------------------------------------------+---------------------------------------------+------------------+----------------+--------------+
+
+

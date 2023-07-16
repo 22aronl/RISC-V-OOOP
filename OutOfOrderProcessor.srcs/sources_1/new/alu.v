@@ -101,7 +101,6 @@ module alu(
     assign outData = {d2_valid, d2_rob_loc, d2_data};
     
     always @(posedge clk) begin
-
         d2_valid <= inValid;
         d2_data <= data;
         d2_rob_loc <= rob_loc;

@@ -22,7 +22,7 @@
 
 module mem 
     #(  parameter INSTR_TIMING = 2,  
-        parameter CYCLE_TIMING = 8)
+        parameter CYCLE_TIMING = 4)
     (   input clk,
         input [31:1] raddr0, output [31:0] rdata0,
         input [31:1] raddr1, output [31:0] rdata1,

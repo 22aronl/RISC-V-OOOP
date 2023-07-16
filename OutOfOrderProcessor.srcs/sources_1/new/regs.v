@@ -29,7 +29,7 @@ module regs(
     input [5:0] rob_locA, input [4:0] rob_waddrA, input rob_wenA,
     input [5:0] rob_locB, input [4:0] rob_waddrB, input rob_wenB,
     input wen0, input [4:0]waddr0, input [31:0]wdata0, input [5:0] wrob0,
-    input wen1, input [4:0]waddr1, input [31:0]wdata1, input [5:0] wrob1
+     input wen1, input [4:0]waddr1, input [31:0]wdata1, input [5:0] wrob1
     );
     
     reg [31:0] data [0:31];
@@ -68,10 +68,10 @@ module regs(
              busy[j] <= (rob_loc[j]==wrob0) ? 1'b0 : busy[j];
           end
 
-          if(wen1 && j==waddr1) begin
-             data[j] <= wdata1;  
-             busy[j] <= (rob_loc[j] ==wrob1) ? 1'b0 : busy[j];
-          end
+           if(wen1 && j==waddr1) begin
+              data[j] <= wdata1;  
+              busy[j] <= (rob_loc[j] ==wrob1) ? 1'b0 : busy[j];
+           end
            
            if(rob_wenB & j ==rob_waddrB) begin
             rob_loc[j] <= rob_locB;

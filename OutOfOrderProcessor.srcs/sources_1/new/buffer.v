@@ -21,8 +21,8 @@
 
 
 module buffer    
-    #(  parameter Q_SIZE = 16,
-        parameter Q_LOG_SIZE = 4)
+    #(  parameter Q_SIZE = 8,
+        parameter Q_LOG_SIZE = 3)
     (
     input clk, input flush, input [1:0] taken,
     input [38:0] forwardA, input [38:0] forwardC, input [38:0] forwardD,
