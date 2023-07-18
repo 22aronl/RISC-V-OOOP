@@ -42,14 +42,23 @@ module regs(
     reg [4:0]raddr3;
 //    reg [4:0]raddr4;
 //    reg [4:0]raddr5;
+
+    reg [5:0] r2_rob_locA;
+    reg [4:0] r2_rob_waddrA;
+    reg r2_rob_wenA;
+
+    reg [5:0] r2_rob_locB;
+    reg [4:0] r2_rob_waddrB;
+    reg r2_rob_wenB;
     
     assign rdata0 = {data[raddr0], busy[raddr0], rob_loc[raddr0]};
     assign rdata1 = {data[raddr1], busy[raddr1], rob_loc[raddr1]};
-    assign rdata2 = {data[raddr2], busy[raddr2], rob_loc[raddr2]};
-    assign rdata3 = {data[raddr3], busy[raddr3], rob_loc[raddr3]};
+    wire rdata2_r = r2_rob_wenA & r2_rob_waddrA == raddr2;
+    assign rdata2 = {data[raddr2], rdata2_r | busy[raddr2], rdata2_r ? r2_rob_locA : rob_loc[raddr2]};
+    wire rdata3_r = r2_rob_wenA & r2_rob_waddrA == raddr3;
+    assign rdata3 = {data[raddr3], rdata3_r | busy[raddr3], rdata3_r ? r2_rob_locA : rob_loc[raddr3]};
 //    assign rdata4 = {data[raddr4], busy[raddr4], rob_loc[raddr4]};
 //    assign rdata5 = {data[raddr5], busy[raddr5], rob_loc[raddr5]};
-    
     integer i,j,k;
     initial begin
         for(i = 0; i < 32; i = i + 1) begin
@@ -73,13 +82,13 @@ module regs(
               busy[j] <= (rob_loc[j] ==wrob1) ? 1'b0 : busy[j];
            end
            
-           if(rob_wenB & j ==rob_waddrB) begin
-            rob_loc[j] <= rob_locB;
+           if(r2_rob_wenB & j ==r2_rob_waddrB) begin
+            rob_loc[j] <= r2_rob_locB;
             busy[j] <= 1'b1;
            end
 
-           if(rob_wenA && j ==rob_waddrA) begin
-            rob_loc[j] <= rob_locA;
+           if(r2_rob_wenA && j ==r2_rob_waddrA) begin
+            rob_loc[j] <= r2_rob_locA;
             busy[j] <= 1'b1;
            end
 
@@ -90,10 +99,18 @@ module regs(
     end
 
     always @(posedge clk) begin
-        raddr0 <= stall ? raddr0 : reg0;
+        raddr0 <= reg0;
         raddr1 <= reg1;
         raddr2 <= reg2;
         raddr3 <= reg3;
+
+        r2_rob_locA <= rob_locA;
+        r2_rob_waddrA <= rob_waddrA;
+        r2_rob_wenA <= rob_wenA;
+
+        r2_rob_locB <= rob_locB;
+        r2_rob_waddrB <= rob_waddrB;
+        r2_rob_wenB <= rob_wenB;
     end
     
 endmodule

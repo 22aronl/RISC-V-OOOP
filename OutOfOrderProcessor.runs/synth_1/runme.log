@@ -12,7 +12,7 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source cpu.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1495.227 ; gain = 196.098
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1497.941 ; gain = 197.988
 Command: read_checkpoint -auto_incremental -incremental {C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/utils_1/imports/synth_1/OOOP_wrapper.dcp}
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/utils_1/imports/synth_1/OOOP_wrapper.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -21,14 +21,48 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 27428
+INFO: [Synth 8-7075] Helper process launched with PID 25456
 INFO: [Synth 8-11241] undeclared symbol 'mem_valid', assumed default net type 'wire' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/load_store_unit.v:109]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2309.625 ; gain = 409.090
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2312.707 ; gain = 410.953
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'cpu' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:23]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:874]
+WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:875]
 INFO: [Synth 8-6157] synthesizing module 'display' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/display.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'display' (0#1) [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/display.v:23]
 INFO: [Synth 8-6157] synthesizing module 'mem' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v:23]
@@ -36,9 +70,9 @@ INFO: [Synth 8-3876] $readmem data file 'file.mem' is read successfully [C:/User
 INFO: [Synth 8-6155] done synthesizing module 'mem' (0#1) [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v:23]
 INFO: [Synth 8-6157] synthesizing module 'regs' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/regs.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'regs' (0#1) [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/regs.v:23]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:141]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:149]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:145]
 WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:153]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:157]
 INFO: [Synth 8-6157] synthesizing module 'decoder' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/decoder.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'decoder' (0#1) [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/decoder.v:23]
 INFO: [Synth 8-6157] synthesizing module 'forward_check' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/forward_check.v:23]
@@ -159,7 +193,7 @@ INFO: [Synth 8-6157] synthesizing module 'load_store_unit' [C:/Users/Aaron Lo/Do
 INFO: [Synth 8-6157] synthesizing module 'store_buffer' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/store_buffer.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'store_buffer' (0#1) [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/store_buffer.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'load_store_unit' (0#1) [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/load_store_unit.v:23]
-WARNING: [Synth 8-689] width (80) of port connection 'inOperation0' does not match port width (79) of module 'load_store_unit' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:695]
+WARNING: [Synth 8-689] width (80) of port connection 'inOperation0' does not match port width (79) of module 'load_store_unit' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:752]
 INFO: [Synth 8-6155] done synthesizing module 'cpu' (0#1) [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:23]
 WARNING: [Synth 8-6014] Unused sequential element buf_wen_reg[0] was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v:65]
 WARNING: [Synth 8-6014] Unused sequential element buf_waddr_reg[0] was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v:66]
@@ -167,16 +201,18 @@ WARNING: [Synth 8-6014] Unused sequential element buf_wdata_reg[0] was removed. 
 WARNING: [Synth 8-3848] Net rob_loc[31] in module/entity regs does not have driver. [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/regs.v:37]
 WARNING: [Synth 8-6014] Unused sequential element d2_rs1_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/decoder.v:139]
 WARNING: [Synth 8-6014] Unused sequential element d2_rs2_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/decoder.v:140]
-WARNING: [Synth 8-6014] Unused sequential element d2_use_rd_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/decoder.v:149]
 WARNING: [Synth 8-6014] Unused sequential element d2_is_branch_store_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/decoder.v:154]
 WARNING: [Synth 8-6014] Unused sequential element d2_is_mreg_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/decoder.v:155]
 WARNING: [Synth 8-6014] Unused sequential element queue_reg[7] was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/queue.v:43]
 WARNING: [Synth 8-6014] Unused sequential element valid_reg[7] was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/queue.v:43]
 WARNING: [Synth 8-6014] Unused sequential element queue_reg[7] was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/queue.v:43]
 WARNING: [Synth 8-6014] Unused sequential element valid_reg[7] was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/queue.v:43]
-WARNING: [Synth 8-6014] Unused sequential element d1_validB_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:196]
-WARNING: [Synth 8-6014] Unused sequential element d2_validB_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:210]
-WARNING: [Synth 8-6014] Unused sequential element d3_validB_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:217]
+WARNING: [Synth 8-6014] Unused sequential element d1_validA_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:224]
+WARNING: [Synth 8-6014] Unused sequential element d1_validB_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:225]
+WARNING: [Synth 8-6014] Unused sequential element d2_validA_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:238]
+WARNING: [Synth 8-6014] Unused sequential element d2_validB_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:239]
+WARNING: [Synth 8-6014] Unused sequential element d3_validA_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:245]
+WARNING: [Synth 8-6014] Unused sequential element d3_validB_reg was removed.  [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:246]
 WARNING: [Synth 8-4767] Trying to implement RAM ' ' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
 	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
 	2: Unable to determine number of words or word size in RAM. 
@@ -194,9 +230,6 @@ Reason is one or more of the following :
 	2: Unable to determine number of words or word size in RAM. 
 	3: No valid read/write found for RAM. 
 RAM "ROBhelper_reg" dissolved into registers
-WARNING: [Synth 8-3848] Net output_locC in module/entity cpu does not have driver. [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:241]
-WARNING: [Synth 8-3848] Net output_dataC in module/entity cpu does not have driver. [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:240]
-WARNING: [Synth 8-3848] Net output_pcC in module/entity cpu does not have driver. [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:242]
 WARNING: [Synth 8-3917] design cpu has port led[15] driven by constant 0
 WARNING: [Synth 8-3917] design cpu has port led[14] driven by constant 0
 WARNING: [Synth 8-3917] design cpu has port led[13] driven by constant 0
@@ -252,6 +285,7 @@ WARNING: [Synth 8-7129] Port forwardB[0] in module reservation_station is either
 WARNING: [Synth 8-7129] Port flush in module queue is either unconnected or has no load
 WARNING: [Synth 8-7129] Port instruct[1] in module decoder is either unconnected or has no load
 WARNING: [Synth 8-7129] Port instruct[0] in module decoder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port stall in module regs is either unconnected or has no load
 WARNING: [Synth 8-7129] Port raddr0[31] in module mem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port raddr0[30] in module mem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port raddr0[29] in module mem is either unconnected or has no load
@@ -308,21 +342,20 @@ WARNING: [Synth 8-7129] Port raddr3[15] in module mem is either unconnected or h
 WARNING: [Synth 8-7129] Port raddr3[14] in module mem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port sw[15] in module cpu is either unconnected or has no load
 WARNING: [Synth 8-7129] Port sw[14] in module cpu is either unconnected or has no load
-WARNING: [Synth 8-7129] Port sw[13] in module cpu is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2467.797 ; gain = 567.262
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2469.613 ; gain = 567.859
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2485.719 ; gain = 585.184
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2487.543 ; gain = 585.789
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2485.719 ; gain = 585.184
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2487.543 ; gain = 585.789
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.366 . Memory (MB): peak = 2485.719 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.376 . Memory (MB): peak = 2487.543 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -333,36 +366,28 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/cpu_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2602.465 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2604.266 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 2602.465 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.045 . Memory (MB): peak = 2604.266 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2602.465 ; gain = 701.930
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2604.266 ; gain = 702.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2602.465 ; gain = 701.930
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2604.266 ; gain = 702.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2602.465 ; gain = 701.930
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Preparing Guide Design
----------------------------------------------------------------------------------
-WARNING: [Synth 8-6702] IncrSynth : Design change found in an area of the design that prevents previous synthesis information being used, Reverting to default synthesis
----------------------------------------------------------------------------------
-Finished Doing Graph Differ : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2602.465 ; gain = 701.930
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Preparing Guide Design : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2602.465 ; gain = 701.930
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2604.266 ; gain = 702.512
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-3936] Found unconnected internal register 'buf_raddr3_reg[0]' and it is trimmed from '31' to '13' bits. [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v:64]
 WARNING: [Synth 8-3936] Found unconnected internal register 'buf_raddr3_reg[1]' and it is trimmed from '31' to '13' bits. [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v:64]
@@ -373,27 +398,18 @@ WARNING: [Synth 8-3936] Found unconnected internal register 'buf_waddr_reg[2]' a
 WARNING: [Synth 8-3936] Found unconnected internal register 'buf_waddr_reg[3]' and it is trimmed from '31' to '13' bits. [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/mem.v:66]
 INFO: [Synth 8-3971] The signal "mem:/data_reg" was recognized as a true dual port RAM template.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 2602.465 ; gain = 701.930
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 2604.266 ; gain = 702.512
 ---------------------------------------------------------------------------------
-
-
-Incremental Synthesis Report Summary:
-
-1. Incremental synthesis run: no
-
-   Reason for not running incremental synthesis : Design change found in an area of the design that prevents previous synthesis information being used
-
-
-INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input   32 Bit       Adders := 8     
+	   2 Input    7 Bit       Adders := 2     
 	   2 Input    6 Bit       Adders := 3     
 	   2 Input    5 Bit       Adders := 1     
-	   2 Input    4 Bit       Adders := 11    
+	   2 Input    4 Bit       Adders := 12    
 	   4 Input    3 Bit       Adders := 3     
 	   3 Input    3 Bit       Adders := 3     
 +---XORs : 
@@ -407,16 +423,16 @@ Detailed RTL Component Info :
 	               33 Bit    Registers := 4     
 	               32 Bit    Registers := 48    
 	               31 Bit    Registers := 6     
-	               20 Bit    Registers := 16    
+	               22 Bit    Registers := 16    
 	               13 Bit    Registers := 5     
 	               12 Bit    Registers := 2     
 	                7 Bit    Registers := 4     
-	                6 Bit    Registers := 36    
-	                5 Bit    Registers := 8     
-	                4 Bit    Registers := 11    
+	                6 Bit    Registers := 38    
+	                5 Bit    Registers := 10    
+	                4 Bit    Registers := 17    
 	                3 Bit    Registers := 5     
 	                2 Bit    Registers := 3     
-	                1 Bit    Registers := 80    
+	                1 Bit    Registers := 85    
 +---RAMs : 
 	             232K Bit	(7425 X 32 bit)          RAMs := 1     
 	               12 Bit	(4 X 3 bit)          RAMs := 1     
@@ -429,31 +445,29 @@ Detailed RTL Component Info :
 	   4 Input   80 Bit        Muxes := 2     
 	   2 Input   66 Bit        Muxes := 69    
 	   4 Input   66 Bit        Muxes := 30    
-	  16 Input   65 Bit        Muxes := 1     
-	   2 Input   65 Bit        Muxes := 72    
+	   2 Input   65 Bit        Muxes := 114   
 	   3 Input   65 Bit        Muxes := 3     
 	   4 Input   41 Bit        Muxes := 2     
 	   2 Input   33 Bit        Muxes := 24    
 	   4 Input   33 Bit        Muxes := 1     
-	   2 Input   32 Bit        Muxes := 56    
+	   2 Input   32 Bit        Muxes := 60    
 	   7 Input   32 Bit        Muxes := 2     
 	   4 Input   32 Bit        Muxes := 2     
 	   6 Input   32 Bit        Muxes := 1     
-	   2 Input   20 Bit        Muxes := 48    
+	   2 Input   22 Bit        Muxes := 32    
 	   2 Input    7 Bit        Muxes := 16    
 	   4 Input    7 Bit        Muxes := 1     
-	   2 Input    6 Bit        Muxes := 32    
-	   4 Input    4 Bit        Muxes := 2     
+	   2 Input    6 Bit        Muxes := 34    
 	   2 Input    4 Bit        Muxes := 17    
+	   4 Input    4 Bit        Muxes := 2     
 	   2 Input    3 Bit        Muxes := 3     
 	  10 Input    3 Bit        Muxes := 2     
-	   3 Input    2 Bit        Muxes := 3     
 	   2 Input    2 Bit        Muxes := 6     
-	   2 Input    1 Bit        Muxes := 342   
+	   3 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 392   
 	   4 Input    1 Bit        Muxes := 7     
 	  16 Input    1 Bit        Muxes := 1     
 	  15 Input    1 Bit        Muxes := 1     
-	   5 Input    1 Bit        Muxes := 16    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -481,39 +495,125 @@ WARNING: [Synth 8-3917] design cpu has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design cpu has port led[6] driven by constant 0
 WARNING: [Synth 8-3917] design cpu has port led[5] driven by constant 0
 WARNING: [Synth 8-3917] design cpu has port led[4] driven by constant 0
-INFO: [Synth 8-5544] ROM "seg_1" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-WARNING: [Synth 8-3917] design cpu__GCB0 has port rdata1[30] driven by constant 0
+WARNING: [Synth 8-3936] Found unconnected internal register 'ROBtail_reg' and it is trimmed from '6' to '4' bits. [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:370]
 WARNING: [Synth 8-3917] design cpu__GCB0 has port ROBhead[5] driven by constant 0
 WARNING: [Synth 8-3917] design cpu__GCB0 has port ROBhead[4] driven by constant 0
-INFO: [Synth 8-3971] The signal "cpu__GCB0/mem/data_reg" was recognized as a true dual port RAM template.
-INFO: [Synth 8-4652] Swapped enable and write-enable on 32 RAM instances of RAM mem/data_reg to conserve power
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ROBtail1_inferred/\ROBtail_reg[0] )
-INFO: [Synth 8-3886] merging instance 'decoderA/d2_imm_reg[31]' (FD) to 'decoderA/d2_opcodeC_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (ROBfull2_inferred/\ROBtail_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\decode_robA_reg[1][0] )
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[1][1]' (FD) to 'decode_robB_reg[1][1]'
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[1][2]' (FD) to 'decode_robB_reg[1][2]'
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[1][3]' (FD) to 'decode_robB_reg[1][3]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\decode_robB_reg[1][0] )
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[2][0]' (FD) to 'decode_robA_reg[1][0]'
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[2][1]' (FD) to 'decode_robB_reg[2][1]'
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[2][2]' (FD) to 'decode_robB_reg[2][2]'
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[2][3]' (FD) to 'decode_robB_reg[2][3]'
+INFO: [Synth 8-3886] merging instance 'decode_robB_reg[2][0]' (FD) to 'decode_robB_reg[1][0]'
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[3][1]' (FD) to 'decode_robB_reg[3][1]'
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[3][2]' (FD) to 'decode_robB_reg[3][2]'
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[3][3]' (FD) to 'decode_robB_reg[3][3]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\decode_robA_reg[1][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\decode_robB_reg[1][0] )
+INFO: [Synth 8-3886] merging instance 'decode_robA_reg[3][0]' (FD) to 'decode_robA_reg[1][0]'
+INFO: [Synth 8-3886] merging instance 'decode_robB_reg[3][0]' (FD) to 'decode_robB_reg[1][0]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\decode_robA_reg[1][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\decode_robB_reg[1][0] )
+INFO: [Synth 8-3886] merging instance 'regs/r2_rob_locB_reg[4]' (FD) to 'regs/r2_rob_locA_reg[5]'
+INFO: [Synth 8-3886] merging instance 'regs/r2_rob_locB_reg[5]' (FD) to 'regs/r2_rob_locA_reg[5]'
 INFO: [Synth 8-3886] merging instance 'decoderA/d2_ROB_loc_reg[4]' (FD) to 'decoderA/d2_ROB_loc_reg[5]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\decoderA/d2_opcodeC_reg[1] )
-INFO: [Synth 8-3886] merging instance 'decoderA/d2_ROB_loc_reg[0]' (FD) to 'decoderA/d2_ROB_loc_reg[5]'
+INFO: [Synth 8-3886] merging instance 'decoderA/d2_ROB_loc_reg[5]' (FD) to 'decoderB/d2_ROB_loc_reg[4]'
+INFO: [Synth 8-3886] merging instance 'regs/r2_rob_locA_reg[4]' (FD) to 'regs/r2_rob_locA_reg[5]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\r2_rob_locA_reg[5] )
 INFO: [Synth 8-3886] merging instance 'decoderB/d2_ROB_loc_reg[4]' (FD) to 'decoderB/d2_ROB_loc_reg[5]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[15][65] )
-INFO: [Synth 8-3886] merging instance 'lsu/tail_reg[2]' (FDRE) to 'lsu/tail_reg[3]'
+INFO: [Synth 8-3886] merging instance 'decoderA/d2_valid_reg' (FD) to 'decoderB/d2_valid_reg'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[30][4]' (FDE) to 'regs/rob_loc_reg[30][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[29][4]' (FDE) to 'regs/rob_loc_reg[29][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[28][4]' (FDE) to 'regs/rob_loc_reg[28][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[27][4]' (FDE) to 'regs/rob_loc_reg[27][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[26][4]' (FDE) to 'regs/rob_loc_reg[26][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[25][4]' (FDE) to 'regs/rob_loc_reg[25][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[24][4]' (FDE) to 'regs/rob_loc_reg[24][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[23][4]' (FDE) to 'regs/rob_loc_reg[23][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[22][4]' (FDE) to 'regs/rob_loc_reg[22][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[21][4]' (FDE) to 'regs/rob_loc_reg[21][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[20][4]' (FDE) to 'regs/rob_loc_reg[20][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[19][4]' (FDE) to 'regs/rob_loc_reg[19][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[18][4]' (FDE) to 'regs/rob_loc_reg[18][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[17][4]' (FDE) to 'regs/rob_loc_reg[17][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[16][4]' (FDE) to 'regs/rob_loc_reg[16][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[15][4]' (FDE) to 'regs/rob_loc_reg[15][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[14][4]' (FDE) to 'regs/rob_loc_reg[14][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[13][4]' (FDE) to 'regs/rob_loc_reg[13][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[12][4]' (FDE) to 'regs/rob_loc_reg[12][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[11][4]' (FDE) to 'regs/rob_loc_reg[11][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[10][4]' (FDE) to 'regs/rob_loc_reg[10][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[9][4]' (FDE) to 'regs/rob_loc_reg[9][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[8][4]' (FDE) to 'regs/rob_loc_reg[8][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[7][4]' (FDE) to 'regs/rob_loc_reg[7][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[6][4]' (FDE) to 'regs/rob_loc_reg[6][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[5][4]' (FDE) to 'regs/rob_loc_reg[5][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[4][4]' (FDE) to 'regs/rob_loc_reg[4][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[3][4]' (FDE) to 'regs/rob_loc_reg[3][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[2][4]' (FDE) to 'regs/rob_loc_reg[2][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[1][4]' (FDE) to 'regs/rob_loc_reg[1][5]'
+INFO: [Synth 8-3886] merging instance 'regs/rob_loc_reg[0][4]' (FDE) to 'regs/rob_loc_reg[0][5]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[30][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[29][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[28][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[27][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[26][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[25][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[24][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[23][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[22][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[21][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[20][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[19][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[18][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[17][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[16][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[15][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[14][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[13][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[12][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[11][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[10][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[9][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[8][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[7][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[6][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[5][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[4][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[3][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[2][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[1][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (regs/\rob_loc_reg[0][5] )
+INFO: [Synth 8-5544] ROM "seg_1" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+WARNING: [Synth 8-3917] design cpu__GCB4 has port rdata0[30] driven by constant 0
+WARNING: [Synth 8-3917] design cpu__GCB4 has port rdata1[30] driven by constant 0
+INFO: [Synth 8-3971] The signal "cpu__GCB4/mem/data_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-4652] Swapped enable and write-enable on 32 RAM instances of RAM mem/data_reg to conserve power
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[15][65] )
+INFO: [Synth 8-3886] merging instance 'lsu/tail_reg[2]' (FDRE) to 'lsu/head_reg[2]'
 INFO: [Synth 8-3886] merging instance 'lsu/tail_reg[3]' (FDRE) to 'lsu/head_reg[2]'
 INFO: [Synth 8-3886] merging instance 'lsu/head_reg[2]' (FDRE) to 'lsu/head_reg[3]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/head_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[14][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[13][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[12][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[11][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[10][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[9][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[8][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[7][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[6][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[5][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[4][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[3][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[2][65] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lsu/store_buffer /\store_buffer_reg[1][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/\head_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[14][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[13][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[12][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[11][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[10][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[9][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[8][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[7][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[6][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[5][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[4][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[3][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[2][65] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (lsu/store_buffer/\store_buffer_reg[1][65] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:01:32 . Memory (MB): peak = 2602.465 ; gain = 701.930
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:01:28 . Memory (MB): peak = 2604.266 ; gain = 702.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -524,11 +624,11 @@ Block RAM: Preliminary Mapping Report (see note below)
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
 
 Distributed RAM: Preliminary Mapping Report (see note below)
-+------------+----------------------+-----------+----------------------+-------------+
-|Module Name | RTL Object           | Inference | Size (Depth x Width) | Primitives  | 
-+------------+----------------------+-----------+----------------------+-------------+
-|cpu__GCB2   | lsu/load_opcodeB_reg | Implied   | 4 x 3                | RAM32M x 1  | 
-+------------+----------------------+-----------+----------------------+-------------+
++------------+------------------+-----------+----------------------+-------------+
+|Module Name | RTL Object       | Inference | Size (Depth x Width) | Primitives  | 
++------------+------------------+-----------+----------------------+-------------+
+|lsu         | load_opcodeB_reg | Implied   | 4 x 3                | RAM32M x 1  | 
++------------+------------------+-----------+----------------------+-------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 ---------------------------------------------------------------------------------
@@ -538,13 +638,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:55 ; elapsed = 00:01:37 . Memory (MB): peak = 2602.465 ; gain = 701.930
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:54 ; elapsed = 00:01:33 . Memory (MB): peak = 2604.266 ; gain = 702.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:03:25 ; elapsed = 00:04:16 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished Timing Optimization : Time (s): cpu = 00:02:49 ; elapsed = 00:03:31 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -554,11 +654,11 @@ Block RAM: Final Mapping Report
 -------NONE-------
 
 Distributed RAM: Final Mapping Report
-+------------+----------------------+-----------+----------------------+-------------+
-|Module Name | RTL Object           | Inference | Size (Depth x Width) | Primitives  | 
-+------------+----------------------+-----------+----------------------+-------------+
-|cpu__GCB2   | lsu/load_opcodeB_reg | Implied   | 4 x 3                | RAM32M x 1  | 
-+------------+----------------------+-----------+----------------------+-------------+
++------------+------------------+-----------+----------------------+-------------+
+|Module Name | RTL Object       | Inference | Size (Depth x Width) | Primitives  | 
++------------+------------------+-----------+----------------------+-------------+
+|lsu         | load_opcodeB_reg | Implied   | 4 x 3                | RAM32M x 1  | 
++------------+------------------+-----------+----------------------+-------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -566,10 +666,6 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-3886] merging instance 'i_0/decoderA/d2_ROB_loc_reg[1]' (FD) to 'i_0/decoderB/d2_ROB_loc_reg[1]'
-INFO: [Synth 8-3886] merging instance 'i_0/decoderA/d2_ROB_loc_reg[2]' (FD) to 'i_0/decoderB/d2_ROB_loc_reg[2]'
-INFO: [Synth 8-3886] merging instance 'i_0/decoderA/d2_ROB_loc_reg[3]' (FD) to 'i_0/decoderB/d2_ROB_loc_reg[3]'
-INFO: [Synth 8-3886] merging instance 'i_0/decoderA/d2_valid_reg' (FD) to 'i_0/decoderB/d2_valid_reg'
 INFO: [Synth 8-7052] The timing for the instance i_0/mem/data_reg_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance i_0/mem/data_reg_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance i_0/mem/data_reg_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
@@ -579,7 +675,7 @@ INFO: [Synth 8-7052] The timing for the instance i_0/mem/data_reg_1_5 (implement
 INFO: [Synth 8-7052] The timing for the instance i_0/mem/data_reg_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance i_0/mem/data_reg_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:03:30 ; elapsed = 00:04:25 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished Technology Mapping : Time (s): cpu = 00:03:01 ; elapsed = 00:03:44 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -605,37 +701,37 @@ INFO: [Synth 8-7052] The timing for the instance mem/data_reg_1_7 (implemented a
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:03:38 ; elapsed = 00:04:33 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished IO Insertion : Time (s): cpu = 00:03:10 ; elapsed = 00:03:53 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:03:38 ; elapsed = 00:04:34 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished Renaming Generated Instances : Time (s): cpu = 00:03:10 ; elapsed = 00:03:53 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:41 ; elapsed = 00:04:37 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:12 ; elapsed = 00:03:56 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:03:41 ; elapsed = 00:04:37 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished Renaming Generated Ports : Time (s): cpu = 00:03:13 ; elapsed = 00:03:56 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:03:43 ; elapsed = 00:04:39 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished Handling Custom Attributes : Time (s): cpu = 00:03:15 ; elapsed = 00:03:59 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:03:43 ; elapsed = 00:04:39 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished Renaming Generated Nets : Time (s): cpu = 00:03:15 ; elapsed = 00:03:59 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -645,13 +741,14 @@ Static Shift Register Report:
 +------------+--------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |Module Name | RTL Name                 | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
 +------------+--------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|cpu         | mem/buf_wen_reg[1]       | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
-|cpu         | d3_validA_reg            | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 |cpu         | decoderB/d2_pc_reg[31]   | 4      | 19    | NO           | YES                | YES               | 19     | 0       | 
 |cpu         | decoderB/d2_pc_reg[13]   | 4      | 13    | NO           | NO                 | YES               | 13     | 0       | 
+|cpu         | decoderA/d2_pc_reg[31]   | 4      | 31    | NO           | NO                 | YES               | 31     | 0       | 
+|cpu         | stall_queue_reg[3]       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|cpu         | decode_robB_reg[3][1]    | 3      | 3     | NO           | NO                 | YES               | 3      | 0       | 
+|cpu         | mem/buf_wen_reg[1]       | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 |cpu         | mem/buf_wdata_reg[1][31] | 4      | 32    | NO           | NO                 | YES               | 32     | 0       | 
 |cpu         | mem/buf_waddr_reg[1][13] | 4      | 13    | NO           | NO                 | YES               | 13     | 0       | 
-|cpu         | decoderA/d2_pc_reg[31]   | 4      | 32    | NO           | NO                 | YES               | 32     | 0       | 
 +------------+--------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -672,45 +769,45 @@ Report Cell Usage:
 |      |Cell     |Count |
 +------+---------+------+
 |1     |BUFG     |     1|
-|2     |CARRY4   |   154|
-|3     |LUT1     |    70|
-|4     |LUT2     |   216|
-|5     |LUT3     |  2487|
-|6     |LUT4     |  3432|
-|7     |LUT5     |  3527|
-|8     |LUT6     | 10391|
-|9     |MUXF7    |  1315|
-|10    |MUXF8    |    71|
+|2     |CARRY4   |   151|
+|3     |LUT1     |    16|
+|4     |LUT2     |   197|
+|5     |LUT3     |  2340|
+|6     |LUT4     |  3498|
+|7     |LUT5     |  2690|
+|8     |LUT6     | 12262|
+|9     |MUXF7    |  1573|
+|10    |MUXF8    |   423|
 |11    |RAM32M   |     1|
 |12    |RAMB36E1 |    28|
-|28    |SRL16E   |   111|
-|29    |FDRE     |  7057|
+|28    |SRL16E   |   113|
+|29    |FDRE     |  7080|
 |30    |FDSE     |     3|
 |31    |IBUF     |     1|
 |32    |OBUF     |    27|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:03:43 ; elapsed = 00:04:39 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Finished Writing Synthesis Report : Time (s): cpu = 00:03:15 ; elapsed = 00:03:59 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 121 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:03:30 ; elapsed = 00:04:37 . Memory (MB): peak = 3346.867 ; gain = 1329.586
-Synthesis Optimization Complete : Time (s): cpu = 00:03:43 ; elapsed = 00:04:42 . Memory (MB): peak = 3346.867 ; gain = 1446.332
+Synthesis finished with 0 errors, 0 critical warnings and 125 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:03:02 ; elapsed = 00:03:57 . Memory (MB): peak = 3602.609 ; gain = 1584.133
+Synthesis Optimization Complete : Time (s): cpu = 00:03:15 ; elapsed = 00:04:03 . Memory (MB): peak = 3602.609 ; gain = 1700.855
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.357 . Memory (MB): peak = 3346.867 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 1569 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.352 . Memory (MB): peak = 3602.609 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 2176 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 3346.867 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 3602.609 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 1 instances were transformed.
   RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 1 instance 
 
-Synth Design complete | Checksum: ed7b69d3
+Synth Design complete | Checksum: 8cfb76b3
 INFO: [Common 17-83] Releasing license: Synthesis
-96 Infos, 261 Warnings, 0 Critical Warnings and 0 Errors encountered.
+179 Infos, 293 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:03:51 ; elapsed = 00:04:52 . Memory (MB): peak = 3346.867 ; gain = 1826.531
+synth_design: Time (s): cpu = 00:03:23 ; elapsed = 00:04:18 . Memory (MB): peak = 3602.609 ; gain = 2079.828
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.runs/synth_1/cpu.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file cpu_utilization_synth.rpt -pb cpu_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jul 16 06:53:55 2023...
+INFO: [Common 17-206] Exiting Vivado at Tue Jul 18 01:04:28 2023...

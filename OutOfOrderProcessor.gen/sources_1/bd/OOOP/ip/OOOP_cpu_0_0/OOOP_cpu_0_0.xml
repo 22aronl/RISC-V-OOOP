@@ -181,6 +181,11 @@
         <spirit:displayName>Rob Size</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROB_SIZE">16</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>LOG_ROB_SIZE</spirit:name>
+        <spirit:displayName>Log Rob Size</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.LOG_ROB_SIZE">4</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:description>xilinx.com:module_ref:cpu:1.0</spirit:description>
@@ -189,6 +194,11 @@
       <spirit:name>ROB_SIZE</spirit:name>
       <spirit:displayName>Rob Size</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROB_SIZE">16</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>LOG_ROB_SIZE</spirit:name>
+      <spirit:displayName>Log Rob Size</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.LOG_ROB_SIZE">4</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>

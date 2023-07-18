@@ -33,7 +33,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>8cec9d61</spirit:value>
+            <spirit:value>63be1159</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -46,7 +46,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>8cec9d61</spirit:value>
+            <spirit:value>63be1159</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -148,6 +148,11 @@
         <spirit:displayName>Rob Size</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ROB_SIZE">16</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>LOG_ROB_SIZE</spirit:name>
+        <spirit:displayName>Log Rob Size</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.LOG_ROB_SIZE">4</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:fileSets>
@@ -156,7 +161,7 @@
       <spirit:file>
         <spirit:name>xgui/cpu_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_bcf83267</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_1bc23421</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -167,6 +172,11 @@
       <spirit:name>ROB_SIZE</spirit:name>
       <spirit:displayName>Rob Size</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ROB_SIZE">16</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>LOG_ROB_SIZE</spirit:name>
+      <spirit:displayName>Log Rob Size</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.LOG_ROB_SIZE">4</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
@@ -188,7 +198,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-07-16T11:48:32Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-07-18T08:04:35Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2023.1</xilinx:xilinxVersion>

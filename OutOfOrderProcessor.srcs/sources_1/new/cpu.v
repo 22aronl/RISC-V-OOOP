@@ -29,6 +29,7 @@ module cpu(
     );
     
     parameter ROB_SIZE = 16;
+    parameter LOG_ROB_SIZE = 4;
     
     reg [31:0] pc = 32'h00000000;
 
@@ -39,12 +40,15 @@ module cpu(
     
     display display(clk, in_num, in_loc, in_en, seg, an);
 
-    wire flush = 1'b0; //Dear lord please have mercy on my soul
-    reg stall = 1'b0;
+    wire flush; //Dear lord please have mercy on my soul
+    wire stall;
     
     wire [31:0] pcA = pc;
     wire [31:0] pcB = pc + 2;
 //    wire [31:0] pcC = pc + 4;
+
+    wire [5:0] ROB_locA; //TODO:
+    wire [5:0] ROB_locB;
     
     
     wire [31:1] raddr0 = pc;
@@ -155,11 +159,21 @@ module cpu(
         end
     end
     
-    //pc staller
-    reg pcA_valid = 1'b1;
-    reg pcB_valid = 1'b1;
-//    reg pcC_valid = 1'b1;
+    reg stall_queue [3:0];
 
+    initial begin
+        stall_queue[0] = 1'b1;
+        stall_queue[1] = 1'b0;
+        stall_queue[2] = 1'b0;
+        stall_queue[3] = 1'b0;
+    end
+    //pc staller
+    wire pcA_valid = !flush;
+    wire pcB_valid = !flush;
+//    reg pcC_valid = 1'b1;
+    reg [LOG_ROB_SIZE - 1 : 0] decode_robA [3:0];
+    reg [LOG_ROB_SIZE - 1 : 0] decode_robB [3:0];
+    
     reg [31:0] d0_pcA;
     reg [31:0] d0_pcB;
 //    reg [31:0] d0_pcC;
@@ -189,6 +203,21 @@ module cpu(
 //    reg d3_validC = 1'b0; //inefficient
     
     always @(posedge clk) begin
+        stall_queue[0] <= !flush & !stall;
+        stall_queue[1] <= stall_queue[0];
+        stall_queue[2] <= stall_queue[1];
+        stall_queue[3] <= stall_queue[2];
+
+        decode_robA[1] <= ROB_locA;
+        //decode_robA[1] <= decode_robA[0];
+        decode_robA[2] <= decode_robA[1];
+        decode_robA[3] <= decode_robA[2];
+
+        decode_robB[1] <= ROB_locB;
+        // decode_robB[1] <= decode_robB[0];
+         decode_robB[2] <= decode_robB[1];
+        decode_robB[3] <= decode_robB[2];
+
         d1_pcA <= pcA;
         d1_pcB <= pcB;
 //        d1_pcC <= pcC;
@@ -219,22 +248,22 @@ module cpu(
     end
 
 
+    // [64] Ready Bit, [63:32] Value, [31:0] PC
+    reg [64:0] ROB [0: ROB_SIZE - 1];
+
+
     //forward [38:0] : [38] is valid, [37:32] ROB_loc, [31:0] is data
     wire [38:0] forwardA;
 //    wire [38:0] forwardB;
     wire [38:0] forwardC;
     wire [38:0] forwardD;
-
-    wire [5:0] ROB_locA; //TODO:
-    wire [5:0] ROB_locB;
-    wire [5:0] ROB_locC;
     
     wire [100:0] output_dataA;
-    wire [16:0] output_locA;
+    wire [17:0] output_locA;
     wire [31:0] output_pcA;
 
     wire [100:0] output_dataB;
-    wire [16:0] output_locB;
+    wire [17:0] output_locB;
     wire [31:0] output_pcB;
 
     wire [100:0] output_dataC;
@@ -244,13 +273,16 @@ module cpu(
     wire [100:0] output_dataA_;
     wire [100:0] output_dataB_;
 
+    wire [100:0] output_dataA__;
+    wire [100:0] output_dataB__;
+
 
     decoder decoderA(
         .clk(clk),
         .instruct(instructA),
         .pc(d3_pcA),
-        .ROB_loc(ROB_locA),
-        .in_valid(d3_validA),
+        .ROB_loc({2'b0, decode_robA[3]}),
+        .in_valid(stall_queue[3]),
         .out_rd(rdA),
         .out_rs1(regsA[0]),
         .out_rs2(regsA[1]),
@@ -264,15 +296,24 @@ module cpu(
     forward_check forward_checkA(
         .forwardA(forwardA), .forwardC(forwardC), .forwardD(forwardD),
         .inOperation(output_dataA_), 
-        .outOperation(output_dataA)
+        .outOperation(output_dataA__)
     );
+
+    wire output_dataA_rs1_rob = output_dataA__[1] && ROB[output_dataA__[46:41]][64];
+    wire [31:0] output_dataA_rs1 = output_dataA_rs1_rob ? ROB[output_dataA__[46:41]][63:32] : output_dataA__[79:48];
+    wire output_dataA_rs2_rob = output_dataA__[0] && ROB[output_dataA__[7:2]][64];
+    wire [31:0] output_dataA_rs2 = output_dataA_rs2_rob ? ROB[output_dataA__[7:2]][63:32] : output_dataA__[40:9];
+    assign output_dataA = {output_dataA__[100:80], output_dataA_rs1, output_dataA__[47:41], output_dataA_rs2, output_dataA__[8:2], !output_dataA_rs1_rob & output_dataA__[1], !output_dataA_rs2_rob & output_dataA__[0]};
+    //assign output_dataA = output_dataA__;
+    
+    wire [5:0] a_rs1_rob = output_dataA[46:41];
 
     decoder decoderB(
         .clk(clk),
         .instruct(instructB),
         .pc(d3_pcB),
-        .ROB_loc(ROB_locB),
-        .in_valid(d3_validB),
+        .ROB_loc({2'b0, decode_robB[3]}),
+        .in_valid(stall_queue[3]),
         .out_rd(rdB),
         .out_rs1(regsB[0]),
         .out_rs2(regsB[1]),
@@ -286,8 +327,19 @@ module cpu(
     forward_check forward_checkB(
         .forwardA(forwardA), .forwardC(forwardC), .forwardD(forwardD),
         .inOperation(output_dataB_), 
-        .outOperation(output_dataB)
+        .outOperation(output_dataB__)
     );
+    
+    wire output_dataB__1 = output_dataB__[1];
+    wire rob_output_dataB = ROB[output_dataB__[46:41]][64];
+    wire [5:0] rob_output_dataB_0 = output_dataB__[46:41];
+
+    wire output_dataB_rs1_rob = output_dataB__[1] && ROB[output_dataB__[46:41]][64];
+    wire [31:0] output_dataB_rs1 = output_dataB_rs1_rob ? ROB[output_dataB__[46:41]][63:32] : output_dataB__[79:48];
+    wire output_dataB_rs2_rob = output_dataB__[0] && ROB[output_dataB__[7:2]][64];
+    wire [31:0] output_dataB_rs2 = output_dataB_rs2_rob ? ROB[output_dataB__[7:2]][63:32] : output_dataB__[40:9];
+    assign output_dataB = {output_dataB__[100:80], output_dataB_rs1, output_dataB__[47:41], output_dataB_rs2, output_dataB__[8:2], !output_dataB_rs1_rob & output_dataB__[1], !output_dataB_rs2_rob & output_dataB__[0]};
+    //assign output_dataB = output_dataB__;
 
 //    decoder decoderC(
 //        .clk(clk),
@@ -315,26 +367,28 @@ module cpu(
     reg [5:0] ROBhead = 5'h00;
     reg [5:0] ROBtail = 5'h00;
     
-    // [64] Ready Bit, [63:32] Value, [31:0] PC
-    reg [64:0] ROB [0: ROB_SIZE - 1];
-    // [19] take_jump, [18] is_write_reg, [17] is_store, [16:12] reg_num, [11:0] store_offset
-    reg [19:0] ROBhelper [0 : ROB_SIZE - 1];
+    wire ROBfull = ((ROBtail + 1) % ROB_SIZE == ROBhead) | ((ROBtail + 2) % ROB_SIZE == ROBhead);
+    assign stall = ROBfull;
+    
+    //[20] is_valid [19] take_jump, [18] is_write_reg, [17] is_store, [16:12] reg_num, [11:0] store_offset
+    reg [22:0] ROBhelper [0 : ROB_SIZE - 1];
     reg [31:0] ROBpc [0: ROB_SIZE - 1]; //this is so inefficient :') only exists because of jal & jalr
     
     always @(posedge clk) begin
-        ROBtail <= (ROBtail + 6) % ROB_SIZE;
+        if(!flush & !stall)
+            ROBtail <= (ROBtail + 2) % ROB_SIZE;
     end
     
     
     wire [5:0] d_ROBA = output_dataA[85:80];
     wire [5:0] d_ROBB = output_dataB[85:80];
-    wire [5:0] d_ROBC = output_dataC[85:80];
+    //wire [5:0] d_ROBC = output_dataC[85:80];
     
     //ROB instantiation moved lower
     
     assign ROB_locA = ROBtail;
     assign ROB_locB = (ROBtail + 1) % ROB_SIZE;
-    assign ROB_locC = (ROBtail + 2) % ROB_SIZE;
+    //assign ROB_locC = (ROBtail + 2) % ROB_SIZE;
     
 
     // // // // // 
@@ -555,7 +609,7 @@ module cpu(
     wire [31:0] b_data_rs2 = branch_operation[31:0];
     wire [31:0] b_pc = ROB[b_rob_loc][31:0]; //potential timing issue
     wire [11:0] b_offset_s = ROBhelper[b_rob_loc][11:0];
-    wire [31:0] b_offset = {{21{b_offset_s[11]}}, b_offset_s[10:0], 1'b0};
+    wire [31:0] b_offset = {{20{b_offset_s[11]}}, b_offset_s[10:0], 1'b0};
 
     wire [31:0] b_forward = b_pc + 4;
 
@@ -635,6 +689,9 @@ module cpu(
     wire forwardAValid = forwardA[38];
     wire [31:0] forwardAVal = forwardA[31:0];
     wire [5:0] forwardARob = forwardA[37:32];
+    wire forwardCValid = forwardC[38];
+    wire [31:0] forwardCVal = forwardC[31:0];
+    wire [5:0] forwardCRob = forwardC[37:32];
     wire forwardDValid = forwardD[38];
     wire [31:0] forwardDval = forwardD[31:0];
     wire [5:0] forwardDRob = forwardD[37:32];
@@ -718,23 +775,23 @@ module cpu(
     wire ROB_one_ready = ROB[rone_i][64] == 1'b1;
      wire ROB_two_ready = ROB[rtwo_i][64] == 1'b1;
     
-    wire ROB_one_jump = ROBhelper[rone_i][19];
-     wire ROB_two_jump = ROBhelper[rtwo_i][19];
+    wire ROB_one_jump = ROBhelper[rone_i][20] & ROBhelper[rone_i][22]  & ROBhelper[rone_i][19];
+     wire ROB_two_jump = ROBhelper[rtwo_i][20] & ROBhelper[rtwo_i][22] &  ROBhelper[rtwo_i][19];
     wire [31:0] ROB_one_pc = ROB[rone_i][31:0];
      wire [31:0] ROB_two_pc = ROB[rtwo_i][31:0];
 
     wire ROB_one_store = ROB_one_ready & ROBhelper[rone_i][17];
      wire ROB_two_store = (ROB_one_ready & !ROB_one_jump) & ROB_two_ready & ROBhelper[rtwo_i][17];
 
-    assign flush = 1'b0;//ROB_one_jump | ROB_two_jump;
+    assign flush = ROB_one_jump | ROB_two_jump;
 
 
-    assign r_wen0 = ROB_one_ready & ROBhelper[rone_i][18];
+    assign r_wen0 = ROB_one_ready & ROBhelper[rone_i][21];
     assign r_waddr0 = ROBhelper[rone_i][16:12];
     assign r_wdata0 = ROB[rone_i][63:32];
     assign r_wrob0 = rone_i;
 
-     assign r_wen1 = ROB_one_ready & ROB_two_ready & !ROB_one_jump & ROBhelper[rtwo_i][18];
+     assign r_wen1 = ROB_one_ready & ROB_two_ready & !ROB_one_jump & ROBhelper[rtwo_i][21];
      assign r_waddr1 = ROBhelper[rtwo_i][16:12];
      assign r_wdata1 = ROB[rtwo_i][63:32];
      assign r_wrob1 = rtwo_i;
@@ -742,7 +799,8 @@ module cpu(
     assign store_buffer_commit = ROB_one_store;// + ROB_two_store;
     
     always @(posedge clk) begin
-        pc <= pc + 4;
+        if(!stall)
+            pc <= pc + 4;
 
         if(ROB_one_ready) begin
             if(ROB_one_jump) begin
@@ -754,18 +812,19 @@ module cpu(
             end
         end
     end
-    
+    wire branch_jump_match = ((b_pc_jump) != b_pc + 2);
+    wire output_locA_15 = output_locA[15];
     always @(posedge clk) begin
         ROB[b_rob_loc][31:0] <= b_pc_jump;
-        ROBhelper[b_rob_loc][19] <= ((b_pc_jump) == b_pc + 2);
+        ROBhelper[b_rob_loc][19] <= ((b_pc_jump) != b_pc + 2);
 
         ROB[d_ROBA][31:0] <= output_pcA;
         ROB[d_ROBB][31:0] <= output_pcB;
-        ROB[d_ROBC][31:0] <= output_pcC;
-
-        ROBhelper[d_ROBA] <= {output_locA[12], output_locA[16], !output_locA[16] & output_locA[13], output_dataA[100:96], output_locA[11:0]};
-        ROBhelper[d_ROBB] <= {output_locA[12], output_locB[16], !output_locB[16] & output_locB[13], output_dataB[100:96], output_locB[11:0]};
-        ROBhelper[d_ROBC] <= {output_locA[12], output_locC[16], !output_locC[16] & output_locC[13], output_dataC[100:96], output_locC[11:0]};
+        //ROB[d_ROBC][31:0] <= output_pcC;
+        //[22]is branch, [21] is_write [20] valid, [19] is_jump, [18] is use offset, [17] is_ld, [16:12] rd, [11:0] imm
+        ROBhelper[d_ROBA] <= {output_locA[12], output_locA[15] & output_locA[17], output_locA[15], 1'b0, output_locA[16], !output_locA[16] & output_locA[13], output_dataA[100:96], output_locA[11:0]};
+        ROBhelper[d_ROBB] <= {output_locB[12], output_locB[15] & output_locB[17], output_locB[15], 1'b0, output_locB[16], !output_locB[16] & output_locB[13], output_dataB[100:96], output_locB[11:0]};
+        //ROBhelper[d_ROBC] <= {1'b0, output_locC[12], output_locC[16], !output_locC[16] & output_locC[13], output_dataC[100:96], output_locC[11:0]};
 
         if(forwardA[38] == 1'b1) begin
             ROB[forwardA[37:32]][63:32] <= forwardA[31:0];
@@ -810,6 +869,14 @@ module cpu(
         end
     end
     
-  
-    
+    integer i;
+    initial begin
+        for(i = 0; i < ROB_SIZE; i = i + 1) begin
+            ROB[i][64] = 1'b0;
+            ROBhelper[i][19] = 1'b0;    
+        end
+        
+           
+    end
+
 endmodule

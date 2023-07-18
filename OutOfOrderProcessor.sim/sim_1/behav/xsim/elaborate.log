@@ -5,7 +5,7 @@ Running: C:/Xilinx/Vivado/2023.1/bin/unwrapped/win64.o/xelab.exe --incr --debug 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 80 differs from formal bit length 79 for port 'inOperation0' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:695]
+WARNING: [VRFC 10-3091] actual bit length 80 differs from formal bit length 79 for port 'inOperation0' [C:/Users/Aaron Lo/Documents/FPGA/OutOfOrderProcessor/OutOfOrderProcessor.srcs/sources_1/new/cpu.v:752]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -16,10 +16,9 @@ Compiling module xil_defaultlib.regs
 Compiling module xil_defaultlib.decoder
 Compiling module xil_defaultlib.forward_check
 Compiling module xil_defaultlib.queue_feeder
-Compiling module xil_defaultlib.queue(Q_SIZE=16,Q_LOG_SIZE=4)
+Compiling module xil_defaultlib.queue
 Compiling module xil_defaultlib.reservation_station_default
 Compiling module xil_defaultlib.alu
-Compiling module xil_defaultlib.queue
 Compiling module xil_defaultlib.store_buffer
 Compiling module xil_defaultlib.load_store_unit
 Compiling module xil_defaultlib.cpu

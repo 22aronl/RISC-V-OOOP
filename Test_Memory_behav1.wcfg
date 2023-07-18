@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="5.009752 us"></ZoomEndTime>
-      <Cursor1Time time="3.750000 us"></Cursor1Time>
+      <ZoomStartTime time="3.866666 us"></ZoomStartTime>
+      <ZoomEndTime time="11.526667 us"></ZoomEndTime>
+      <Cursor1Time time="10.250000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="174"></NameColumnWidth>
-      <ValueColumnWidth column_width="79"></ValueColumnWidth>
+      <NameColumnWidth column_width="207"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="21" />
    <wvobject fp_name="/Test_Memory/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,9 +27,16 @@
    <wvobject fp_name="group127" type="group">
       <obj_property name="label">decodeA</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/decoderA/ROB_loc" type="array">
+         <obj_property name="ElementShortName">ROB_loc[5:0]</obj_property>
+         <obj_property name="ObjectShortName">ROB_loc[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderA/pc" type="array">
          <obj_property name="ElementShortName">pc[31:0]</obj_property>
          <obj_property name="ObjectShortName">pc[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderA/in_valid" type="logic">
          <obj_property name="ElementShortName">in_valid</obj_property>
@@ -58,6 +65,7 @@
       <wvobject fp_name="/Test_Memory/cpu/decoderA/d2_pc" type="array">
          <obj_property name="ElementShortName">d2_pc[31:0]</obj_property>
          <obj_property name="ObjectShortName">d2_pc[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderA/d2_rs1" type="array">
          <obj_property name="ElementShortName">d2_rs1[4:0]</obj_property>
@@ -91,9 +99,17 @@
          <obj_property name="ElementShortName">d2_rs2_look</obj_property>
          <obj_property name="ObjectShortName">d2_rs2_look</obj_property>
       </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/decoderA/d2_use_rs1" type="logic">
+         <obj_property name="ElementShortName">d2_use_rs1</obj_property>
+         <obj_property name="ObjectShortName">d2_use_rs1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/decoderA/d2_use_rs2" type="logic">
+         <obj_property name="ElementShortName">d2_use_rs2</obj_property>
+         <obj_property name="ObjectShortName">d2_use_rs2</obj_property>
+      </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderA/output_loc" type="array">
-         <obj_property name="ElementShortName">output_loc[16:0]</obj_property>
-         <obj_property name="ObjectShortName">output_loc[16:0]</obj_property>
+         <obj_property name="ElementShortName">output_loc[17:0]</obj_property>
+         <obj_property name="ObjectShortName">output_loc[17:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderA/out_rd" type="array">
          <obj_property name="ElementShortName">out_rd[11:0]</obj_property>
@@ -103,6 +119,7 @@
    <wvobject fp_name="group1234" type="group">
       <obj_property name="label">decodeB</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/Test_Memory/cpu/decoderB/pc" type="array">
          <obj_property name="ElementShortName">pc[31:0]</obj_property>
          <obj_property name="ObjectShortName">pc[31:0]</obj_property>
@@ -134,6 +151,7 @@
       <wvobject fp_name="/Test_Memory/cpu/decoderB/d2_pc" type="array">
          <obj_property name="ElementShortName">d2_pc[31:0]</obj_property>
          <obj_property name="ObjectShortName">d2_pc[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderB/d2_rs1" type="array">
          <obj_property name="ElementShortName">d2_rs1[4:0]</obj_property>
@@ -168,17 +186,13 @@
          <obj_property name="ObjectShortName">d2_rs2_look</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderB/output_loc" type="array">
-         <obj_property name="ElementShortName">output_loc[16:0]</obj_property>
-         <obj_property name="ObjectShortName">output_loc[16:0]</obj_property>
+         <obj_property name="ElementShortName">output_loc[17:0]</obj_property>
+         <obj_property name="ObjectShortName">output_loc[17:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/decoderB/out_rd" type="array">
          <obj_property name="ElementShortName">out_rd[11:0]</obj_property>
          <obj_property name="ObjectShortName">out_rd[11:0]</obj_property>
       </wvobject>
-   </wvobject>
-   <wvobject fp_name="group891" type="group">
-      <obj_property name="label">decodeC</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
    </wvobject>
    <wvobject fp_name="group246" type="group">
       <obj_property name="label">regs</obj_property>
@@ -186,6 +200,7 @@
       <wvobject fp_name="/Test_Memory/cpu/regs/rob_locA" type="array">
          <obj_property name="ElementShortName">rob_locA[5:0]</obj_property>
          <obj_property name="ObjectShortName">rob_locA[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/regs/rob_waddrA" type="array">
          <obj_property name="ElementShortName">rob_waddrA[4:0]</obj_property>
@@ -195,11 +210,55 @@
          <obj_property name="ElementShortName">rob_wenA</obj_property>
          <obj_property name="ObjectShortName">rob_wenA</obj_property>
       </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/rob_locB" type="array">
+         <obj_property name="ElementShortName">rob_locB[5:0]</obj_property>
+         <obj_property name="ObjectShortName">rob_locB[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/rob_waddrB" type="array">
+         <obj_property name="ElementShortName">rob_waddrB[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rob_waddrB[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/rob_wenB" type="logic">
+         <obj_property name="ElementShortName">rob_wenB</obj_property>
+         <obj_property name="ObjectShortName">rob_wenB</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/reg0" type="array">
+         <obj_property name="ElementShortName">reg0[4:0]</obj_property>
+         <obj_property name="ObjectShortName">reg0[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/reg1" type="array">
+         <obj_property name="ElementShortName">reg1[4:0]</obj_property>
+         <obj_property name="ObjectShortName">reg1[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/reg2" type="array">
+         <obj_property name="ElementShortName">reg2[4:0]</obj_property>
+         <obj_property name="ObjectShortName">reg2[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/reg3" type="array">
+         <obj_property name="ElementShortName">reg3[4:0]</obj_property>
+         <obj_property name="ObjectShortName">reg3[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/rdata0" type="array">
+         <obj_property name="ElementShortName">rdata0[38:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata0[38:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/rdata1" type="array">
+         <obj_property name="ElementShortName">rdata1[38:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata1[38:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/rdata2" type="array">
+         <obj_property name="ElementShortName">rdata2[38:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata2[38:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/regs/rdata3" type="array">
+         <obj_property name="ElementShortName">rdata3[38:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata3[38:0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="group312" type="group">
       <obj_property name="label">forward</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/Test_Memory/cpu/forwardA" type="array">
          <obj_property name="ElementShortName">forwardA[38:0]</obj_property>
          <obj_property name="ObjectShortName">forwardA[38:0]</obj_property>
@@ -221,6 +280,20 @@
       <wvobject fp_name="/Test_Memory/cpu/forwardC" type="array">
          <obj_property name="ElementShortName">forwardC[38:0]</obj_property>
          <obj_property name="ObjectShortName">forwardC[38:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/forwardCValid" type="logic">
+         <obj_property name="ElementShortName">forwardCValid</obj_property>
+         <obj_property name="ObjectShortName">forwardCValid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/forwardCRob" type="array">
+         <obj_property name="ElementShortName">forwardCRob[5:0]</obj_property>
+         <obj_property name="ObjectShortName">forwardCRob[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/forwardCVal" type="array">
+         <obj_property name="ElementShortName">forwardCVal[31:0]</obj_property>
+         <obj_property name="ObjectShortName">forwardCVal[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/forwardD" type="array">
          <obj_property name="ElementShortName">forwardD[38:0]</obj_property>
@@ -280,6 +353,35 @@
          <obj_property name="ElementShortName">user[1:0]</obj_property>
          <obj_property name="ObjectShortName">user[1:0]</obj_property>
       </wvobject>
+      <wvobject fp_name="vbus2608" type="vbus">
+         <obj_property name="label">rob_A</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[46]" type="logic">
+            <obj_property name="ElementShortName">[46]</obj_property>
+            <obj_property name="ObjectShortName">[46]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[45]" type="logic">
+            <obj_property name="ElementShortName">[45]</obj_property>
+            <obj_property name="ObjectShortName">[45]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[44]" type="logic">
+            <obj_property name="ElementShortName">[44]</obj_property>
+            <obj_property name="ObjectShortName">[44]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[43]" type="logic">
+            <obj_property name="ElementShortName">[43]</obj_property>
+            <obj_property name="ObjectShortName">[43]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[42]" type="logic">
+            <obj_property name="ElementShortName">[42]</obj_property>
+            <obj_property name="ObjectShortName">[42]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[41]" type="logic">
+            <obj_property name="ElementShortName">[41]</obj_property>
+            <obj_property name="ObjectShortName">[41]</obj_property>
+         </wvobject>
+      </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/forward_checkA/userA" type="logic">
          <obj_property name="ElementShortName">userA</obj_property>
          <obj_property name="ObjectShortName">userA</obj_property>
@@ -287,6 +389,137 @@
       <wvobject fp_name="/Test_Memory/cpu/forward_checkA/userB" type="logic">
          <obj_property name="ElementShortName">userB</obj_property>
          <obj_property name="ObjectShortName">userB</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB[0][64]" type="logic">
+         <obj_property name="ElementShortName">[64]</obj_property>
+         <obj_property name="ObjectShortName">[64]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB[2][64]" type="logic">
+         <obj_property name="ElementShortName">[64]</obj_property>
+         <obj_property name="ObjectShortName">[64]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/forward_checkB/userA" type="logic">
+         <obj_property name="ElementShortName">userA</obj_property>
+         <obj_property name="ObjectShortName">userA</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/forward_checkB/userB" type="logic">
+         <obj_property name="ElementShortName">userB</obj_property>
+         <obj_property name="ObjectShortName">userB</obj_property>
+      </wvobject>
+      <wvobject fp_name="vbus1234" type="vbus">
+         <obj_property name="label">data_rs1</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[46]" type="logic">
+            <obj_property name="ElementShortName">[46]</obj_property>
+            <obj_property name="ObjectShortName">[46]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[45]" type="logic">
+            <obj_property name="ElementShortName">[45]</obj_property>
+            <obj_property name="ObjectShortName">[45]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[44]" type="logic">
+            <obj_property name="ElementShortName">[44]</obj_property>
+            <obj_property name="ObjectShortName">[44]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[43]" type="logic">
+            <obj_property name="ElementShortName">[43]</obj_property>
+            <obj_property name="ObjectShortName">[43]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[42]" type="logic">
+            <obj_property name="ElementShortName">[42]</obj_property>
+            <obj_property name="ObjectShortName">[42]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataA__[41]" type="logic">
+            <obj_property name="ElementShortName">[41]</obj_property>
+            <obj_property name="ObjectShortName">[41]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group2320" type="group">
+         <obj_property name="label">rob_B</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataB__[46]" type="logic">
+            <obj_property name="ElementShortName">[46]</obj_property>
+            <obj_property name="ObjectShortName">[46]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataB__[45]" type="logic">
+            <obj_property name="ElementShortName">[45]</obj_property>
+            <obj_property name="ObjectShortName">[45]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataB__[44]" type="logic">
+            <obj_property name="ElementShortName">[44]</obj_property>
+            <obj_property name="ObjectShortName">[44]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataB__[43]" type="logic">
+            <obj_property name="ElementShortName">[43]</obj_property>
+            <obj_property name="ObjectShortName">[43]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataB__[42]" type="logic">
+            <obj_property name="ElementShortName">[42]</obj_property>
+            <obj_property name="ObjectShortName">[42]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Test_Memory/cpu/output_dataB__[41]" type="logic">
+            <obj_property name="ElementShortName">[41]</obj_property>
+            <obj_property name="ObjectShortName">[41]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataB__[1]" type="logic">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+         <obj_property name="label">dataA_look</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataA_rs1_rob" type="logic">
+         <obj_property name="ElementShortName">output_dataA_rs1_rob</obj_property>
+         <obj_property name="ObjectShortName">output_dataA_rs1_rob</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataA_rs1" type="array">
+         <obj_property name="ElementShortName">output_dataA_rs1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">output_dataA_rs1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataA_rs2_rob" type="logic">
+         <obj_property name="ElementShortName">output_dataA_rs2_rob</obj_property>
+         <obj_property name="ObjectShortName">output_dataA_rs2_rob</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataA_rs2" type="array">
+         <obj_property name="ElementShortName">output_dataA_rs2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">output_dataA_rs2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataB__[1]" type="logic">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataB__1" type="logic">
+         <obj_property name="ElementShortName">output_dataB__1</obj_property>
+         <obj_property name="ObjectShortName">output_dataB__1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/rob_output_dataB" type="logic">
+         <obj_property name="ElementShortName">rob_output_dataB</obj_property>
+         <obj_property name="ObjectShortName">rob_output_dataB</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/rob_output_dataB_0" type="array">
+         <obj_property name="ElementShortName">rob_output_dataB_0[5:0]</obj_property>
+         <obj_property name="ObjectShortName">rob_output_dataB_0[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataB_rs1_rob" type="logic">
+         <obj_property name="ElementShortName">output_dataB_rs1_rob</obj_property>
+         <obj_property name="ObjectShortName">output_dataB_rs1_rob</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataB_rs1" type="array">
+         <obj_property name="ElementShortName">output_dataB_rs1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">output_dataB_rs1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataB_rs2_rob" type="logic">
+         <obj_property name="ElementShortName">output_dataB_rs2_rob</obj_property>
+         <obj_property name="ObjectShortName">output_dataB_rs2_rob</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_dataB_rs2" type="array">
+         <obj_property name="ElementShortName">output_dataB_rs2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">output_dataB_rs2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB" type="array">
+         <obj_property name="ElementShortName">ROB[0:15][64:0]</obj_property>
+         <obj_property name="ObjectShortName">ROB[0:15][64:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group364" type="group">
@@ -352,6 +585,16 @@
    <wvobject fp_name="group774" type="group">
       <obj_property name="label">lsu</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/inOperation0[78]" type="logic">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[78]</obj_property>
+         <obj_property name="ObjectShortName">[78]</obj_property>
+         <obj_property name="label">InOperation0_valid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/lsu/inOperation0" type="array">
+         <obj_property name="ElementShortName">inOperation0[78:0]</obj_property>
+         <obj_property name="ObjectShortName">inOperation0[78:0]</obj_property>
+      </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/load_buffer_op" type="array">
          <obj_property name="ElementShortName">load_buffer_op[96:0]</obj_property>
          <obj_property name="ObjectShortName">load_buffer_op[96:0]</obj_property>
@@ -379,10 +622,12 @@
       <wvobject fp_name="/Test_Memory/cpu/lsu/load_data_out" type="array">
          <obj_property name="ElementShortName">load_data_out[31:0]</obj_property>
          <obj_property name="ObjectShortName">load_data_out[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/lsu/op_load_data" type="array">
          <obj_property name="ElementShortName">op_load_data[31:0]</obj_property>
          <obj_property name="ObjectShortName">op_load_data[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/lsu/mem_data" type="array">
          <obj_property name="ElementShortName">mem_data[31:0]</obj_property>
@@ -403,6 +648,7 @@
       <wvobject fp_name="/Test_Memory/cpu/lsu/store_buffer_data" type="array">
          <obj_property name="ElementShortName">store_buffer_data[31:0]</obj_property>
          <obj_property name="ObjectShortName">store_buffer_data[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/lsu/inOperation" type="array">
          <obj_property name="ElementShortName">inOperation[78:0]</obj_property>
@@ -419,6 +665,7 @@
       <wvobject fp_name="/Test_Memory/cpu/lsu/rs2" type="array">
          <obj_property name="ElementShortName">rs2[31:0]</obj_property>
          <obj_property name="ObjectShortName">rs2[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group460" type="group">
@@ -427,10 +674,12 @@
       <wvobject fp_name="/Test_Memory/cpu/lsu/store_buffer/data" type="array">
          <obj_property name="ElementShortName">data[31:0]</obj_property>
          <obj_property name="ObjectShortName">data[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/lsu/store_buffer/location" type="array">
          <obj_property name="ElementShortName">location[31:0]</obj_property>
          <obj_property name="ObjectShortName">location[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/lsu/store_buffer/input_valid" type="logic">
          <obj_property name="ElementShortName">input_valid</obj_property>
@@ -440,17 +689,21 @@
    <wvobject fp_name="group873" type="group">
       <obj_property name="label">branch_unit</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/Test_Memory/cpu/b_pc_jump" type="array">
          <obj_property name="ElementShortName">b_pc_jump[31:0]</obj_property>
          <obj_property name="ObjectShortName">b_pc_jump[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/b_pc" type="array">
          <obj_property name="ElementShortName">b_pc[31:0]</obj_property>
          <obj_property name="ObjectShortName">b_pc[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/b_forward" type="array">
          <obj_property name="ElementShortName">b_forward[31:0]</obj_property>
          <obj_property name="ObjectShortName">b_forward[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/b_valid" type="logic">
          <obj_property name="ElementShortName">b_valid</obj_property>
@@ -467,6 +720,7 @@
       <wvobject fp_name="/Test_Memory/cpu/b_rob_loc" type="array">
          <obj_property name="ElementShortName">b_rob_loc[5:0]</obj_property>
          <obj_property name="ObjectShortName">b_rob_loc[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/b_data_rs1" type="array">
          <obj_property name="ElementShortName">b_data_rs1[31:0]</obj_property>
@@ -479,48 +733,159 @@
       <wvobject fp_name="/Test_Memory/cpu/b_offset" type="array">
          <obj_property name="ElementShortName">b_offset[31:0]</obj_property>
          <obj_property name="ObjectShortName">b_offset[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/ROBhelper[12]" type="array">
-         <obj_property name="ElementShortName">[12][19:0]</obj_property>
-         <obj_property name="ObjectShortName">[12][19:0]</obj_property>
+         <obj_property name="ElementShortName">[12][22:0]</obj_property>
+         <obj_property name="ObjectShortName">[12][22:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/b_offset_s" type="array">
          <obj_property name="ElementShortName">b_offset_s[11:0]</obj_property>
          <obj_property name="ObjectShortName">b_offset_s[11:0]</obj_property>
       </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROBhelper[8]" type="array">
+         <obj_property name="ElementShortName">[8][22:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][22:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/flush" type="logic">
+      <obj_property name="ElementShortName">flush</obj_property>
+      <obj_property name="ObjectShortName">flush</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/branch_jump_match" type="logic">
+      <obj_property name="ElementShortName">branch_jump_match</obj_property>
+      <obj_property name="ObjectShortName">branch_jump_match</obj_property>
    </wvobject>
    <wvobject fp_name="group964" type="group">
       <obj_property name="label">ROB</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/decode_robA" type="array">
+         <obj_property name="ElementShortName">decode_robA[3:0][3:0]</obj_property>
+         <obj_property name="ObjectShortName">decode_robA[3:0][3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/decode_robB" type="array">
+         <obj_property name="ElementShortName">decode_robB[3:0][3:0]</obj_property>
+         <obj_property name="ObjectShortName">decode_robB[3:0][3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROBhelper" type="array">
+         <obj_property name="ElementShortName">ROBhelper[0:15][22:0]</obj_property>
+         <obj_property name="ObjectShortName">ROBhelper[0:15][22:0]</obj_property>
+      </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/d_ROBA" type="array">
          <obj_property name="ElementShortName">d_ROBA[5:0]</obj_property>
          <obj_property name="ObjectShortName">d_ROBA[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/d_ROBB" type="array">
          <obj_property name="ElementShortName">d_ROBB[5:0]</obj_property>
          <obj_property name="ObjectShortName">d_ROBB[5:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/d_ROBC" type="array">
-         <obj_property name="ElementShortName">d_ROBC[5:0]</obj_property>
-         <obj_property name="ObjectShortName">d_ROBC[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/output_locA" type="array">
-         <obj_property name="ElementShortName">output_locA[16:0]</obj_property>
-         <obj_property name="ObjectShortName">output_locA[16:0]</obj_property>
+         <obj_property name="ElementShortName">output_locA[17:0]</obj_property>
+         <obj_property name="ObjectShortName">output_locA[17:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/output_locA_15" type="logic">
+         <obj_property name="ElementShortName">output_locA_15</obj_property>
+         <obj_property name="ObjectShortName">output_locA_15</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/output_locB" type="array">
-         <obj_property name="ElementShortName">output_locB[16:0]</obj_property>
-         <obj_property name="ObjectShortName">output_locB[16:0]</obj_property>
+         <obj_property name="ElementShortName">output_locB[17:0]</obj_property>
+         <obj_property name="ObjectShortName">output_locB[17:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/Test_Memory/cpu/output_locC" type="array">
-         <obj_property name="ElementShortName">output_locC[16:0]</obj_property>
-         <obj_property name="ObjectShortName">output_locC[16:0]</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/flush" type="logic">
+         <obj_property name="ElementShortName">flush</obj_property>
+         <obj_property name="ObjectShortName">flush</obj_property>
       </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB_one_ready" type="logic">
+         <obj_property name="ElementShortName">ROB_one_ready</obj_property>
+         <obj_property name="ObjectShortName">ROB_one_ready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB_one_jump" type="logic">
+         <obj_property name="ElementShortName">ROB_one_jump</obj_property>
+         <obj_property name="ObjectShortName">ROB_one_jump</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB_one_pc" type="array">
+         <obj_property name="ElementShortName">ROB_one_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ROB_one_pc[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB_one_store" type="logic">
+         <obj_property name="ElementShortName">ROB_one_store</obj_property>
+         <obj_property name="ObjectShortName">ROB_one_store</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB_two_ready" type="logic">
+         <obj_property name="ElementShortName">ROB_two_ready</obj_property>
+         <obj_property name="ObjectShortName">ROB_two_ready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB_two_jump" type="logic">
+         <obj_property name="ElementShortName">ROB_two_jump</obj_property>
+         <obj_property name="ObjectShortName">ROB_two_jump</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB_two_pc" type="array">
+         <obj_property name="ElementShortName">ROB_two_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ROB_two_pc[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROB_two_store" type="logic">
+         <obj_property name="ElementShortName">ROB_two_store</obj_property>
+         <obj_property name="ObjectShortName">ROB_two_store</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROBhead" type="array">
+         <obj_property name="ElementShortName">ROBhead[5:0]</obj_property>
+         <obj_property name="ObjectShortName">ROBhead[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/ROBtail" type="array">
+         <obj_property name="ElementShortName">ROBtail[5:0]</obj_property>
+         <obj_property name="ObjectShortName">ROBtail[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/r_wen0" type="logic">
+         <obj_property name="ElementShortName">r_wen0</obj_property>
+         <obj_property name="ObjectShortName">r_wen0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/r_waddr0" type="array">
+         <obj_property name="ElementShortName">r_waddr0[4:0]</obj_property>
+         <obj_property name="ObjectShortName">r_waddr0[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/r_wdata0" type="array">
+         <obj_property name="ElementShortName">r_wdata0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">r_wdata0[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/r_wrob0" type="array">
+         <obj_property name="ElementShortName">r_wrob0[5:0]</obj_property>
+         <obj_property name="ObjectShortName">r_wrob0[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/r_wen1" type="logic">
+         <obj_property name="ElementShortName">r_wen1</obj_property>
+         <obj_property name="ObjectShortName">r_wen1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/r_waddr1" type="array">
+         <obj_property name="ElementShortName">r_waddr1[4:0]</obj_property>
+         <obj_property name="ObjectShortName">r_waddr1[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/r_wdata1" type="array">
+         <obj_property name="ElementShortName">r_wdata1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">r_wdata1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/r_wrob1" type="array">
+         <obj_property name="ElementShortName">r_wrob1[5:0]</obj_property>
+         <obj_property name="ObjectShortName">r_wrob1[5:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/a_rs1_rob" type="array">
+      <obj_property name="ElementShortName">a_rs1_rob[5:0]</obj_property>
+      <obj_property name="ObjectShortName">a_rs1_rob[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/decode_robA" type="array">
+      <obj_property name="ElementShortName">decode_robA[3:0][3:0]</obj_property>
+      <obj_property name="ObjectShortName">decode_robA[3:0][3:0]</obj_property>
    </wvobject>
    <wvobject fp_name="group491" type="group">
       <obj_property name="label">alu_reservationA</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/Test_Memory/cpu/alu_operationA" type="array">
          <obj_property name="ElementShortName">alu_operationA[79:0]</obj_property>
          <obj_property name="ObjectShortName">alu_operationA[79:0]</obj_property>
@@ -573,18 +938,17 @@
    <wvobject fp_name="group131" type="group">
       <obj_property name="label">new_alu_queue</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/Test_Memory/cpu/alu_queue/head" type="array">
-         <obj_property name="ElementShortName">head[3:0]</obj_property>
-         <obj_property name="ObjectShortName">head[3:0]</obj_property>
+         <obj_property name="ElementShortName">head[2:0]</obj_property>
+         <obj_property name="ObjectShortName">head[2:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/alu_queue/head_valid" type="logic">
          <obj_property name="ElementShortName">head_valid</obj_property>
          <obj_property name="ObjectShortName">head_valid</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/alu_queue/valid" type="array">
-         <obj_property name="ElementShortName">valid[0:15]</obj_property>
-         <obj_property name="ObjectShortName">valid[0:15]</obj_property>
+         <obj_property name="ElementShortName">valid[0:7]</obj_property>
+         <obj_property name="ObjectShortName">valid[0:7]</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/alu_queue/outOperation0[96]" type="logic">
          <obj_property name="ElementShortName">[96]</obj_property>
@@ -615,9 +979,62 @@
          <obj_property name="ObjectShortName">taken</obj_property>
       </wvobject>
       <wvobject fp_name="/Test_Memory/cpu/alu_queue/valid" type="array">
-         <obj_property name="ElementShortName">valid[0:15]</obj_property>
-         <obj_property name="ObjectShortName">valid[0:15]</obj_property>
+         <obj_property name="ElementShortName">valid[0:7]</obj_property>
+         <obj_property name="ObjectShortName">valid[0:7]</obj_property>
          <obj_property name="isExpanded"></obj_property>
       </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/flush" type="logic">
+         <obj_property name="ElementShortName">flush</obj_property>
+         <obj_property name="ObjectShortName">flush</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/flush" type="logic">
+         <obj_property name="ElementShortName">flush</obj_property>
+         <obj_property name="ObjectShortName">flush</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group1001" type="group">
+      <obj_property name="label">new_lsu_queue</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/flush" type="logic">
+         <obj_property name="ElementShortName">flush</obj_property>
+         <obj_property name="ObjectShortName">flush</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/taken" type="logic">
+         <obj_property name="ElementShortName">taken</obj_property>
+         <obj_property name="ObjectShortName">taken</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/validA" type="logic">
+         <obj_property name="ElementShortName">validA</obj_property>
+         <obj_property name="ObjectShortName">validA</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/validB" type="logic">
+         <obj_property name="ElementShortName">validB</obj_property>
+         <obj_property name="ObjectShortName">validB</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/input_dataA" type="array">
+         <obj_property name="ElementShortName">input_dataA[95:0]</obj_property>
+         <obj_property name="ObjectShortName">input_dataA[95:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/input_dataB" type="array">
+         <obj_property name="ElementShortName">input_dataB[95:0]</obj_property>
+         <obj_property name="ObjectShortName">input_dataB[95:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/outOperation0" type="array">
+         <obj_property name="ElementShortName">outOperation0[96:0]</obj_property>
+         <obj_property name="ObjectShortName">outOperation0[96:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Memory/cpu/load_queue/valid" type="array">
+         <obj_property name="ElementShortName">valid[0:7]</obj_property>
+         <obj_property name="ObjectShortName">valid[0:7]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/stall" type="logic">
+      <obj_property name="ElementShortName">stall</obj_property>
+      <obj_property name="ObjectShortName">stall</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Memory/cpu/stall_queue" type="array">
+      <obj_property name="ElementShortName">stall_queue[3:0]</obj_property>
+      <obj_property name="ObjectShortName">stall_queue[3:0]</obj_property>
    </wvobject>
 </wave_config>
