@@ -203,10 +203,10 @@ module cpu(
 //    reg d3_validC = 1'b0; //inefficient
     
     always @(posedge clk) begin
-        stall_queue[0] <= !flush & !stall;
-        stall_queue[1] <= stall_queue[0];
-        stall_queue[2] <= stall_queue[1];
-        stall_queue[3] <= stall_queue[2];
+        stall_queue[0] <= flush | !stall;
+        stall_queue[1] <= flush ? 1'b0 : stall_queue[0];
+        stall_queue[2] <= flush ? 1'b0 : stall_queue[1];
+        stall_queue[3] <= flush ? 1'b0 : stall_queue[2];
 
         decode_robA[1] <= ROB_locA;
         //decode_robA[1] <= decode_robA[0];
@@ -375,8 +375,11 @@ module cpu(
     reg [31:0] ROBpc [0: ROB_SIZE - 1]; //this is so inefficient :') only exists because of jal & jalr
     
     always @(posedge clk) begin
-        if(!flush & !stall)
+        if(!stall)
             ROBtail <= (ROBtail + 2) % ROB_SIZE;
+
+        if(flush)
+            ROBtail <= ROBhead;
     end
     
     
@@ -783,7 +786,7 @@ module cpu(
     wire ROB_one_store = ROB_one_ready & ROBhelper[rone_i][17];
      wire ROB_two_store = (ROB_one_ready & !ROB_one_jump) & ROB_two_ready & ROBhelper[rtwo_i][17];
 
-    assign flush = ROB_one_jump | ROB_two_jump;
+    assign flush = ROB_one_jump;// | ROB_two_jump;
 
 
     assign r_wen0 = ROB_one_ready & ROBhelper[rone_i][21];
@@ -814,9 +817,20 @@ module cpu(
     end
     wire branch_jump_match = ((b_pc_jump) != b_pc + 2);
     wire output_locA_15 = output_locA[15];
+    integer i;
+    
     always @(posedge clk) begin
-        ROB[b_rob_loc][31:0] <= b_pc_jump;
-        ROBhelper[b_rob_loc][19] <= ((b_pc_jump) != b_pc + 2);
+        if(flush) begin
+            for(i = 0; i < ROB_SIZE; i = i + 1) begin
+                ROB[i][64] <= 1'b0;
+                ROBhelper[i][19] = 1'b0;
+            end
+        end
+    
+        if(b_valid) begin
+            ROB[b_rob_loc][31:0] <= b_pc_jump;
+            ROBhelper[b_rob_loc][19] <= ((b_pc_jump) != b_pc + 2);
+        end
 
         ROB[d_ROBA][31:0] <= output_pcA;
         ROB[d_ROBB][31:0] <= output_pcB;
@@ -869,7 +883,7 @@ module cpu(
         end
     end
     
-    integer i;
+
     initial begin
         for(i = 0; i < ROB_SIZE; i = i + 1) begin
             ROB[i][64] = 1'b0;
