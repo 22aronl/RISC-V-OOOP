@@ -21,7 +21,7 @@
 
 
 module decoder(
-    input clk,
+    input clk, input flush,
     input [31:0] instruct, input [31:0] pc, input [5:0] ROB_loc, input in_valid,
     output [11:0] out_rd, output [4:0] out_rs1, output [4:0] out_rs2,
     input [38:0] data_rs1, input [38:0] data_rs2,
@@ -141,7 +141,7 @@ module decoder(
         d2_pc <= pc;
         d2_ROB_loc <= ROB_loc;
         d2_opcodeC <= opcodeC;
-        d2_valid <= in_valid;
+        d2_valid <= !flush & in_valid;
 
         d2_is_alu <= in_valid && is_alu;
         d2_is_mem_unit <= in_valid && is_mem_unit;

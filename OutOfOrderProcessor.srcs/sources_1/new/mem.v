@@ -34,13 +34,13 @@ module mem
 
     /* Simulation -- read initial content from file */
     initial begin
-        $readmemh("file.mem",data);
+        $readmemh("file2.mem",data);
     end
     
-    reg [31:1] buf_raddr0 [0 : INSTR_TIMING - 1];
-    reg [31:1] buf_raddr1 [0 : INSTR_TIMING - 1];
+    reg [31:0] buf_raddr0 [0 : INSTR_TIMING - 1];
+    reg [31:0] buf_raddr1 [0 : INSTR_TIMING - 1];
 //    reg [31:1] buf_raddr2 [0 : INSTR_TIMING - 1];
-    reg [31:1] buf_raddr3 [0 : CYCLE_TIMING - 1];
+    reg [31:0] buf_raddr3 [0 : CYCLE_TIMING - 1];
     
     reg [31:0] rdata0_;
     reg [31:0] rdata1_;

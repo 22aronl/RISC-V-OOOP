@@ -21,8 +21,8 @@
 
 
 module queue
-    #(  parameter Q_SIZE = 8,
-        parameter Q_LOG_SIZE = 3,
+    #(  parameter Q_SIZE = 12,
+        parameter Q_LOG_SIZE = 4,
         parameter R_SIZE = 4,
         parameter R_LOG_SIZE = 2
     )
@@ -40,11 +40,12 @@ module queue
     reg [Q_LOG_SIZE - 1:0] head = 0;
     
 
-    assign outOperation0 = {valid[0], queue[0]};
+    assign outOperation0 = {valid[0] & !flush, queue[0]};
 
     wire head_valid = valid[head];
     integer i;
     always @(posedge clk) begin
+    
         for(i = 0; i < Q_SIZE; i = i + 1) begin
             if(forwardA[38] == 1'b1) begin
                 if(queue[i][1] == 1'b1 && queue[i][46:41] == forwardA[37:32]) begin
@@ -88,7 +89,7 @@ module queue
             queue[head] <= input_dataA;
             valid[head + 1] <= validB;
             queue[head + 1] <= input_dataB;
-            head = (head + validA + validB);
+//            head <= (head + validA + validB);
         end
         else begin
             for(i = 0; i < Q_SIZE - 2; i = i + 1) begin
@@ -101,8 +102,18 @@ module queue
             queue[head - 1] <= input_dataA;
             valid[head] <= validB;
             queue[head] <= input_dataB;
-            head <= (head + validA + validB - taken);
         end
+        
+        if(flush) begin
+            for(i = 0; i < Q_SIZE; i = i + 1) begin
+                valid[i] = 1'b0;
+            end
+        end
+        
+        if(flush) 
+            head <= 0;
+        else
+            head <= (head + validA + validB - taken);
     end
 
     

@@ -279,6 +279,7 @@ module cpu(
 
     decoder decoderA(
         .clk(clk),
+        .flush(flush),
         .instruct(instructA),
         .pc(d3_pcA),
         .ROB_loc({2'b0, decode_robA[3]}),
@@ -310,6 +311,7 @@ module cpu(
 
     decoder decoderB(
         .clk(clk),
+        .flush(flush),
         .instruct(instructB),
         .pc(d3_pcB),
         .ROB_loc({2'b0, decode_robB[3]}),
@@ -426,7 +428,7 @@ module cpu(
     wire alu_reservA_used;
     wire alu_reservB_used;
 
-    queue #(.Q_SIZE(8), .Q_LOG_SIZE(3)) alu_queue(
+    queue alu_queue(
         .clk(clk),
         .flush(flush),
         .taken(alu_reservA_used),
@@ -481,7 +483,7 @@ module cpu(
     assign alu_reservA_used = alu_operationA_used & alu_buffer_opA[96];
 
     alu aluA(
-        .clk(clk),
+        .clk(clk), .flush(flush),
         .inOperation(alu_operationA),
         .inValid(alu_operationA_valid),
         .outData(forwardA)
@@ -786,7 +788,7 @@ module cpu(
     wire ROB_one_store = ROB_one_ready & ROBhelper[rone_i][17];
      wire ROB_two_store = (ROB_one_ready & !ROB_one_jump) & ROB_two_ready & ROBhelper[rtwo_i][17];
 
-    assign flush = ROB_one_jump;// | ROB_two_jump;
+    assign flush = ROB_one_ready & ROB_one_jump | ROB_one_ready & ROB_two_ready & ROB_two_jump;
 
 
     assign r_wen0 = ROB_one_ready & ROBhelper[rone_i][21];
@@ -808,13 +810,21 @@ module cpu(
         if(ROB_one_ready) begin
             if(ROB_one_jump) begin
                 pc <= ROB_one_pc;
-                ROBhead <= (ROBtail + 1) % ROB_SIZE;
+            end
+            else if(ROB_two_ready) begin
+                if(ROB_two_jump) begin
+                    pc <= ROB_two_pc;
+                end
+                else begin
+                    ROBhead <= (ROBhead + 2) % ROB_SIZE;
+                end
             end
             else begin
                 ROBhead <= (ROBhead + 1) % ROB_SIZE;
             end
         end
     end
+
     wire branch_jump_match = ((b_pc_jump) != b_pc + 2);
     wire output_locA_15 = output_locA[15];
     integer i;
