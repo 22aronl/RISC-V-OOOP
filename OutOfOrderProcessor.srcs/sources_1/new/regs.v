@@ -91,6 +91,8 @@ module regs(
             rob_loc[j] <= r2_rob_locA;
             busy[j] <= 1'b1;
            end
+           
+           busy[0] <= 1'b0;
 
            if(flush) begin
                 busy[j] <= 1'b0;
